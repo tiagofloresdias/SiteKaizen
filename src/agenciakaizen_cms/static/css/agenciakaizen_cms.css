@@ -1,0 +1,79 @@
+/* Wagtail Admin - Tema Agência Kaizen */
+
+/* Paleta Kaizen */
+:root {
+    --kaizen-primary: #ff6b6b; /* pink/red */
+    --kaizen-accent:  #ee5a24; /* orange/red */
+    --kaizen-dark:    #212529; /* dark */
+    --kaizen-light:   #f8f9fa; /* light */
+
+    /* Sugerir variáveis do Wagtail (v5+) */
+    --w-color-primary: var(--kaizen-primary);
+}
+
+/* Header com gradiente Kaizen */
+.w-header,
+.w-slim-header,
+.w-app-header,
+.w-app-header__bar {
+    background: linear-gradient(90deg, var(--kaizen-primary), var(--kaizen-accent));
+    border-bottom: none;
+}
+
+/* Navegação lateral - estado ativo e foco */
+.w-nav__item--selected > a,
+.w-nav__item a:focus {
+    color: var(--kaizen-primary);
+}
+
+/* Botões principais */
+.button.button-primary,
+.button.primary,
+.w-btn--primary,
+button[type="submit"].button-primary {
+    background: linear-gradient(135deg, var(--kaizen-primary) 0%, var(--kaizen-accent) 100%);
+    border: none;
+    color: #fff;
+}
+.button.button-primary:hover,
+.w-btn--primary:hover {
+    filter: brightness(0.95);
+}
+
+/* Login */
+.w-login,
+.login {
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,107,107,0.08), transparent),
+                radial-gradient(1200px 600px at 90% 90%, rgba(238,90,36,0.08), transparent),
+                var(--kaizen-dark);
+}
+.w-panel,
+.login .panel {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.w-panel__header,
+.login .panel .header {
+    background: linear-gradient(90deg, var(--kaizen-primary), var(--kaizen-accent));
+    color: #fff;
+}
+
+/* Badges / estados */
+.w-badge--primary,
+.status-tag.primary {
+    background: var(--kaizen-primary);
+    color: #fff;
+}
+
+/* Links de ação */
+.w-action-buttons .button.button-secondary:hover,
+.button.button-secondary:hover {
+    color: var(--kaizen-primary);
+}
+
+/* Pequenos refinamentos */
+.w-breadcrumbs a:hover {
+    color: var(--kaizen-accent);
+}
+
+

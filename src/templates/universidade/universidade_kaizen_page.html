@@ -1,0 +1,796 @@
+{% extends "base_internal.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{% if page %}{{ page.custom_seo_title|default:page.title }}{% else %}Universidade Kaizen{% endif %} - Agência Kaizen{% endblock %}
+
+{% block meta_description %}{% if page %}{{ page.custom_seo_description|default:"Universidade Kaizen - Evolução Contínua para Performance Máxima. Aprenda com os maiores especialistas do mercado em marketing digital, vendas e estratégias de crescimento." }}{% else %}Universidade Kaizen - Evolução Contínua para Performance Máxima. Aprenda com os maiores especialistas do mercado em marketing digital, vendas e estratégias de crescimento.{% endif %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Animações */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .pulse-animation {
+        animation: pulse 2s infinite;
+    }
+    
+    .float-animation {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Estilos personalizados */
+    .hero-gradient {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d1b69 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .card-hover {
+        transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(234, 0, 41, 0.3);
+    }
+    
+    .price-highlight {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+    
+    .check-icon {
+        color: #28a745;
+        font-size: 1.2em;
+    }
+    
+    .expert-card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border: 1px solid #333;
+        transition: all 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    .expert-card:hover {
+        border-color: #ea0029;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(234, 0, 41, 0.2);
+    }
+    
+    .course-category {
+        background: rgba(234, 0, 41, 0.1);
+        border-left: 4px solid #ea0029;
+        padding: 25px;
+        margin: 20px 0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .course-category:hover {
+        background: rgba(234, 0, 41, 0.15);
+        transform: translateX(5px);
+    }
+    
+    .guarantee-badge {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+    
+    .cta-button {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        border: none;
+        border-radius: 8px;
+        padding: 15px 40px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(234, 0, 41, 0.4);
+        background: linear-gradient(135deg, #ff6b6b, #ea0029);
+    }
+    
+    .target-audience-card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border: 2px solid #333;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .target-audience-card:hover {
+        border-color: #ea0029;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(234, 0, 41, 0.2);
+    }
+    
+    .target-audience-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        color: white;
+    }
+    
+    .event-card {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        color: white;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(234, 0, 41, 0.3);
+    }
+    
+    .guarantee-section {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        margin: 40px 0;
+    }
+    
+    .guarantee-icon {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 30px;
+        font-size: 3rem;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .final-cta-section {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        color: white;
+        padding: 60px 40px;
+        text-align: center;
+        border-radius: 20px;
+        margin: 40px 0;
+    }
+    
+    .footer-section {
+        background: #000000;
+        padding: 40px 0;
+        text-align: center;
+        border-top: 1px solid #333;
+    }
+    
+    .lgpd-text {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .price-highlight {
+            font-size: 2rem;
+        }
+        
+        .target-audience-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+        
+        .guarantee-icon {
+            width: 100px;
+            height: 100px;
+            font-size: 2.5rem;
+        }
+        
+        .cta-button {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block internal_content %}
+<!-- Hero Section -->
+<div class="container-fluid hero-gradient">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="fade-in-up">
+                    <h1 class="display-2 fw-bold text-white mb-4">
+                        O que você precisa para <span class="text-pink">gerar resultado agora!</span>
+                    </h1>
+                    
+                    <!-- Oferta Principal -->
+                    <div class="bg-dark p-4 rounded mb-4" style="border: 2px solid #ea0029;">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center text-white mb-3">
+                                    <i class="fas fa-dollar-sign text-pink me-3 fa-2x"></i>
+                                    <div>
+                                        <h4 class="price-highlight mb-0">R$997/ano</h4>
+                                        <small class="text-white-50">Apenas</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center text-white mb-3">
+                                    <i class="fas fa-book text-pink me-3 fa-2x"></i>
+                                    <div>
+                                        <h5 class="mb-0">Todos os cursos inclusos</h5>
+                                        <small class="text-white-50">Mais de 20 cursos</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center text-white">
+                                    <i class="fas fa-calendar text-pink me-3 fa-2x"></i>
+                                    <div>
+                                        <h5 class="mb-0">Novos cursos todo mês</h5>
+                                        <small class="text-white-50">Conteúdo sempre atualizado</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center text-white mb-3">
+                                    <i class="fas fa-users text-pink me-3 fa-2x"></i>
+                                    <div>
+                                        <h5 class="mb-0">Acesso à Comunidade Kaizen</h5>
+                                        <small class="text-white-50">Networking de qualidade</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center text-white mb-3">
+                                    <i class="fas fa-graduation-cap text-pink me-3 fa-2x"></i>
+                                    <div>
+                                        <h5 class="mb-0">Mentores com experiência real</h5>
+                                        <small class="text-white-50">Especialistas do mercado</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center text-white">
+                                    <i class="fas fa-shield-alt text-pink me-3 fa-2x"></i>
+                                    <div>
+                                        <h5 class="mb-0">Garantia de 7 dias</h5>
+                                        <small class="text-white-50">100% de satisfação</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn cta-button pulse-animation">
+                                <i class="fas fa-rocket me-2"></i>QUERO ACESSAR AGORA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="fade-in-up float-animation">
+                    <img src="{% static 'images/universidade-hero.png' %}" alt="Universidade Kaizen" class="img-fluid" style="max-height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Público-Alvo -->
+<div class="container-fluid py-5" style="background: #000000;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold text-white mb-4">Para quem criamos a Universidade Kaizen?</h2>
+                    <p class="lead text-white-50">Se você precisa gerar resultado agora, mas não pode contratar uma agência ou freelancer caro, a Kaizen é para você:</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="target-audience-card">
+                            <div class="target-audience-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h5 class="text-white mb-3">Estudantes de marketing</h5>
+                            <p class="text-white-50">Que querem aprender com quem aplica na prática</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="target-audience-card">
+                            <div class="target-audience-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h5 class="text-white mb-3">Empreendedores e autônomos</h5>
+                            <p class="text-white-50">Que precisam de vendas imediatas</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="target-audience-card">
+                            <div class="target-audience-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h5 class="text-white mb-3">Donos de negócios locais</h5>
+                            <p class="text-white-50">Restaurantes, lojas, clínicas, etc.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="target-audience-card">
+                            <div class="target-audience-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h5 class="text-white mb-3">Profissionais liberais</h5>
+                            <p class="text-white-50">Médicos, advogados e etc que querem atrair mais clientes</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="target-audience-card">
+                            <div class="target-audience-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h5 class="text-white mb-3">Freelancers e analistas</h5>
+                            <p class="text-white-50">Que buscam domínio técnico para crescer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button class="btn cta-button">
+                        <i class="fas fa-rocket me-2"></i>GARANTIR MINHA VAGA AGORA!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cursos Incluídos -->
+<div class="container-fluid py-5" style="background: #1a1a1a;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold text-white mb-4">O que você vai aprender?</h2>
+                    <p class="lead text-white-50">Mais de 20 cursos completos divididos em áreas estratégicas:</p>
+                </div>
+                
+                <!-- Fundamentos e Estratégia -->
+                <div class="course-category">
+                    <h3 class="text-pink mb-4">Fundamentos e Estratégia</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Marketing Digital para Iniciantes</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Marketing para Negócios Locais</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Domine o Google Meu Negócio</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Gestão de Projetos de Marketing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Planejamento, Funil e Dados -->
+                <div class="course-category">
+                    <h3 class="text-pink mb-4">Planejamento, Funil e Dados</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Automação de Funil de Marketing (com GA4)</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Fundamentos de Webanálise com Google Analytics 4</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Expert em Google Tag Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tráfego e Performance -->
+                <div class="course-category">
+                    <h3 class="text-pink mb-4">Tráfego e Performance</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Google Ads Essencial</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Google Ads para E-commerce</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Meta Ads (Facebook/Instagram)</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Domine o TikTok Ads</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vendas e E-commerce -->
+                <div class="course-category">
+                    <h3 class="text-pink mb-4">Vendas e E-commerce</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Máquina de Vendas para Leads</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Gestão de Venda com Inside Sales</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Rocket Hunter & Rocket Closer</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Gestão de E-commerce</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Conteúdo e Automação -->
+                <div class="course-category">
+                    <h3 class="text-pink mb-4">Conteúdo e Automação</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Marketing para Redes Sociais</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center text-white">
+                                <i class="fas fa-check check-icon me-3"></i>
+                                <span>Expert em Automações no Manychat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <div class="bg-danger p-3 rounded d-inline-block">
+                        <p class="text-white mb-0"><strong>Novos cursos todos os meses de acordo com as demandas reais do mercado.</strong></p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button class="btn cta-button">
+                        <i class="fas fa-rocket me-2"></i>QUERO ACESSAR AGORA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mentores -->
+<div class="container-fluid py-5" style="background: #000000;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold text-white mb-4">Seus professores</h2>
+                    <p class="lead text-white-50">Aprenda com quem vive isso todos os dias</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="expert-card card h-100 text-white">
+                            <div class="card-body p-4 text-center">
+                                <div class="mb-3">
+                                    <div class="rounded-circle bg-pink d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-user fa-2x text-white"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-pink mb-3">Tiago Flores Dias</h5>
+                                <p class="text-white-50">Hacker das Vendas, especialista em processos e funis</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="expert-card card h-100 text-white">
+                            <div class="card-body p-4 text-center">
+                                <div class="mb-3">
+                                    <div class="rounded-circle bg-pink d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-user fa-2x text-white"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-pink mb-3">Giovani Júnior</h5>
+                                <p class="text-white-50">CMO, especialista em automações, martech e CRM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="expert-card card h-100 text-white">
+                            <div class="card-body p-4 text-center">
+                                <div class="mb-3">
+                                    <div class="rounded-circle bg-pink d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-user fa-2x text-white"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-pink mb-3">Lucas Santos</h5>
+                                <p class="text-white-50">Máquina de Vendas e liderança comercial</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="expert-card card h-100 text-white">
+                            <div class="card-body p-4 text-center">
+                                <div class="mb-3">
+                                    <div class="rounded-circle bg-pink d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-user fa-2x text-white"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-pink mb-3">Natacha Azevedo</h5>
+                                <p class="text-white-50">Gestão de projetos e atendimento premium</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="expert-card card h-100 text-white">
+                            <div class="card-body p-4 text-center">
+                                <div class="mb-3">
+                                    <div class="rounded-circle bg-pink d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-user fa-2x text-white"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-pink mb-3">Natasha Santana</h5>
+                                <p class="text-white-50">Vendas complexas e relacionamento com clientes de alto valor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button class="btn cta-button">
+                        <i class="fas fa-rocket me-2"></i>GARANTIR MINHA VAGA AGORA!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Eventos Exclusivos -->
+<div class="container-fluid py-5" style="background: #1a1a1a;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold text-white mb-4">Eventos exclusivos</h2>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="event-card">
+                            <h4 class="mb-4">Kaizen Collab</h4>
+                            <p class="mb-4">Aulas presenciais mensais com +50 especialistas, abordando temas estratégicos, ferramentas e estudos de caso.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="event-card">
+                            <h4 class="mb-4">LauncherX</h4>
+                            <p class="mb-4">Palestras com grandes nomes do marketing digital brasileiro, com foco em performance, lançamentos, tráfego, vendas e inovação.</p>
+                            <a href="https://launcherx.com.br" target="_blank" class="btn btn-light btn-sm">
+                                <i class="fas fa-external-link-alt me-2"></i>Visitar LauncherX
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button class="btn cta-button">
+                        <i class="fas fa-rocket me-2"></i>GARANTIR MINHA VAGA AGORA!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Garantia -->
+<div class="container-fluid py-5" style="background: #000000;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="guarantee-section">
+                    <div class="guarantee-icon">
+                        7
+                    </div>
+                    <h2 class="text-white mb-4">Garantia Incondicional</h2>
+                    <p class="text-white-50 h5">Teste por 7 dias. Se não gostar, devolvemos 100% do seu investimento. Sem burocracia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Final -->
+<div class="container-fluid py-5" style="background: #1a1a1a;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="final-cta-section">
+                    <h2 class="mb-4">Chegou a hora de acelerar seus resultados!</h2>
+                    <p class="h5 mb-4">Acesse mais de 20 cursos, mentoria com especialistas e eventos exclusivos por apenas R$997/ano.</p>
+                    <button class="btn btn-light btn-lg cta-button">
+                        <i class="fas fa-rocket me-2"></i>QUERO ACESSAR AGORA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <img src="{% static 'images/logo-kaizen-header.webp' %}" alt="Agência Kaizen" class="mb-3" style="height: 60px;">
+                <p class="text-white-50 mb-2">Fique tranquilo, seus dados estão seguros!</p>
+                <p class="lgpd-text">LGPD - Lei Geral de Proteção de Dados Pessoais</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock internal_content %}
+
+<!-- Structured Data para Universidade Kaizen -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Universidade Kaizen",
+    "description": "Evolução contínua para performance máxima. Aprenda com os maiores especialistas do mercado em marketing digital, vendas e estratégias de crescimento.",
+    "url": "https://www.agenciakaizen.com.br/universidade-kaizen/",
+    "logo": "https://www.agenciakaizen.com.br/static/images/universidade-logo.png",
+    "sameAs": [
+        "https://www.instagram.com/agenciakaizen",
+        "https://www.linkedin.com/company/kaizenmarketingdigital"
+    ],
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Cursos da Universidade Kaizen",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Course",
+                    "name": "Marketing Digital para Iniciantes",
+                    "description": "Curso completo de marketing digital para iniciantes"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Course",
+                    "name": "Google Ads Essencial",
+                    "description": "Domine o Google Ads do básico ao avançado"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Course",
+                    "name": "Meta Ads (Facebook/Instagram)",
+                    "description": "Estratégias completas para Facebook e Instagram Ads"
+                }
+            }
+        ]
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "997",
+        "priceCurrency": "BRL",
+        "description": "Acesso completo a todos os cursos e comunidade por 1 ano",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2024-01-01",
+        "validThrough": "2024-12-31"
+    },
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Praia de Belas, 1212 - 11º Andar",
+        "addressLocality": "Porto Alegre",
+        "addressRegion": "RS",
+        "postalCode": "90110-904",
+        "addressCountry": "BR"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+555133334444",
+        "contactType": "customer service",
+        "availableLanguage": "Portuguese"
+    }
+}
+</script>

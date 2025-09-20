@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags static %}
+
+{% block extra_css %}
+<style>
+    .kaizen-form-control {
+        background-color: #1a1a1a !important;
+        border: 2px solid #333 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        padding: 15px !important;
+        font-size: 16px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .kaizen-form-control:focus {
+        background-color: #1a1a1a !important;
+        border-color: #ea0029 !important;
+        color: white !important;
+        box-shadow: 0 0 0 0.2rem rgba(234, 0, 41, 0.25) !important;
+    }
+    
+    .kaizen-form-control::placeholder {
+        color: #999 !important;
+    }
+    
+    .form-select.kaizen-form-control {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    }
+    
+    .input-group-text {
+        background-color: #25d366 !important;
+        border: 2px solid #25d366 !important;
+        color: white !important;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(234, 0, 41, 0.3);
+    }
+    
+    .btn:active {
+        transform: translateY(0);
+    }
+    
+    /* Validações */
+    .is-invalid {
+        border-color: #ffc107 !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25) !important;
+    }
+    
+    .invalid-feedback {
+        display: block !important;
+        color: #ffc107 !important;
+        font-size: 0.875rem !important;
+        margin-top: 0.25rem !important;
+        font-weight: 500 !important;
+    }
+    
+    .is-valid {
+        border-color: #28a745 !important;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+    }
+    
+    /* Loading state */
+    .btn:disabled {
+        opacity: 0.7 !important;
+        cursor: not-allowed !important;
+    }
+    
+    /* Animação de loading */
+    .fa-spinner {
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="background: #000000; min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container-fluid py-5" style="background: #000000; min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 fw-bold text-white mb-4">
+                        Pronto para acelerar seus<br>
+                        resultados? Vamos conversar!
+                    </h1>
+                    <p class="lead text-white mb-5">
+                        Preencha o formulário e fale diretamente com nosso time. Selecione a área 
+                        desejada e descubra como podemos impulsionar seu negócio.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Formulário Principal -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg" style="background: rgba(0, 0, 0, 0.8); border: 1px solid #333; backdrop-filter: blur(10px);">
+                        <div class="card-body p-5">
+                            <form method="post" action="/contato/">
+                                {% csrf_token %}
+                                <div class="row g-4">
+                                    <!-- Nome -->
+                                    <div class="col-12">
+                                        <input type="text" name="name" class="form-control form-control-lg kaizen-form-control" placeholder="Nome" required>
+                                    </div>
+                                    
+                                    <!-- Email -->
+                                    <div class="col-12">
+                                        <input type="email" name="email" class="form-control form-control-lg kaizen-form-control" placeholder="E-mail corporativo" required>
+                                    </div>
+                                    
+                                    <!-- WhatsApp -->
+                                    <div class="col-12">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text text-white" style="background-color: #25d366; border: 2px solid #25d366; border-radius: 8px 0 0 8px;">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </span>
+                                            <input type="tel" name="phone" class="form-control kaizen-form-control" placeholder="(11) 99999-9999" required style="border-left: none; border-radius: 0 8px 8px 0;" maxlength="15">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Desafios -->
+                                    <div class="col-12">
+                                        <textarea name="message" class="form-control form-control-lg kaizen-form-control" rows="4" placeholder="Fale um pouco sobre os desafios de marketing do seu negócio" required style="resize: vertical;"></textarea>
+                                    </div>
+                                    
+                                    <!-- Faturamento e Área -->
+                                    <div class="col-md-6">
+                                        <select name="faturamento" class="form-select form-select-lg kaizen-form-control" required>
+                                            <option value="" style="background-color: #1a1a1a; color: #999;">Selecione seu faturamento mensal</option>
+                                            <option value="Sou Startup, não faturo ainda" style="background-color: #1a1a1a; color: white;">Sou Startup, não faturo ainda</option>
+                                            <option value="Faturo mais que R$ 80.000" style="background-color: #1a1a1a; color: white;">Faturo mais que R$ 80.000</option>
+                                            <option value="Faturo mais que R$ 150.000" style="background-color: #1a1a1a; color: white;">Faturo mais que R$ 150.000</option>
+                                            <option value="Faturo mais que R$ 300.000" style="background-color: #1a1a1a; color: white;">Faturo mais que R$ 300.000</option>
+                                            <option value="Faturo mais que R$ 1.000.000" style="background-color: #1a1a1a; color: white;">Faturo mais que R$ 1.000.000</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <select name="area" class="form-select form-select-lg kaizen-form-control" required>
+                                            <option value="" style="background-color: #1a1a1a; color: #999;">Selecione sua área</option>
+                                            <option value="Móveis Planejados" style="background-color: #1a1a1a; color: white;">Móveis Planejados</option>
+                                            <option value="Infoproduto" style="background-color: #1a1a1a; color: white;">Infoproduto</option>
+                                            <option value="Serviço" style="background-color: #1a1a1a; color: white;">Serviço</option>
+                                            <option value="Imobiliario" style="background-color: #1a1a1a; color: white;">Imobiliário</option>
+                                            <option value="Automotivo" style="background-color: #1a1a1a; color: white;">Automotivo</option>
+                                            <option value="Saúde" style="background-color: #1a1a1a; color: white;">Saúde</option>
+                                            <option value="Varejo" style="background-color: #1a1a1a; color: white;">Varejo</option>
+                                            <option value="Indústria" style="background-color: #1a1a1a; color: white;">Indústria</option>
+                                            <option value="E-commerce" style="background-color: #1a1a1a; color: white;">E-commerce</option>
+                                            <option value="SAAS" style="background-color: #1a1a1a; color: white;">SAAS</option>
+                                            <option value="Educação" style="background-color: #1a1a1a; color: white;">Educação</option>
+                                            <option value="Outro" style="background-color: #1a1a1a; color: white;">Outro</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Site/Rede Social -->
+                                    <div class="col-12">
+                                        <input type="url" name="website" class="form-control form-control-lg kaizen-form-control" placeholder="www.agenciakaizen.com.br (opcional)">
+                                    </div>
+                                    
+                                    <!-- Campos ocultos -->
+                                    <input type="hidden" name="subject_category" value="formulario-principal">
+                                    <input type="hidden" name="captation_means" value="[KAIZEN] Site">
+                                    
+                                    <!-- Botão de Envio -->
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #D62042, #ff6b6b); border: none; color: white; padding: 20px; font-size: 18px; font-weight: bold;">
+                                            Enviar e começar a escalar!
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action com 0800 -->
+    {% include "includes/contact_bar.html" %}
+</div>
+
+<!-- Script para formatação de campos -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Formatação do campo WhatsApp
+    const phoneInput = document.querySelector('input[name="phone"]');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                if (value.length <= 2) {
+                    value = value;
+                } else if (value.length <= 6) {
+                    value = value.replace(/(\d{2})(\d+)/, '($1) $2');
+                } else if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d{4})(\d+)/, '($1) $2-$3');
+                } else {
+                    value = value.replace(/(\d{2})(\d{5})(\d+)/, '($1) $2-$3');
+                }
+                e.target.value = value;
+            }
+        });
+    }
+
+    // Capturar parâmetros UTM
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    
+    utmFields.forEach(field => {
+        const value = urlParams.get(field);
+        if (value) {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = field;
+            hiddenInput.value = value;
+            document.querySelector('form').appendChild(hiddenInput);
+        }
+    });
+
+    // Capturar domínio do cliente
+    const customerDomainInput = document.createElement('input');
+    customerDomainInput.type = 'hidden';
+    customerDomainInput.name = 'customer_domain';
+    customerDomainInput.value = window.location.hostname;
+    document.querySelector('form').appendChild(customerDomainInput);
+});
+</script>
+
+<!-- Structured Data para Fale Conosco -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Fale Conosco - Agência Kaizen",
+    "description": "Entre em contato com a Agência Kaizen. Preencha o formulário e descubra como podemos acelerar seus resultados.",
+    "url": "{{ request.build_absolute_uri }}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "url": "https://www.agenciakaizen.com.br",
+        "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-0800-550-8000",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+        }
+    }
+}
+</script>
+
+<!-- JavaScript para validações e máscaras -->
+<script src="{% static 'js/contact-form.js' %}"></script>
+{% endblock content %}

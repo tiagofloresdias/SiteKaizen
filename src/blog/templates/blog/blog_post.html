@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ post.title }} - Blog Agência Kaizen{% endblock %}
+
+{% block meta_description %}{{ post.intro }}{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="margin-top: 76px;">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Início</a></li>
+                    <li class="breadcrumb-item"><a href="/blog/">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+                </ol>
+            </nav>
+
+            <!-- Post Header -->
+            <article class="blog-post-detail">
+                <header class="post-header mb-4">
+                    <div class="post-meta mb-3">
+                        <span class="text-muted">
+                            <i class="fas fa-calendar me-1"></i>
+                            {{ post.date|date:"d/m/Y" }}
+                        </span>
+                        {% if post.categories.exists %}
+                            <span class="text-muted ms-3">
+                                <i class="fas fa-folder me-1"></i>
+                                {% for category in post.categories.all %}
+                                    <a href="?category={{ category.slug }}" class="text-decoration-none">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+                    </div>
+                    
+                    <h1 class="display-5 fw-bold mb-4">{{ post.title }}</h1>
+                    
+                    {% if post.featured_image %}
+                        <div class="post-featured-image mb-4">
+                            {% image post.featured_image original class="img-fluid rounded shadow" %}
+                        </div>
+                    {% endif %}
+                </header>
+
+                <!-- Post Content -->
+                <div class="post-content">
+                    <div class="post-intro lead mb-4">
+                        {{ post.intro }}
+                    </div>
+                    
+                    <div class="post-body">
+                        {{ post.body|richtext }}
+                    </div>
+                </div>
+
+                <!-- Post Footer -->
+                <footer class="post-footer mt-5 pt-4 border-top">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="post-tags">
+                                <h6 class="mb-2">Tags:</h6>
+                                <div class="tags">
+                                    <span class="badge bg-primary me-2 mb-2">Desenvolvimento</span>
+                                    <span class="badge bg-primary me-2 mb-2">Web</span>
+                                    <span class="badge bg-primary me-2 mb-2">Tecnologia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <div class="post-share">
+                                <h6 class="mb-2">Compartilhar:</h6>
+                                <div class="share-buttons">
+                                    <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Posts Relacionados -->
+            {% if related_posts %}
+            <section class="related-posts mt-5">
+                <h3 class="h4 fw-bold mb-4">Posts Relacionados</h3>
+                <div class="row">
+                    {% for related_post in related_posts %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            {% if related_post.featured_image %}
+                                {% image related_post.featured_image fill-300x200 class="card-img-top" %}
+                            {% else %}
+                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                    <i class="fas fa-image text-muted"></i>
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{% pageurl related_post %}" class="text-decoration-none">
+                                        {{ related_post.title }}
+                                    </a>
+                                </h5>
+                                <p class="card-text text-muted small">
+                                    {{ related_post.intro|truncatewords:20 }}
+                                </p>
+                                <a href="{% pageurl related_post %}" class="btn btn-outline-primary btn-sm">
+                                    Ler Mais
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="blog-sidebar">
+                <!-- Navegação -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-arrow-left me-2"></i>Navegação
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="/blog/" class="btn btn-outline-primary w-100 mb-2">
+                            <i class="fas fa-list me-2"></i>Voltar ao Blog
+                        </a>
+                        <a href="/" class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-home me-2"></i>Página Inicial
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Categorias -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-folder me-2"></i>Categorias
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="?category=desenvolvimento" class="text-decoration-none">Desenvolvimento Web</a></li>
+                            <li><a href="?category=marketing" class="text-decoration-none">Marketing Digital</a></li>
+                            <li><a href="?category=design" class="text-decoration-none">Design</a></li>
+                            <li><a href="?category=seo" class="text-decoration-none">SEO</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Posts Recentes -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-clock me-2"></i>Posts Recentes
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="recent-posts">
+                            <div class="recent-post-item d-flex mb-3">
+                                <div class="recent-post-image me-3">
+                                    <div class="bg-light rounded" style="width: 60px; height: 60px;"></div>
+                                </div>
+                                <div class="recent-post-content">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="text-decoration-none">Como criar um site responsivo</a>
+                                    </h6>
+                                    <small class="text-muted">15 de Janeiro, 2024</small>
+                                </div>
+                            </div>
+                            <div class="recent-post-item d-flex mb-3">
+                                <div class="recent-post-image me-3">
+                                    <div class="bg-light rounded" style="width: 60px; height: 60px;"></div>
+                                </div>
+                                <div class="recent-post-content">
+                                    <h6 class="mb-1">
+                                        <a href="#" class="text-decoration-none">Marketing Digital em 2024</a>
+                                    </h6>
+                                    <small class="text-muted">10 de Janeiro, 2024</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-envelope me-2"></i>Newsletter
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="small text-muted mb-3">
+                            Receba nossos artigos diretamente no seu email.
+                        </p>
+                        <form class="newsletter-form">
+                            <div class="mb-3">
+                                <input type="email" class="form-control form-control-sm" placeholder="Seu email">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm w-100">
+                                Inscrever-se
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #6c757d;
+}
+
+.post-content code {
+    background: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.post-content pre {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.post-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.share-buttons .btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.related-posts .card {
+    transition: all 0.3s ease;
+}
+
+.related-posts .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recent-post-item:hover {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin: -0.5rem;
+}
+</style>
+{% endblock %}

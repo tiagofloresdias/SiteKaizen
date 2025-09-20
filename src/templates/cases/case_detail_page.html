@@ -1,0 +1,366 @@
+{% extends "base_internal.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block internal_content %}
+<!-- Hero Section -->
+<section class="hero-section text-white py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 70vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center mb-4">
+                    {% if case.client_logo %}
+                        {% image case.client_logo max-80x80 class="me-3" %}
+                    {% endif %}
+                    <div>
+                        <span class="badge bg-pink text-white fs-6">{{ case.get_category_display }}</span>
+                        <h1 class="text-white fw-bold mb-0">{{ case.client_name }}</h1>
+                    </div>
+                </div>
+                
+                <h2 class="display-4 fw-bold text-white mb-4">{{ case.title }}</h2>
+                <p class="lead text-white mb-5">{{ case.short_description }}</p>
+                
+                <!-- Métrica Principal -->
+                <div class="hero-metric bg-gradient p-4 rounded mb-4" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                    <div class="text-center">
+                        <span class="metric-value display-2 fw-bold text-white">{{ case.main_metric_value }}</span>
+                        <p class="metric-desc text-white mb-0">{{ case.main_metric_description }}</p>
+                    </div>
+                </div>
+                
+                <a href="#case-content" class="btn btn-light btn-lg px-5 py-3 smooth-scroll">
+                    <i class="fas fa-arrow-down me-2"></i>Ver Case Completo
+                </a>
+            </div>
+            
+            <div class="col-lg-6">
+                {% if case.hero_image %}
+                    {% image case.hero_image fill-600x400 class="img-fluid rounded shadow-lg" %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Conteúdo do Case -->
+<section id="case-content" class="py-5" style="background: #000000;">
+    <div class="container">
+        
+        <!-- Desafio -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="case-section bg-dark border-secondary p-5 rounded">
+                    <div class="text-center mb-4">
+                        <div class="section-icon bg-pink rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-exclamation-triangle fa-2x text-white"></i>
+                        </div>
+                        <h3 class="text-white fw-bold">O Desafio</h3>
+                    </div>
+                    <div class="text-white-50">
+                        {{ case.challenge|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Solução -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="case-section bg-dark border-secondary p-5 rounded">
+                    <div class="text-center mb-4">
+                        <div class="section-icon bg-pink rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-lightbulb fa-2x text-white"></i>
+                        </div>
+                        <h3 class="text-white fw-bold">Nossa Solução</h3>
+                    </div>
+                    <div class="text-white-50">
+                        {{ case.solution|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resultados -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="case-section bg-dark border-secondary p-5 rounded">
+                    <div class="text-center mb-4">
+                        <div class="section-icon bg-pink rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-chart-line fa-2x text-white"></i>
+                        </div>
+                        <h3 class="text-white fw-bold">Resultados Alcançados</h3>
+                    </div>
+                    <div class="text-white-50">
+                        {{ case.results|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conteúdo Adicional -->
+        {% if case.content %}
+        <div class="row mb-5">
+            <div class="col-lg-10 mx-auto">
+                <div class="case-section bg-dark border-secondary p-5 rounded">
+                    <h3 class="text-white fw-bold mb-4 text-center">Mais Detalhes</h3>
+                    <div class="text-white-50">
+                        {% for block in case.content %}
+                            {% if block.block_type == 'metrics' %}
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <div class="metric-card bg-gradient p-3 rounded text-center" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                            <h5 class="text-white fw-bold mb-1">{{ block.value.metric_name }}</h5>
+                                            <span class="text-white fs-4 fw-bold">{{ block.value.metric_value }}</span>
+                                            {% if block.value.metric_description %}
+                                                <p class="text-white-50 mb-0 small">{{ block.value.metric_description }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif block.block_type == 'gallery' %}
+                                <div class="text-center mb-4">
+                                    {% image block.value.image fill-600x400 class="img-fluid rounded" %}
+                                    {% if block.value.caption %}
+                                        <p class="text-white-50 mt-2">{{ block.value.caption }}</p>
+                                    {% endif %}
+                                </div>
+                            {% elif block.block_type == 'paragraph' %}
+                                <div class="mb-4">
+                                    {{ block.value|richtext }}
+                                </div>
+                            {% elif block.block_type == 'heading' %}
+                                <h4 class="text-white fw-bold mb-3">{{ block.value }}</h4>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Conteúdo Adicional da Página -->
+        {% if page.additional_content %}
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="case-section bg-dark border-secondary p-5 rounded">
+                    <div class="text-white-50">
+                        {{ page.additional_content|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+    </div>
+</section>
+
+<!-- Cases Relacionados -->
+{% if related_cases %}
+<section class="py-5" style="background: #111111;">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold text-white mb-4">Cases Similares</h2>
+                <p class="lead text-white">Outros cases da categoria {{ case.get_category_display }}</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for related_case in related_cases %}
+            <div class="col-lg-4 col-md-6">
+                <div class="case-card bg-dark border-secondary h-100">
+                    {% if related_case.hero_image %}
+                    <div class="case-image">
+                        {% image related_case.hero_image fill-400x250 class="img-fluid" %}
+                        <div class="case-overlay">
+                            <div class="case-metric">
+                                <span class="metric-value">{{ related_case.main_metric_value }}</span>
+                                <span class="metric-desc">{{ related_case.main_metric_description }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="case-content p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if related_case.client_logo %}
+                                {% image related_case.client_logo max-50x50 class="me-3" %}
+                            {% endif %}
+                            <div>
+                                <span class="badge bg-pink text-white">{{ related_case.get_category_display }}</span>
+                                <h5 class="text-white fw-bold mb-1">{{ related_case.client_name }}</h5>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-white fw-bold mb-3">{{ related_case.title }}</h4>
+                        <p class="text-white-50 mb-4">{{ related_case.short_description|truncatewords:20 }}</p>
+                        
+                        <a href="/cases/{{ related_case.slug }}/" class="btn btn-pink w-100">
+                            Ver Case Completo <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #ea0029 0%, #c7002a 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-4 fw-bold mb-4 text-white">{{ page.cta_title }}</h2>
+                <p class="lead mb-4 text-white">{{ page.cta_text }}</p>
+                <button type="button" class="btn btn-light btn-lg px-5 py-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    <i class="fas fa-rocket me-2"></i>{{ page.cta_button_text }}
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.case-section {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(234, 0, 41, 0.2);
+}
+
+.hero-metric {
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(234, 0, 41, 0.3);
+}
+
+.metric-value {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.case-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #333;
+}
+
+.case-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(234, 0, 41, 0.3);
+}
+
+.case-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.case-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(234, 0, 41, 0.8), rgba(199, 0, 42, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.case-card:hover .case-overlay {
+    opacity: 1;
+}
+
+.case-metric {
+    text-align: center;
+    color: white;
+}
+
+.metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.metric-desc {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.bg-pink {
+    background-color: #ea0029 !important;
+}
+
+.btn-pink {
+    background: linear-gradient(135deg, #ea0029, #ff6b6b);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-pink:hover {
+    background: linear-gradient(135deg, #c7002a, #ea0029);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(234, 0, 41, 0.3);
+}
+
+.smooth-scroll {
+    cursor: pointer;
+}
+
+.section-icon {
+    transition: transform 0.3s ease;
+}
+
+.case-section:hover .section-icon {
+    transform: scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .display-2 {
+        font-size: 2.5rem;
+    }
+    
+    .case-section {
+        padding: 2rem !important;
+    }
+}
+</style>
+
+<script>
+// Smooth scroll para âncoras
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+</script>
+
+<!-- Modal Inteligente Multi-Passo -->
+{% include "includes/smart_modal.html" %}
+{% endblock internal_content %}
+

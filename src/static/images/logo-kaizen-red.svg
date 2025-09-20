@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="50" fill="#D62042"/>
+  <g transform="translate(50,50)">
+    <!-- Letra K estilizada -->
+    <path d="M-15,-20 L-15,20 L-10,20 L-10,2 L0,-8 L10,20 L16,20 L4,-2 L15,-20 L9,-20 L0,-11 L-10,-20 Z" fill="white"/>
+  </g>
+</svg>

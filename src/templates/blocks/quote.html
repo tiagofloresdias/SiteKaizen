@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+
+<blockquote class="evergreen-quote mb-4 p-4" style="border-left: 4px solid #ea0029; background: #f8f9fa; font-style: italic;">
+    <p class="mb-2">{{ value.text }}</p>
+    {% if value.author %}
+        <footer class="blockquote-footer">
+            <cite title="Source Title">{{ value.author }}</cite>
+        </footer>
+    {% endif %}
+</blockquote>

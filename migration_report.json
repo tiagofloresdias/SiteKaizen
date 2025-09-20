@@ -1,0 +1,14 @@
+{
+  "migration_date": "2025-09-17T10:41:39.478171",
+  "wordpress_url": "https://agenciakaizen.com.br",
+  "dry_run": true,
+  "stats": {
+    "posts_migrated": 0,
+    "pages_migrated": 0,
+    "images_downloaded": 0,
+    "categories_created": 0,
+    "errors": 0
+  },
+  "url_mappings_count": 0,
+  "downloaded_images": 0
+}

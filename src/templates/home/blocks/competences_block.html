@@ -1,0 +1,18 @@
+<section class="py-5" style="background:#000;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-6 fw-bold text-white">{{ self.title }}</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      {% for c in self.competences %}
+      <div class="col-6 col-md-4 col-lg-2 text-center">
+        <div class="p-4" style="border:1px solid rgba(234,0,41,.25); border-radius:12px; background:rgba(20,20,20,.85);">
+          <i class="{{ c.icon }} mb-2" style="font-size:1.6rem; color:#ea0029;"></i>
+          <div class="text-white-50 small">{{ c.title }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+

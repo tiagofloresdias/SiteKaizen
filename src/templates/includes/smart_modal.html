@@ -1,0 +1,933 @@
+<!-- Modal Inteligente Multi-Passo -->
+<div class="modal fade" id="smartModal" tabindex="-1" aria-labelledby="smartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="background: #000000; border: 1px solid #333;">
+            <!-- Header -->
+            <div class="modal-header border-0" style="background: #000000;">
+                <h5 class="modal-title text-white" id="smartModalLabel">
+                    <i class="fas fa-rocket me-2" style="color: #ea0029;"></i>
+                    Converse com o Especialista
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <!-- Body -->
+            <div class="modal-body" style="background: #000000;">
+                <!-- Alert inline para feedback -->
+                <div id="modalAlert" class="alert d-none" role="alert" style="border-radius: 8px;"></div>
+                <!-- Step Indicators -->
+                <div class="step-indicators-container mb-4">
+                    <div class="step-indicator active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Dados Básicos</div>
+                    </div>
+                    <div class="step-indicator" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Seu Negócio</div>
+                    </div>
+                    <div class="step-indicator" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Calendly</div>
+                    </div>
+                    <div class="step-indicator" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Confirmação</div>
+                    </div>
+                </div>
+                
+                <!-- Step 1: Dados Básicos -->
+                <div class="step-content" id="step1">
+                    <h4 class="text-white mb-4">Vamos começar! Conte-nos sobre você</h4>
+                    <form id="step1Form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label text-white">Nome Completo *</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-white">E-mail Corporativo *</label>
+                            <input type="email" class="form-control bg-dark text-white border-secondary" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label text-white">WhatsApp *</label>
+                            <div class="input-group">
+                                <select class="form-select bg-dark text-white border-secondary" id="countryCode" style="max-width: 100px;">
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+34">🇪🇸 +34</option>
+                                </select>
+                                <input type="tel" class="form-control bg-dark text-white border-secondary" id="phone" placeholder="(11) 99999-9999" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Step 2: Informações do Negócio -->
+                <div class="step-content d-none" id="step2">
+                    <h4 class="text-white mb-4">Fale mais sobre seu negócio</h4>
+                    <form id="step2Form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="monthlyRevenue" class="form-label text-white">Faturamento Mensal</label>
+                                <select class="form-select bg-dark text-white border-secondary" id="monthlyRevenue">
+                                    <option value="">Selecione...</option>
+                                    <option value="ate_10k">Até R$ 10.000</option>
+                                    <option value="10k_50k">R$ 10.000 - R$ 50.000</option>
+                                    <option value="50k_100k">R$ 50.000 - R$ 100.000</option>
+                                    <option value="100k_500k">R$ 100.000 - R$ 500.000</option>
+                                    <option value="500k_1m">R$ 500.000 - R$ 1.000.000</option>
+                                    <option value="acima_1m">Acima de R$ 1.000.000</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="businessArea" class="form-label text-white">Área do Negócio</label>
+                                <select class="form-select bg-dark text-white border-secondary" id="businessArea">
+                                    <option value="">Selecione...</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="saas">SaaS/Software</option>
+                                    <option value="servicos">Serviços</option>
+                                    <option value="varejo">Varejo</option>
+                                    <option value="industria">Indústria</option>
+                                    <option value="saude">Saúde</option>
+                                    <option value="educacao">Educação</option>
+                                    <option value="imobiliaria">Imobiliária</option>
+                                    <option value="automotivo">Automotivo</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mainChallenge" class="form-label text-white">Principal Desafio de Marketing</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" id="mainChallenge" rows="3" placeholder="Conte-nos sobre o principal desafio de marketing que seu negócio enfrenta e como podemos ajudar..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="websiteSocial" class="form-label text-white">Site ou Rede Social (opcional)</label>
+                            <input type="url" class="form-control bg-dark text-white border-secondary" id="websiteSocial" placeholder="https://www.seusite.com.br ou @instagram">
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Step 3: Calendly -->
+                <div class="step-content d-none" id="step3">
+                    <h4 class="text-white mb-4">Agende sua reunião estratégica</h4>
+                    <p class="text-white-50 mb-4">
+                        Perfeito! Agora vamos agendar uma reunião de 30 minutos com nosso especialista para discutir como podemos acelerar seu negócio.
+                    </p>
+                    
+                    <!-- Calendly Embed -->
+                <div class="calendly-container">
+                    <div id="calendly-widget" style="min-width: 320px; height: 500px;"></div>
+                </div>
+                </div>
+                
+                <!-- Step 4: Confirmação Final -->
+                <div class="step-content d-none" id="step4">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                        </div>
+                        <h4 class="text-white mb-3">Agendamento Concluído!</h4>
+                        <p class="text-white-50 mb-4">
+                            Seu agendamento foi realizado com sucesso. Verifique seu email para os detalhes da reunião.
+                        </p>
+                        <p class="text-white-50 mb-4">
+                            Em breve, um de nossos especialistas entrará em contato para confirmar os detalhes.
+                        </p>
+                        <button type="button" class="btn btn-pink" onclick="closeModal()">
+                            Fechar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Loading State -->
+                <div class="text-center d-none" id="loadingState">
+                    <div class="spinner-border text-pink" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                    <p class="text-white mt-3">Salvando seus dados...</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="modal-footer border-0" style="background: #000000;">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="button" class="btn btn-pink" id="nextBtn" onclick="nextStep()">
+                    Próximo <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+                <button type="button" class="btn btn-pink d-none" id="prevBtn" onclick="prevStep()">
+                    <i class="fas fa-arrow-left me-2"></i> Anterior
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Calendly Script -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<style>
+.step-indicators-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    background: #000000;
+    position: relative;
+    z-index: 1;
+    border-bottom: 0 !important;
+    background-image: none !important;
+}
+
+.step-indicators-container::before,
+.step-indicators-container::after {
+    content: none !important;
+    display: none !important;
+}
+
+.step-indicator {
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 10;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 5px;
+    font-weight: bold;
+    position: relative;
+    z-index: 20;
+}
+
+.step-indicator.active .step-number {
+    background: #ea0029;
+}
+
+.step-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    position: relative;
+    z-index: 20;
+}
+
+.step-indicator.active .step-label {
+    color: #ea0029;
+}
+
+.calendly-container {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    max-height: 500px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+#calendly-widget {
+    width: 100% !important;
+    height: 500px !important;
+    border: none;
+    overflow: hidden;
+    min-width: 320px;
+}
+
+.calendly-inline-widget {
+    width: 100% !important;
+    height: 500px !important;
+    border: none;
+    overflow: hidden;
+    min-width: 320px;
+}
+
+/* Ajustes específicos para o widget do Calendly */
+.calendly-inline-widget iframe {
+    width: 100% !important;
+    height: 500px !important;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Forçar dimensões específicas para o widget */
+.calendly-inline-widget {
+    min-width: 320px !important;
+    max-width: 100% !important;
+    height: 500px !important;
+}
+
+/* Ajustes para diferentes tamanhos de tela */
+@media (max-width: 576px) {
+    .calendly-container {
+        padding: 8px;
+        margin: 8px 0;
+        max-height: 350px;
+    }
+    
+    #calendly-widget,
+    .calendly-inline-widget {
+        height: 350px !important;
+        min-width: 280px !important;
+    }
+    
+    .calendly-inline-widget iframe {
+        height: 350px !important;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .calendly-container {
+        padding: 12px;
+        margin: 12px 0;
+        max-height: 450px;
+    }
+    
+    #calendly-widget,
+    .calendly-inline-widget {
+        height: 450px !important;
+    }
+    
+    .calendly-inline-widget iframe {
+        height: 450px !important;
+    }
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #ea0029;
+    box-shadow: 0 0 0 0.2rem rgba(234, 0, 41, 0.25);
+}
+
+.btn-pink {
+    background: #ea0029;
+    border-color: #ea0029;
+    color: white;
+}
+
+.btn-pink:hover {
+    background: #c7002a;
+    border-color: #c7002a;
+    color: white;
+}
+
+/* Validação suave */
+.is-invalid {
+    border-color: #ea0029 !important;
+    box-shadow: 0 0 0 0.2rem rgba(234, 0, 41, 0.15) !important;
+}
+.error-text {
+    color: #ea0029;
+    font-size: 0.85rem;
+    margin-top: 6px;
+}
+.shake {
+    animation: shake 0.25s ease-in-out;
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+
+/* Modal específica para Calendly */
+#smartModal {
+    z-index: 1050 !important;
+}
+
+#smartModal .modal-dialog {
+    max-height: 85vh;
+    max-width: 800px;
+    z-index: 1051 !important;
+}
+
+#smartModal .modal-content {
+    max-height: 85vh;
+    overflow: hidden;
+    z-index: 1052 !important;
+}
+
+#smartModal .modal-body {
+    max-height: calc(85vh - 120px);
+    overflow-y: auto;
+}
+
+/* Garantir que o backdrop não interfira */
+.modal-backdrop {
+    z-index: 1049 !important;
+}
+
+/* Forçar posicionamento correto da modal */
+.modal.show {
+    display: block !important;
+    z-index: 1050 !important;
+}
+
+.modal.show .modal-dialog {
+    z-index: 1051 !important;
+}
+
+.modal.show .modal-content {
+    z-index: 1052 !important;
+}
+
+/* Garantir que o Calendly fique dentro da modal */
+.step-content {
+    position: relative;
+    z-index: 10;
+    background: #000000;
+}
+
+/* CSS removido */
+
+/* Barra de progresso removida */
+
+/* Garantir que o conteúdo dos steps seja visível */
+.step-content h4,
+.step-content p,
+.step-content form,
+.step-content .form-control,
+.step-content .form-select,
+.step-content .form-label {
+    position: relative;
+    z-index: 5;
+}
+
+/* Garantir que as transições entre steps sejam suaves */
+.step-content {
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
+}
+
+/* Garantir que Step 2 seja visível quando ativo */
+#step2:not(.d-none) {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Debug temporário removido */
+
+.step-content.d-none {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.step-content:not(.d-none) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Garantir que o modal body tenha overflow correto */
+.modal-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* CSS removido */
+
+/* Linha conectora removida para evitar sobreposição */
+
+/* CSS removido */
+
+/* Barra de progresso removida */
+
+/* Container da barra de progresso removido */
+
+#step3 {
+    max-height: calc(85vh - 200px);
+    overflow: hidden;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+    .calendly-container {
+        padding: 10px;
+        margin: 10px 0;
+        max-height: 400px;
+    }
+    
+    #calendly-widget,
+    .calendly-inline-widget {
+        height: 400px !important;
+    }
+    
+    .calendly-inline-widget iframe {
+        height: 400px !important;
+    }
+    
+    #smartModal .modal-dialog {
+        max-height: 90vh;
+        margin: 10px;
+    }
+}
+</style>
+
+<script>
+let currentStep = 1;
+let leadId = null;
+
+// Máscara para telefone
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{2})(\d{4,5})(\d{4})/, '($1) $2-$3');
+                e.target.value = value;
+            }
+        });
+    }
+});
+
+function nextStep() {
+    if (currentStep === 1) {
+        if (validateStep1()) {
+            saveStep1();
+        }
+    } else if (currentStep === 2) {
+        if (validateStep2()) {
+            saveStep2();
+        }
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        currentStep--;
+        updateStepDisplay();
+    }
+}
+
+function validateStep1() {
+    clearErrors();
+    const nameEl = document.getElementById('name');
+    const emailEl = document.getElementById('email');
+    const phoneEl = document.getElementById('phone');
+
+    let ok = true;
+    if (!nameEl.value.trim()) {
+        markInvalid(nameEl, 'Informe seu nome.');
+        ok = false;
+    }
+    if (!emailEl.value.trim() || !isValidEmail(emailEl.value.trim())) {
+        markInvalid(emailEl, 'E-mail corporativo inválido.');
+        ok = false;
+    }
+    if (!phoneEl.value.trim() || !isValidPhone(phoneEl.value.trim())) {
+        markInvalid(phoneEl, 'WhatsApp no formato (11) 99999-9999.');
+        ok = false;
+    }
+
+    if (!ok) showAlert('Por favor, corrija os campos destacados para continuar.', 'danger');
+    return ok;
+}
+
+function validateStep2() {
+    clearErrors();
+    const revenueEl = document.getElementById('monthlyRevenue');
+    const areaEl = document.getElementById('businessArea');
+
+    let ok = true;
+    if (!revenueEl.value) {
+        markInvalid(revenueEl, 'Selecione seu faturamento mensal.');
+        ok = false;
+    }
+    if (!areaEl.value) {
+        markInvalid(areaEl, 'Selecione sua área/vertical.');
+        ok = false;
+    }
+
+    if (!ok) showAlert('Complete as informações do seu negócio para avançar.', 'warning');
+    return ok;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+    const phoneRegex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+    return phoneRegex.test(phone);
+}
+
+function saveStep1() {
+    showLoading();
+    
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const countryCode = document.getElementById('countryCode').value;
+    
+    const data = {
+        step: '1',
+        name: name,
+        email: email,
+        phone: countryCode + ' ' + phone
+    };
+    
+    // Tracking do step
+    if (window.gtmTracking) {
+        window.gtmTracking.trackFunnelStep(1, 'complete', {
+            lead_id: leadId,
+            form_data: data
+        });
+    }
+    
+    fetch('/leads/api/leads/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            leadId = data.lead_id;
+            currentStep = 2;
+            updateStepDisplay();
+            
+            // Notificação suave
+            if (window.showSuccess) {
+                window.showSuccess(
+                    'Dados salvos!',
+                    'Vamos para o próximo passo para conhecer melhor seu negócio.',
+                    { duration: 3000 }
+                );
+            }
+        } else {
+            // Tracking de erro
+            if (window.gtmTracking) {
+                window.gtmTracking.trackFormError('smart_modal_step1', 'api_error', data.error);
+            }
+            
+            showAlert('Não foi possível salvar seus dados. Tente novamente.', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        // Tracking de erro
+        if (window.gtmTracking) {
+            window.gtmTracking.trackFormError('smart_modal_step1', 'network_error', error.message);
+        }
+        showAlert('Erro de conexão. Tente novamente em instantes.', 'danger');
+    })
+    .finally(() => {
+        hideLoading();
+    });
+}
+
+function saveStep2() {
+    showLoading();
+    
+    const monthlyRevenue = document.getElementById('monthlyRevenue').value;
+    const businessArea = document.getElementById('businessArea').value;
+    const mainChallenge = document.getElementById('mainChallenge').value.trim();
+    const websiteSocial = document.getElementById('websiteSocial').value.trim();
+    
+    const data = {
+        step: '2',
+        lead_id: leadId,
+        monthly_revenue: monthlyRevenue,
+        business_area: businessArea,
+        main_challenge: mainChallenge,
+        website_social: websiteSocial
+    };
+    
+    fetch('/leads/api/leads/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            currentStep = 3;
+            updateStepDisplay();
+            // Carregar o Calendly com dados pré-preenchidos
+            setTimeout(() => {
+                loadCalendly();
+            }, 500);
+        } else {
+            showAlert('Não foi possível salvar suas informações. Tente novamente.', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showAlert('Erro ao salvar dados. Tente novamente.', 'danger');
+    })
+    .finally(() => {
+        hideLoading();
+    });
+}
+
+function loadCalendly() {
+    // Obter dados do usuário dos passos anteriores
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    
+    // Construir URL do Calendly com parâmetros pré-preenchidos
+    const calendlyUrl = `https://calendly.com/agenciakaizen/30min?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&a1=${encodeURIComponent(phone)}`;
+    
+    // Limpar widget anterior se existir
+    const widget = document.getElementById('calendly-widget');
+    widget.innerHTML = '';
+    
+    // Aguardar um pouco para garantir que o step 3 esteja visível
+    setTimeout(() => {
+        // Carregar o widget do Calendly diretamente no container
+        if (typeof Calendly !== 'undefined') {
+            Calendly.initInlineWidget({
+                url: calendlyUrl,
+                parentElement: widget,
+                prefill: {
+                    name: name,
+                    email: email,
+                    customAnswers: {
+                        a1: phone
+                    }
+                },
+                // Configurações de tamanho
+                config: {
+                    height: '500px',
+                    width: '100%'
+                }
+            });
+        } else {
+            // Se Calendly ainda não carregou, aguardar
+            setTimeout(() => {
+                if (typeof Calendly !== 'undefined') {
+                    Calendly.initInlineWidget({
+                        url: calendlyUrl,
+                        parentElement: widget,
+                        prefill: {
+                            name: name,
+                            email: email,
+                            customAnswers: {
+                                a1: phone
+                            }
+                        },
+                        // Configurações de tamanho
+                        config: {
+                            height: '500px',
+                            width: '100%'
+                        }
+                    });
+                }
+            }, 1000);
+        }
+    }, 300);
+    
+    // Listener para capturar quando o usuário agenda no Calendly
+    window.addEventListener('message', function(event) {
+        if (event.data.event && event.data.event === 'calendly.event_scheduled') {
+            // Avançar automaticamente para o passo final
+            currentStep = 4;
+            updateStepDisplay();
+            
+            // Enviar dados do agendamento para o backend
+            const calendlyData = event.data.payload;
+            fetch('/leads/api/leads/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    step: '3',
+                    lead_id: leadId,
+                    calendly_event_id: calendlyData.event.uri,
+                    scheduled_date: calendlyData.event.start_time
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    console.log('Agendamento registrado com sucesso!');
+                } else {
+                    console.error('Erro ao registrar agendamento:', result.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados do Calendly:', error);
+            });
+        }
+    });
+}
+
+function updateStepDisplay() {
+    // Esconder todos os steps
+    document.querySelectorAll('.step-content').forEach(step => {
+        step.classList.add('d-none');
+    });
+    
+    // Mostrar step atual
+    const currentStepElement = document.getElementById(`step${currentStep}`);
+    if (currentStepElement) {
+        currentStepElement.classList.remove('d-none');
+    }
+    
+    // Atualizar indicadores
+    document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+        if (index + 1 <= currentStep) {
+            indicator.classList.add('active');
+        } else {
+            indicator.classList.remove('active');
+        }
+    });
+    
+    
+    // Atualizar botões
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    
+    if (currentStep === 1) {
+        nextBtn.classList.remove('d-none');
+        prevBtn.classList.add('d-none');
+        nextBtn.innerHTML = 'Próximo <i class="fas fa-arrow-right ms-2"></i>';
+    } else if (currentStep === 2) {
+        nextBtn.classList.remove('d-none');
+        prevBtn.classList.remove('d-none');
+        nextBtn.innerHTML = 'Próximo <i class="fas fa-arrow-right ms-2"></i>';
+    } else if (currentStep === 3) {
+        nextBtn.classList.add('d-none');
+        prevBtn.classList.remove('d-none');
+    } else if (currentStep === 4) {
+        nextBtn.classList.add('d-none');
+        prevBtn.classList.add('d-none');
+    }
+}
+
+function showLoading() {
+    document.getElementById('loadingState').classList.remove('d-none');
+    document.querySelectorAll('.step-content').forEach(step => {
+        step.classList.add('d-none');
+    });
+}
+
+function hideLoading() {
+    document.getElementById('loadingState').classList.add('d-none');
+}
+
+// Helpers de feedback visual
+function showAlert(message, type = 'danger') {
+    const el = document.getElementById('modalAlert');
+    if (!el) return;
+    el.className = `alert alert-${type}`;
+    el.textContent = message;
+    el.classList.remove('d-none');
+}
+
+function clearAlert() {
+    const el = document.getElementById('modalAlert');
+    if (!el) return;
+    el.classList.add('d-none');
+    el.textContent = '';
+}
+
+function markInvalid(inputEl, msg) {
+    if (!inputEl) return;
+    inputEl.classList.add('is-invalid', 'shake');
+    setTimeout(() => inputEl.classList.remove('shake'), 300);
+    // Mensagem abaixo do campo
+    let helper = inputEl.parentElement.querySelector('.error-text');
+    if (!helper) {
+        helper = document.createElement('div');
+        helper.className = 'error-text';
+        inputEl.parentElement.appendChild(helper);
+    }
+    helper.textContent = msg;
+    // Remover erro ao digitar
+    const handler = () => {
+        inputEl.classList.remove('is-invalid');
+        if (helper) helper.textContent = '';
+        inputEl.removeEventListener('input', handler);
+        clearAlert();
+    };
+    inputEl.addEventListener('input', handler);
+}
+
+function clearErrors() {
+    clearAlert();
+    document.querySelectorAll('#smartModal .is-invalid').forEach(el => el.classList.remove('is-invalid'));
+    document.querySelectorAll('#smartModal .error-text').forEach(el => el.textContent = '');
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Reset modal quando fechada
+document.getElementById('smartModal').addEventListener('hidden.bs.modal', function() {
+    currentStep = 1;
+    leadId = null;
+    updateStepDisplay();
+    
+    // Limpar formulários
+    document.getElementById('step1Form').reset();
+    document.getElementById('step2Form').reset();
+});
+
+// Função para fechar modal manualmente (caso Bootstrap não funcione)
+function closeModal() {
+    const modal = document.getElementById('smartModal');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        
+        // Remover backdrop
+        const backdrop = document.getElementById('modalBackdrop');
+        if (backdrop) {
+            backdrop.remove();
+        }
+    }
+}
+
+// Adicionar botão de fechar funcional
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('smartModal');
+    if (modal) {
+        // Botão X
+        const closeBtn = modal.querySelector('.btn-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+        
+        // Clique no backdrop
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+});
+</script>

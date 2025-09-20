@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- Fundo gradiente -->
+  <defs>
+    <linearGradient id="launcherGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D62042;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9E1D59;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="200" height="80" fill="url(#launcherGradient)" rx="8"/>
+  
+  <!-- Símbolo X da LauncherX -->
+  <g transform="translate(20, 20)">
+    <circle cx="20" cy="20" r="18" fill="none" stroke="white" stroke-width="3"/>
+    <!-- X estilizado -->
+    <path d="M12 12 L28 28 M28 12 L12 28" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Texto "LauncherX" -->
+  <text x="60" y="35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">LauncherX</text>
+  <text x="60" y="50" font-family="Arial, sans-serif" font-size="10" fill="white" opacity="0.8">Lançamentos Digitais</text>
+</svg>

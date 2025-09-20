@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Erro interno do servidor (500) - Agência Kaizen{% endblock %}
+{% block meta_description %}Ocorreu um erro interno no servidor. Nossa equipe foi notificada e está trabalhando para resolver. Entre em contato conosco.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-500 {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .error-500::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "images/logo-kaizen-header.webp" %}') no-repeat center center;
+        background-size: 300px;
+        opacity: 0.05;
+        z-index: 1;
+    }
+    
+    .error-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+    
+    .error-number {
+        font-size: 8rem;
+        font-weight: 900;
+        color: #ea0029;
+        text-shadow: 0 0 30px rgba(234, 0, 41, 0.5);
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+    
+    .error-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+    
+    .error-description {
+        font-size: 1.2rem;
+        color: #ccc;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+    
+    .btn-error {
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .btn-primary-error {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        color: white;
+        border: none;
+    }
+    
+    .btn-primary-error:hover {
+        background: linear-gradient(135deg, #c70022, #e55a5a);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(234, 0, 41, 0.3);
+    }
+    
+    .btn-outline-error {
+        background: transparent;
+        color: #ea0029;
+        border: 2px solid #ea0029;
+    }
+    
+    .btn-outline-error:hover {
+        background: #ea0029;
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .status-info {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 2rem;
+        border-left: 4px solid #ea0029;
+    }
+    
+    .status-info h3 {
+        color: white;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+    
+    .status-info p {
+        color: #ccc;
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-info {
+        background: rgba(234, 0, 41, 0.1);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .contact-info h4 {
+        color: #ea0029;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-info p {
+        color: #ccc;
+        margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+        .error-number {
+            font-size: 6rem;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+        }
+        
+        .error-description {
+            font-size: 1rem;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn-error {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-500">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-number">500</div>
+            <h1 class="error-title">Ops! Erro interno do servidor</h1>
+            <p class="error-description">
+                Algo deu errado no nosso servidor. Nossa equipe técnica foi notificada 
+                e está trabalhando para resolver o problema o mais rápido possível.
+            </p>
+            
+            <div class="error-actions">
+                <a href="/" class="btn-error btn-primary-error">
+                    <i class="fas fa-home"></i>
+                    Voltar ao Início
+                </a>
+                <a href="/contato/" class="btn-error btn-outline-error">
+                    <i class="fas fa-envelope"></i>
+                    Reportar Problema
+                </a>
+            </div>
+            
+            <div class="status-info">
+                <h3>O que aconteceu?</h3>
+                <p>• Nossos servidores estão temporariamente indisponíveis</p>
+                <p>• Nossa equipe foi notificada automaticamente</p>
+                <p>• O problema será resolvido em breve</p>
+                
+                <div class="contact-info">
+                    <h4>Precisa de ajuda imediata?</h4>
+                    <p><i class="fas fa-phone"></i> (51) 3333-4444</p>
+                    <p><i class="fas fa-envelope"></i> contato@agenciakaizen.com.br</p>
+                    <p><i class="fas fa-whatsapp"></i> WhatsApp: (51) 99999-9999</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Structured Data para SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Erro interno do servidor (500) - Agência Kaizen",
+    "description": "Ocorreu um erro interno no servidor. Nossa equipe foi notificada e está trabalhando para resolver. Entre em contato conosco.",
+    "url": "{{ request.build_absolute_uri }}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "url": "https://www.agenciakaizen.com.br",
+        "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp",
+        "description": "Agência de Marketing Digital de Alta Performance, especializada em soluções completas para crescimento empresarial.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+555133334444",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/kaizenmarketingdigital/",
+            "https://www.instagram.com/agenciakaizen/",
+            "https://www.facebook.com/agenciakaizen"
+        ]
+    }
+}
+</script>
+
+<script>
+// Animação de entrada
+document.addEventListener('DOMContentLoaded', function() {
+    const errorNumber = document.querySelector('.error-number');
+    const errorTitle = document.querySelector('.error-title');
+    const errorDescription = document.querySelector('.error-description');
+    
+    // Animar elementos sequencialmente
+    setTimeout(() => {
+        errorNumber.style.opacity = '0';
+        errorNumber.style.transform = 'scale(0.5)';
+        errorNumber.style.transition = 'all 0.8s ease';
+        
+        setTimeout(() => {
+            errorNumber.style.opacity = '1';
+            errorNumber.style.transform = 'scale(1)';
+        }, 100);
+    }, 200);
+    
+    setTimeout(() => {
+        errorTitle.style.opacity = '0';
+        errorTitle.style.transform = 'translateY(20px)';
+        errorTitle.style.transition = 'all 0.6s ease';
+        
+        setTimeout(() => {
+            errorTitle.style.opacity = '1';
+            errorTitle.style.transform = 'translateY(0)';
+        }, 100);
+    }, 400);
+    
+    setTimeout(() => {
+        errorDescription.style.opacity = '0';
+        errorDescription.style.transform = 'translateY(20px)';
+        errorDescription.style.transition = 'all 0.6s ease';
+        
+        setTimeout(() => {
+            errorDescription.style.opacity = '1';
+            errorDescription.style.transform = 'translateY(0)';
+        }, 100);
+    }, 600);
+});
+</script>
+{% endblock %}
+

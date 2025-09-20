@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Laptop base -->
+  <rect x="50" y="100" width="700" height="400" rx="20" fill="#2a2a2a" stroke="#444" stroke-width="2"/>
+  
+  <!-- Screen -->
+  <rect x="80" y="130" width="640" height="340" rx="10" fill="#000"/>
+  
+  <!-- Screen content -->
+  <rect x="100" y="150" width="600" height="300" fill="#1a1a1a"/>
+  
+  <!-- Header with Kaizen logo -->
+  <rect x="100" y="150" width="600" height="40" fill="#D62042"/>
+  <text x="120" y="175" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🚀 Agência Kaizen</text>
+  
+  <!-- Course cards -->
+  <rect x="120" y="210" width="180" height="120" rx="8" fill="#333" stroke="#D62042" stroke-width="1"/>
+  <text x="130" y="235" fill="#D62042" font-family="Arial, sans-serif" font-size="12" font-weight="bold">FORMAÇÃO EM</text>
+  <text x="130" y="255" fill="white" font-family="Arial, sans-serif" font-size="11">FUNIL DE</text>
+  <text x="130" y="275" fill="#D62042" font-family="Arial, sans-serif" font-size="11" font-weight="bold">MARKETING</text>
+  
+  <rect x="320" y="210" width="180" height="120" rx="8" fill="#333" stroke="#25d366" stroke-width="1"/>
+  <text x="330" y="235" fill="#25d366" font-family="Arial, sans-serif" font-size="12" font-weight="bold">FUNDAMENTOS</text>
+  <text x="330" y="255" fill="white" font-family="Arial, sans-serif" font-size="11">MARKETING &</text>
+  <text x="330" y="275" fill="#25d366" font-family="Arial, sans-serif" font-size="11" font-weight="bold">PERFORMANCE</text>
+  
+  <rect x="520" y="210" width="180" height="120" rx="8" fill="#333" stroke="#ffc107" stroke-width="1"/>
+  <text x="530" y="235" fill="#ffc107" font-family="Arial, sans-serif" font-size="12" font-weight="bold">GOOGLE TAG</text>
+  <text x="530" y="255" fill="white" font-family="Arial, sans-serif" font-size="11">MANAGER</text>
+  
+  <!-- Bottom section -->
+  <rect x="120" y="350" width="560" height="80" rx="8" fill="#1a1a1a" stroke="#D62042" stroke-width="1"/>
+  <text x="130" y="375" fill="white" font-family="Arial, sans-serif" font-size="10">Google Partner • RD Station • Meta Business</text>
+  
+  <!-- Keyboard -->
+  <rect x="100" y="520" width="600" height="60" rx="10" fill="#2a2a2a" stroke="#444" stroke-width="1"/>
+  
+  <!-- Trackpad -->
+  <rect x="350" y="540" width="100" height="60" rx="5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+</svg>

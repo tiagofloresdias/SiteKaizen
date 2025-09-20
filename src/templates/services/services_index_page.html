@@ -1,0 +1,153 @@
+{% extends "base_internal.html" %}
+{% load wagtailcore_tags %}
+
+{% block internal_content %}
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 100vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 fw-bold text-white mb-4">{{ page.title }}</h1>
+                <div class="text-light lead">
+                    {{ page.intro|richtext }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Serviço 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-dark border-secondary h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-code fa-3x text-pink"></i>
+                        </div>
+                        <h5 class="card-title text-white">Desenvolvimento Web</h5>
+                        <p class="card-text text-muted">Sites e aplicações web modernas, responsivas e otimizadas para performance.</p>
+                        <ul class="list-unstyled text-start">
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Sites Institucionais</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>E-commerce</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Aplicações Web</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Landing Pages</li>
+                        </ul>
+                        <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#smartModal">Solicitar Orçamento</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Serviço 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-dark border-secondary h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-mobile-alt fa-3x text-pink"></i>
+                        </div>
+                        <h5 class="card-title text-white">Desenvolvimento Mobile</h5>
+                        <p class="card-text text-muted">Aplicativos nativos e híbridos para iOS e Android.</p>
+                        <ul class="list-unstyled text-start">
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Apps Nativos</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Apps Híbridos</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>PWA</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Manutenção</li>
+                        </ul>
+                        <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#smartModal">Solicitar Orçamento</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Serviço 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-dark border-secondary h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-bullhorn fa-3x text-pink"></i>
+                        </div>
+                        <h5 class="card-title text-white">Marketing Digital</h5>
+                        <p class="card-text text-muted">Estratégias completas de marketing digital para aumentar suas vendas.</p>
+                        <ul class="list-unstyled text-start">
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Google Ads</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Facebook Ads</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>SEO</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Social Media</li>
+                        </ul>
+                        <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#smartModal">Solicitar Orçamento</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Serviço 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-dark border-secondary h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-palette fa-3x text-pink"></i>
+                        </div>
+                        <h5 class="card-title text-white">Design</h5>
+                        <p class="card-text text-muted">Designs únicos e funcionais que representam sua marca.</p>
+                        <ul class="list-unstyled text-start">
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>UI/UX Design</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Identidade Visual</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Logotipos</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Materiais Gráficos</li>
+                        </ul>
+                        <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#smartModal">Solicitar Orçamento</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Serviço 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-dark border-secondary h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-cogs fa-3x text-pink"></i>
+                        </div>
+                        <h5 class="card-title text-white">Automação</h5>
+                        <p class="card-text text-muted">Automatize processos e aumente a eficiência da sua empresa.</p>
+                        <ul class="list-unstyled text-start">
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Chatbots</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Workflows</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Integrações</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>CRM</li>
+                        </ul>
+                        <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#smartModal">Solicitar Orçamento</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Serviço 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-dark border-secondary h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-chart-line fa-3x text-pink"></i>
+                        </div>
+                        <h5 class="card-title text-white">Consultoria</h5>
+                        <p class="card-text text-muted">Consultoria estratégica para transformação digital.</p>
+                        <ul class="list-unstyled text-start">
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Estratégia Digital</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Análise de Mercado</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Otimização</li>
+                            <li class="text-light mb-2"><i class="fas fa-check text-pink me-2"></i>Treinamentos</li>
+                        </ul>
+                        <button type="button" class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#smartModal">Solicitar Orçamento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <div class="bg-gradient p-5 rounded" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
+                    <h3 class="text-white mb-3">Pronto para transformar seu negócio?</h3>
+                    <p class="text-white mb-4">Entre em contato e vamos conversar sobre seu projeto!</p>
+                    <button type="button" class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#smartModal">Fale Conosco</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Inteligente Multi-Passo -->
+{% include "includes/smart_modal.html" %}
+{% endblock internal_content %}

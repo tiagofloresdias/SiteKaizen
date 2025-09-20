@@ -1,0 +1,473 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<div class="container-fluid" style="background: #000000; min-height: 100vh;">
+    
+    <!-- Logo da Agência Kaizen no topo -->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <img src="{% static 'images/logo-kaizen-header.webp' %}" alt="Agência Kaizen" style="height: 60px;">
+                    </div>
+                    <h1 class="text-white mb-0" style="font-size: 2.5rem; font-weight: 300; letter-spacing: 2px;">Fluxo</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-5" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); min-height: 100vh; display: flex; align-items: center; position: relative;">
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4 animate-on-scroll fade-in-up delay-1">
+                        {{ page.hero_title }}
+                    </h1>
+                    <h2 class="h3 mb-4 text-white-50 animate-on-scroll fade-in-up delay-2">
+                        {{ page.hero_subtitle }}
+                    </h2>
+                    <div class="mb-5 animate-on-scroll fade-in-up delay-3">
+                        {{ page.hero_description|richtext }}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Formulário CTA -->
+                    <div class="card bg-dark border-secondary shadow-lg animate-on-scroll fade-in-up delay-4">
+                        <div class="card-body p-4">
+                            <h4 class="text-white mb-3">Preencha o formulário e descubra como estruturar seu funil de vendas de forma automatizada!</h4>
+                            <form id="fluxo-form">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Nome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Empresa">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="tel" class="form-control bg-dark text-white border-secondary" placeholder="Telefone">
+                                </div>
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="acceptTerms" required>
+                                    <label class="form-check-label text-white-50" for="acceptTerms">
+                                        Aceito compartilhar minhas informações para contato.
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg w-100">
+                                    QUERO UM DIAGNÓSTICO GRATUITO PARA MINHA EMPRESA
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Elemento decorativo -->
+        <div class="position-absolute" style="top: 20%; right: 10%; opacity: 0.1; pointer-events: none; z-index: 1;">
+            <div style="width: 300px; height: 300px; background: linear-gradient(45deg, #ea0029, transparent); border-radius: 50%;"></div>
+        </div>
+    </section>
+
+    <!-- Seção de Problemas -->
+    <section class="py-5" style="background: #1a1a1a;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold text-white mb-4 animate-on-scroll fade-in-left">
+                        {{ page.problem_title }}
+                    </h2>
+                    <div class="text-white-50 mb-4 animate-on-scroll fade-in-left delay-1">
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="fas fa-exclamation-triangle text-warning me-3"></i>Leads chegando, mas ninguém acompanha?</li>
+                            <li class="mb-3"><i class="fas fa-exclamation-triangle text-warning me-3"></i>Seu time de vendas perde tempo com tarefas repetitivas?</li>
+                            <li class="mb-3"><i class="fas fa-exclamation-triangle text-warning me-3"></i>Sem controle do funil e sem previsibilidade de receita?</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card bg-dark border-secondary shadow-lg animate-on-scroll fade-in-right">
+                        <div class="card-body p-4">
+                            {{ page.problem_text|richtext }}
+                            <button type="button" class="btn btn-success btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                                Quero uma gestão mais eficiente!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Solução -->
+    <section class="py-5" style="background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white mb-4 animate-on-scroll fade-in-up">
+                    {{ page.solution_title }}
+                </h2>
+                <div class="lead text-white-50 mb-5 animate-on-scroll fade-in-up delay-1">
+                    {{ page.solution_description|richtext }}
+                </div>
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-6 col-lg-4 animate-on-scroll fade-in-scale delay-1">
+                    <div class="text-center text-white">
+                        <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-robot fa-2x"></i>
+                        </div>
+                        <h5>Captação e qualificação de leads automatizadas</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 animate-on-scroll fade-in-scale delay-2">
+                    <div class="text-center text-white">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                        <h5>Régua de relacionamento personalizada</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 animate-on-scroll fade-in-scale delay-3">
+                    <div class="text-center text-white">
+                        <div class="bg-danger rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-share-alt fa-2x"></i>
+                        </div>
+                        <h5>Distribuição inteligente de oportunidades para vendedores</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 animate-on-scroll fade-in-scale delay-4">
+                    <div class="text-center text-white">
+                        <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <h5>Dashboards claros para acompanhar métricas de conversão</h5>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 animate-on-scroll fade-in-scale delay-5">
+                    <div class="text-center text-white">
+                        <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-plug fa-2x"></i>
+                        </div>
+                        <h5>Integração com múltiplas ferramentas de marketing e vendas</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center animate-on-scroll fade-in-up delay-6">
+                {{ page.solution_conclusion|richtext }}
+                <button type="button" class="btn btn-success btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    Quero um diagnóstico gratuito!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Benefícios -->
+    <section class="py-5" style="background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white mb-4 animate-on-scroll fade-in-up">
+                    {{ page.benefits_title }}
+                </h2>
+            </div>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-4 animate-on-scroll fade-in-scale delay-1">
+                    <div class="text-center text-white">
+                        <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
+                            <i class="fas fa-chart-line fa-3x"></i>
+                        </div>
+                        <h4 class="fw-bold">35% mais eficiência</h4>
+                        <p>na conversão de leads</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll fade-in-scale delay-2">
+                    <div class="text-center text-white">
+                        <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
+                            <i class="fas fa-clock fa-3x"></i>
+                        </div>
+                        <h4 class="fw-bold">40% menos tempo</h4>
+                        <p>perdido com processos operacionais</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll fade-in-scale delay-3">
+                    <div class="text-center text-white">
+                        <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
+                            <i class="fas fa-target fa-3x"></i>
+                        </div>
+                        <h4 class="fw-bold">50% mais previsibilidade</h4>
+                        <p>de receita</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center animate-on-scroll fade-in-up delay-4">
+                {{ page.benefits_conclusion|richtext }}
+                <button type="button" class="btn btn-success btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    Agende um consultório gratuito agora!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona -->
+    <section class="py-5" style="background: #1a1a1a;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white mb-4 animate-on-scroll fade-in-up">
+                    {{ page.how_it_works_title }}
+                </h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="timeline">
+                        <div class="timeline-item animate-on-scroll fade-in-left delay-1">
+                            <div class="timeline-marker bg-success"></div>
+                            <div class="timeline-content">
+                                <h5 class="text-white">1. Diagnóstico</h5>
+                                <p class="text-white-50">Entendemos os desafios e metas da sua empresa.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll fade-in-left delay-2">
+                            <div class="timeline-marker bg-primary"></div>
+                            <div class="timeline-content">
+                                <h5 class="text-white">2. Planejamento</h5>
+                                <p class="text-white-50">Criamos um processo estruturado para vendas e atendimento</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll fade-in-left delay-3">
+                            <div class="timeline-marker bg-info"></div>
+                            <div class="timeline-content">
+                                <h5 class="text-white">3. Automação + CRM</h5>
+                                <p class="text-white-50">Implementamos as ferramentas ideais para sua realidade</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll fade-in-left delay-4">
+                            <div class="timeline-marker bg-warning"></div>
+                            <div class="timeline-content">
+                                <h5 class="text-white">4. Treinamento & Suporte</h5>
+                                <p class="text-white-50">Garantimos que sua equipe utilize tudo da melhor forma</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item animate-on-scroll fade-in-left delay-5">
+                            <div class="timeline-marker bg-danger"></div>
+                            <div class="timeline-content">
+                                <h5 class="text-white">5. Monitoramento & Otimização</h5>
+                                <p class="text-white-50">Resultados em tempo real para melhoria contínua</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center animate-on-scroll fade-in-up delay-6">
+                {{ page.how_it_works_conclusion|richtext }}
+                <button type="button" class="btn btn-success btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    Quero um funil de vendas automatizado!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção FAQ -->
+    <section class="py-5" style="background: linear-gradient(135deg, #6f42c1 0%, #8e44ad 100%);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white mb-4 animate-on-scroll fade-in-up">
+                    {{ page.faq_title }}
+                </h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item bg-dark border-secondary animate-on-scroll fade-in-up delay-1">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Minha empresa precisa ter um CRM antes de contratar o Fluxo?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-white-50">
+                                    Não! Se você ainda não tem um CRM estruturado, ajudamos na escolha e implementação da melhor solução para o seu negócio.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary animate-on-scroll fade-in-up delay-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    O Fluxo pode integrar com minhas ferramentas atuais?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-white-50">
+                                    Sim! O Fluxo integra com mais de 50 ferramentas de marketing e vendas, garantindo que sua operação atual continue funcionando.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary animate-on-scroll fade-in-up delay-3">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Preciso de um time grande para usar o Fluxo?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-white-50">
+                                    Não! O Fluxo foi desenvolvido para empresas de todos os tamanhos, desde startups até grandes corporações.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 animate-on-scroll fade-in-up delay-4">
+                <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    Solicitar minha avaliação agora mesmo!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Kaizen -->
+    <section class="py-5" style="background: #1a1a1a;">
+        <div class="container">
+            <div class="text-center mb-5">
+                {{ page.kaizen_title|richtext }}
+            </div>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-4 animate-on-scroll fade-in-scale delay-1">
+                    <div class="text-center text-white">
+                        <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
+                        <h5>+10 anos de experiência em tecnologia para vendas</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll fade-in-scale delay-2">
+                    <div class="text-center text-white">
+                        <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
+                        <h5>+50 ferramentas homologadas para otimizar sua empresa</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll fade-in-scale delay-3">
+                    <div class="text-center text-white">
+                        <i class="fas fa-check-circle text-success fa-3x mb-3"></i>
+                        <h5>Times especialistas em automação e CRM</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center animate-on-scroll fade-in-up delay-4">
+                {{ page.kaizen_conclusion|richtext }}
+                <button type="button" class="btn btn-success btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    Fale com um especialista!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-5" style="background: #1a1a1a;">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="display-5 fw-bold text-white mb-4 animate-on-scroll fade-in-up">
+                    {{ page.final_cta_title }}
+                </h2>
+                <h3 class="h4 text-white-50 mb-5 animate-on-scroll fade-in-up delay-1">
+                    {{ page.final_cta_subtitle }}
+                </h3>
+                <button type="button" class="btn btn-success btn-lg px-5 py-3 animate-on-scroll fade-in-up delay-2" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    Quero automação + CRM na minha empresa!
+                </button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<style>
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ea0029;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -22px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid #1a1a1a;
+}
+
+.timeline-content {
+    background: #2d2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #ea0029;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #2d2d2d;
+    color: #ea0029;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(234, 0, 41, 0.25);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animação de entrada na tela
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+
+    // Observar todos os elementos com animação
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Animação de entrada para elementos do hero
+    setTimeout(() => {
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .fade-in-scale, .slide-in-down').forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+            }, index * 200);
+        });
+    }, 100);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white py-5" style="background: {{ page.hero_background_color|default:'#000000' }}; min-height: 60vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-3 fw-bold mb-4 fade-in-up">
+                    {{ page.hero_title|default:"Mais que uma agência, um ecossistema de crescimento." }}
+                </h1>
+                <div class="lead mb-5 fs-4 fade-in-up delay-1">
+                    {{ page.hero_subtitle|richtext }}
+                </div>
+                <button type="button" class="btn btn-pink btn-lg px-5 py-3 fade-in-up delay-2" id="openModalBtn">
+                    Quero conhecer os planos da Kaizen
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Navegação por logos (sticky) -->
+{% if companies %}
+<section class="py-4" style="background: #0a0a0a; color: white; position: sticky; top: 0; z-index: 9; border-bottom: 1px solid rgba(255,255,255,.06);">
+    <div class="container">
+        <div class="logo-nav d-flex gap-4 overflow-auto pb-2" style="scroll-snap-type: x mandatory;">
+            {% for company in companies %}
+            <a class="logo-nav-item d-inline-flex align-items-center justify-content-center px-3 py-2 rounded-3 text-decoration-none" href="#c-{{ company.slug }}" data-company="{{ company.slug }}" style="background: #121212; border: 1px solid rgba(255,255,255,.08); scroll-snap-align: start; min-width: 140px; transition: transform .2s ease, box-shadow .2s ease;">
+                {% if company.logo %}
+                    {% image company.logo max-120x60 class="img-fluid" %}
+                {% else %}
+                    <span class="fw-semibold" style="color:#fff">{{ company.name }}</span>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Seção de Empresas -->
+<section id="empresas" class="py-5" style="background: #000000; color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4 fade-in-up">Conheça nossas empresas e como elas impulsionam resultados</h2>
+            </div>
+        </div>
+        
+        {% if companies %}
+        <div class="row g-4">
+            {% for company in companies %}
+            <div class="col-lg-6 mb-5" id="c-{{ company.slug }}">
+                <div class="card bg-dark border-secondary h-100 p-4 fade-in-scale company-card" data-company="{{ company.slug }}" style="scroll-margin-top: 120px;">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 text-center mb-3 mb-md-0">
+                            {% if company.logo %}
+                                {% image company.logo max-150x150 class="img-fluid" %}
+                            {% else %}
+                                <!-- Logo personalizado baseado no nome da empresa -->
+                                {% if company.name == "Leadspot" %}
+                                    <div class="company-logo leadspot-logo d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <span style="font-weight: bold; font-size: 18px; color: #00a8ff;">LS</span>
+                                    </div>
+                                {% elif company.name == "Launcher" %}
+                                    <div class="company-logo launcher-logo d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <span style="font-weight: bold; font-size: 18px; color: #ff6b35;">L</span>
+                                    </div>
+                                {% elif company.name == "LauncherX" %}
+                                    <div class="company-logo launcherx-logo d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <span style="font-weight: bold; font-size: 18px; color: #7c3aed;">LX</span>
+                                    </div>
+                                {% elif company.name == "Fluxo" %}
+                                    <div class="company-logo fluxo-logo d-inline-flex align-items-center justify-content-center" style="width: 120px; height: 120px; background: #000; border: 2px solid #333;">
+                                        <!-- Logo Fluxo exato da imagem -->
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <!-- Símbolo Fluxo -->
+                                            <div style="position: relative; width: 32px; height: 32px;">
+                                                <!-- Círculo externo com borda mais grossa -->
+                                                <div style="position: absolute; width: 32px; height: 32px; border: 3px solid white; border-radius: 50%;"></div>
+                                                <!-- Seta para cima (triângulo) -->
+                                                <div style="position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid white;"></div>
+                                                <!-- Três linhas onduladas/gotejantes na parte inferior -->
+                                                <div style="position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 16px; height: 10px;">
+                                                    <svg width="16" height="10" viewBox="0 0 16 10" style="overflow: visible;">
+                                                        <!-- Linha ondulada superior -->
+                                                        <path d="M2,6 Q4,2 6,4 T10,2 T14,4" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                                        <!-- Linha ondulada do meio -->
+                                                        <path d="M1,7 Q3,3 5,5 T9,3 T13,5" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                                        <!-- Linha ondulada inferior -->
+                                                        <path d="M0,8 Q2,4 4,6 T8,4 T12,6" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <!-- Texto "fluxo" -->
+                                            <span style="color: white; font-weight: bold; font-size: 16px; font-family: Arial, sans-serif; letter-spacing: 0.5px;">fluxo</span>
+                                        </div>
+                                    </div>
+                                {% elif company.name == "Hacker das Vendas" %}
+                                    <div class="company-logo hacker-logo d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <span style="font-weight: bold; font-size: 18px; color: #f59e0b;">H</span>
+                                    </div>
+                                {% else %}
+                                    <div class="bg-pink rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-building fa-2x text-white"></i>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="h4 fw-bold mb-3" style="color: #ea0029;">{{ company.name }}</h3>
+                            <p class="text-white-50 mb-3">{{ company.tagline }}</p>
+                            <div class="mb-3">
+                                {{ company.description|truncatewords:30|richtext }}
+                            </div>
+                            {% if company.website_url %}
+                            <a href="{{ company.website_url }}" class="btn btn-pink btn-sm" target="_blank" rel="noopener">
+                                Conheça a empresa <i class="fas fa-arrow-up-right-from-square ms-1"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="alert alert-warning">
+                    <h4>Nenhuma empresa cadastrada</h4>
+                    <p>As empresas serão exibidas aqui quando forem cadastradas no admin.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Seção de Call to Action -->
+{% if page.cta_title %}
+<section class="py-5" style="background: linear-gradient(135deg, #ea0029 0%, #c7002a 100%); color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-4 fw-bold mb-4 fade-in-up">{{ page.cta_title }}</h2>
+                {% if page.cta_text %}
+                <div class="lead mb-4 fade-in-up delay-1">
+                    {{ page.cta_text|richtext }}
+                </div>
+                {% endif %}
+                <a href="/fale-conosco/" class="btn btn-light btn-lg px-5 py-3 fade-in-up delay-2">
+                    {{ page.cta_button_text|default:"Fale Conosco" }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<style>
+.btn-pink {
+    background: #ea0029;
+    border-color: #ea0029;
+    color: white;
+}
+
+.btn-pink:hover {
+    background: #c7002a;
+    border-color: #c7002a;
+    color: white;
+}
+
+/* Garantir que o botão seja sempre clicável */
+#openModalBtn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 10;
+}
+
+/* Remover qualquer overlay invisível */
+.hero-section::before,
+.hero-section::after {
+    display: none !important;
+}
+
+/* Garantir que não há elementos bloqueando */
+.hero-section * {
+    pointer-events: auto !important;
+}
+
+/* Logos personalizados das empresas */
+.company-logo {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.company-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.leadspot-logo {
+    background: linear-gradient(135deg, #00a8ff, #0097e6);
+    border: 2px solid #00a8ff;
+}
+
+.launcher-logo {
+    background: linear-gradient(135deg, #ff6b35, #e55a2b);
+    border: 2px solid #ff6b35;
+}
+
+.launcherx-logo {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border: 2px solid #7c3aed;
+}
+
+.fluxo-logo {
+    background: #000000;
+    border: 2px solid #333333;
+}
+
+.hacker-logo {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: 2px solid #f59e0b;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(234, 0, 41, 0.2);
+}
+
+.smooth-scroll {
+    cursor: pointer;
+}
+
+/* Navegação por logos */
+.logo-nav .logo-nav-item.active {
+    box-shadow: 0 0 0 2px #ea0029 inset, 0 6px 20px rgba(234,0,41,.25);
+    transform: translateY(-2px);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Garantir que elementos com animação sejam visíveis
+    document.querySelectorAll('.fade-in-up, .fade-in-scale').forEach((el) => {
+        // Remover qualquer opacity inline que possa estar causando problema
+        el.style.removeProperty('opacity');
+    });
+
+    // Destaque do item ativo na navegação por logos conforme rolagem
+    const cards = Array.from(document.querySelectorAll('.company-card'));
+    const navItems = Array.from(document.querySelectorAll('.logo-nav-item'));
+    const setActive = (slug) => {
+        navItems.forEach(i => i.classList.toggle('active', i.dataset.company === slug));
+    };
+    const onScroll = () => {
+        let current = null;
+        for (const el of cards) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 140 && rect.bottom >= 140) { current = el.dataset.company; break; }
+        }
+        if (current) setActive(current);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Clique na logo rola suavemente até o card correspondente
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const slug = item.dataset.company;
+            const target = document.querySelector(`#c-${slug}`);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setActive(slug);
+            }
+        });
+    });
+
+    // Garantir que o modal funcione IMEDIATAMENTE
+    const openModalBtn = document.getElementById('openModalBtn');
+    if (openModalBtn) {
+        // Garantir que o botão seja visível e clicável
+        openModalBtn.style.opacity = '1';
+        openModalBtn.style.pointerEvents = 'auto';
+        openModalBtn.style.position = 'relative';
+        openModalBtn.style.zIndex = '10';
+        
+        openModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Botão clicado! Tentando abrir modal...');
+            
+            // Verificar se Bootstrap está carregado
+            if (typeof bootstrap !== 'undefined') {
+                console.log('Bootstrap encontrado, abrindo modal...');
+                const modal = new bootstrap.Modal(document.getElementById('smartModal'));
+                modal.show();
+            } else {
+                console.log('Bootstrap não encontrado, redirecionando...');
+                // Fallback: redirecionar para contato
+                window.location.href = '/fale-conosco/';
+            }
+        });
+    }
+});
+</script>
+
+<!-- Modal Inteligente Multi-Passo -->
+{% include "includes/smart_modal.html" %}
+{% endblock %}

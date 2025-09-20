@@ -1,0 +1,314 @@
+{% extends "base_internal.html" %}
+{% load wagtailcore_tags %}
+
+{% block internal_content %}
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container py-5 text-center text-white">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-bold mb-4">{{ page.hero_title }}</h1>
+                <p class="lead mb-5">{{ page.hero_subtitle }}</p>
+                <a href="/recrutamento/" class="btn btn-pink btn-lg px-5 py-3">
+                    <i class="fas fa-rocket me-2"></i>Formulário de Recrutamento
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cultura Kaizen Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-dark p-5 rounded shadow-lg text-white">
+                    <h2 class="display-4 fw-bold text-center mb-5 text-pink">{{ page.culture_title }}</h2>
+                    <div class="lead text-white-50">
+                        {{ page.culture_content|richtext }}
+                    </div>
+                    
+                    <!-- Frases da Sala de Impacto -->
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <h3 class="text-pink text-center mb-4">Nossas Frases de Impacto</h3>
+                            <div class="row g-4">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="text-center p-4 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                        <i class="fas fa-users fa-2x text-white mb-3"></i>
+                                        <h5 class="text-white fw-bold">Trabalho em equipe sem mim</h5>
+                                        <p class="text-white-50 mb-0">O sucesso é coletivo, não individual</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="text-center p-4 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                        <i class="fas fa-rocket fa-2x text-white mb-3"></i>
+                                        <h5 class="text-white fw-bold">Feito é melhor do que perfeito</h5>
+                                        <p class="text-white-50 mb-0">Agimos com velocidade e eficiência</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="text-center p-4 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                        <i class="fas fa-chart-line fa-2x text-white mb-3"></i>
+                                        <h5 class="text-white fw-bold">Os resultados são determinantes</h5>
+                                        <p class="text-white-50 mb-0">Focamos no que realmente importa</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Os 5S Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-dark p-5 rounded shadow-lg text-white">
+                    <h2 class="display-4 fw-bold text-center mb-5 text-pink">{{ page.five_s_title }}</h2>
+                    <div class="lead text-white-50 mb-5">
+                        {{ page.five_s_content|richtext }}
+                    </div>
+                    
+                    <!-- Cards dos 5S -->
+                    <div class="row g-4">
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <div class="text-center p-3 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <h3 class="text-white fw-bold mb-2">SEIRI</h3>
+                                <p class="text-white-50 mb-0 small">Organização</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <div class="text-center p-3 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <h3 class="text-white fw-bold mb-2">SEITON</h3>
+                                <p class="text-white-50 mb-0 small">Ordenação</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <div class="text-center p-3 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <h3 class="text-white fw-bold mb-2">SEISO</h3>
+                                <p class="text-white-50 mb-0 small">Limpeza</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <div class="text-center p-3 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <h3 class="text-white fw-bold mb-2">SEIKETSU</h3>
+                                <p class="text-white-50 mb-0 small">Padronização</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6">
+                            <div class="text-center p-3 bg-gradient rounded" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <h3 class="text-white fw-bold mb-2">SHITSUKE</h3>
+                                <p class="text-white-50 mb-0 small">Disciplina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefícios Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-dark p-5 rounded shadow-lg text-white">
+                    <h2 class="display-4 fw-bold text-center mb-5 text-pink">{{ page.benefits_title }}</h2>
+                    <div class="lead text-white-50 mb-5">
+                        {{ page.benefits_content|richtext }}
+                    </div>
+                    
+                    <!-- Cards de Benefícios -->
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card bg-gradient h-100 text-white border-0" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-chart-line fa-3x mb-3"></i>
+                                    <h5 class="card-title fw-bold">Crescimento Profissional</h5>
+                                    <p class="card-text">Oportunidades constantes de desenvolvimento e aprendizado.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card bg-gradient h-100 text-white border-0" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-users fa-3x mb-3"></i>
+                                    <h5 class="card-title fw-bold">Equipe Inspiradora</h5>
+                                    <p class="card-text">Trabalhe com profissionais apaixonados e talentosos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card bg-gradient h-100 text-white border-0" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-lightbulb fa-3x mb-3"></i>
+                                    <h5 class="card-title fw-bold">Inovação Constante</h5>
+                                    <p class="card-text">Ambiente que estimula criatividade e novas ideias.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card bg-gradient h-100 text-white border-0" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-trophy fa-3x mb-3"></i>
+                                    <h5 class="card-title fw-bold">Resultados Extraordinários</h5>
+                                    <p class="card-text">Participe de projetos que transformam negócios.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card bg-gradient h-100 text-white border-0" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-balance-scale fa-3x mb-3"></i>
+                                    <h5 class="card-title fw-bold">Equilíbrio Vida-Trabalho</h5>
+                                    <p class="card-text">Flexibilidade e ambiente de trabalho saudável.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card bg-gradient h-100 text-white border-0" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-rocket fa-3x mb-3"></i>
+                                    <h5 class="card-title fw-bold">Carreira em Ascensão</h5>
+                                    <p class="card-text">Crescimento acelerado em uma empresa em expansão.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Programa BeKaizen Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-gradient p-5 rounded shadow-lg text-white" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                    <h2 class="display-4 fw-bold text-center mb-5 text-white">🚀 Programa BeKaizen</h2>
+                    <div class="row g-4">
+                        <div class="col-lg-6">
+                            <h4 class="text-white mb-4">Nosso Programa de Incentivos</h4>
+                            <p class="lead text-white-50 mb-4">
+                                O BeKaizen é nosso programa exclusivo de incentivos e reconhecimento para todos os foguetes. 
+                                Aqui, cada conquista é celebrada e cada resultado é recompensado.
+                            </p>
+                            <ul class="list-unstyled text-white-50">
+                                <li class="mb-3"><i class="fas fa-gift text-white me-2"></i> <strong>Bônus por Performance:</strong> Reconhecemos quem entrega resultados</li>
+                                <li class="mb-3"><i class="fas fa-trophy text-white me-2"></i> <strong>Programa de Metas:</strong> Desafios mensais com premiações</li>
+                                <li class="mb-3"><i class="fas fa-plane text-white me-2"></i> <strong>Viagens e Eventos:</strong> Experiências únicas para os melhores</li>
+                                <li class="mb-3"><i class="fas fa-graduation-cap text-white me-2"></i> <strong>Desenvolvimento:</strong> Cursos e certificações pagas pela empresa</li>
+                                <li class="mb-3"><i class="fas fa-heart text-white me-2"></i> <strong>Bem-estar:</strong> Benefícios que cuidam de você e sua família</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="text-center">
+                                <div class="bg-white bg-opacity-20 p-4 rounded mb-4">
+                                    <h5 class="text-white fw-bold mb-3">Como Funciona?</h5>
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center text-white-50">
+                                                <span class="badge bg-white text-dark me-3">1</span>
+                                                <span>Defina suas metas mensais</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center text-white-50">
+                                                <span class="badge bg-white text-dark me-3">2</span>
+                                                <span>Execute com excelência</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center text-white-50">
+                                                <span class="badge bg-white text-dark me-3">3</span>
+                                                <span>Receba suas recompensas</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-white-50 small">
+                                    <strong>Resultado:</strong> Foguetes motivados, clientes satisfeitos e empresa crescendo!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Final Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="bg-gradient p-5 rounded shadow-lg" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.cta_title }}</h2>
+                    <p class="lead text-white-50 mb-4">{{ page.cta_subtitle }}</p>
+                    <a href="/recrutamento/" class="btn btn-light btn-lg px-5 py-3">
+                        <i class="fas fa-rocket me-2"></i>ENVIAR CANDIDATURA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Depoimentos Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h2 class="display-4 fw-bold text-center text-white mb-5">O que nossos Foguetes dizem</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="card bg-dark border-secondary h-100 text-white">
+                            <div class="card-body p-4">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-quote-left fa-2x text-pink"></i>
+                                </div>
+                                <p class="card-text text-white-50 mb-3">
+                                    "Na Kaizen, cada dia é uma oportunidade de aprender algo novo e fazer a diferença. É incrível ver como nossa cultura Kaizen se reflete em tudo que fazemos."
+                                </p>
+                                <div class="text-center">
+                                    <strong class="text-pink">Maria Silva</strong><br>
+                                    <small class="text-white-50">Marketing Digital</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card bg-dark border-secondary h-100 text-white">
+                            <div class="card-body p-4">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-quote-left fa-2x text-pink"></i>
+                                </div>
+                                <p class="card-text text-white-50 mb-3">
+                                    "O ambiente aqui é único. Todos estão comprometidos com a melhoria contínua e isso se reflete nos resultados que entregamos para nossos clientes."
+                                </p>
+                                <div class="text-center">
+                                    <strong class="text-pink">João Santos</strong><br>
+                                    <small class="text-white-50">Desenvolvimento</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card bg-dark border-secondary h-100 text-white">
+                            <div class="card-body p-4">
+                                <div class="text-center mb-3">
+                                    <i class="fas fa-quote-left fa-2x text-pink"></i>
+                                </div>
+                                <p class="card-text text-white-50 mb-3">
+                                    "Ser um Foguete Kaizen significa fazer parte de algo maior. Aqui, cada pequena melhoria contribui para um resultado extraordinário."
+                                </p>
+                                <div class="text-center">
+                                    <strong class="text-pink">Ana Costa</strong><br>
+                                    <small class="text-white-50">Vendas</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock internal_content %}

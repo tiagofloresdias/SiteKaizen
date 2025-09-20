@@ -1,0 +1,287 @@
+{% extends "base_internal.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block internal_content %}
+<!-- Hero Section -->
+<section class="hero-section text-white py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 60vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                {% if page.hero_image %}
+                    {% image page.hero_image fill-800x400 class="img-fluid rounded mb-4" %}
+                {% endif %}
+                <h1 class="display-3 fw-bold mb-4 fade-in-up">
+                    {{ page.hero_title }}
+                </h1>
+                <div class="lead mb-5 fs-4 fade-in-up delay-1">
+                    {{ page.hero_subtitle|richtext }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filtros de Categoria -->
+{% if page.show_category_filters and categories %}
+<section class="py-4" style="background: #1a1a1a; border-bottom: 1px solid #333;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-center flex-wrap gap-3">
+                    <a href="/cases/" class="btn btn-outline-light {% if not current_category %}active{% endif %}">
+                        Todos
+                    </a>
+                    {% for category_key, category_name in categories %}
+                    <a href="?category={{ category_key }}" 
+                       class="btn btn-outline-light {% if current_category == category_key %}active{% endif %}">
+                        {{ category_name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Cases em Destaque -->
+{% if page.show_featured_section and featured_cases %}
+<section class="py-5" style="background: #000000;">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold text-white mb-4">Cases em Destaque</h2>
+                <p class="lead text-white">Nossos resultados mais impressionantes</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for case in featured_cases %}
+            <div class="col-lg-4 col-md-6">
+                <div class="case-card bg-dark border-secondary h-100">
+                    {% if case.hero_image %}
+                    <div class="case-image">
+                        {% image case.hero_image fill-400x250 class="img-fluid" %}
+                        <div class="case-overlay">
+                            <div class="case-metric">
+                                <span class="metric-value">{{ case.main_metric_value }}</span>
+                                <span class="metric-desc">{{ case.main_metric_description }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="case-content p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if case.client_logo %}
+                                {% image case.client_logo max-50x50 class="me-3" %}
+                            {% endif %}
+                            <div>
+                                <span class="badge bg-pink text-white">{{ case.get_category_display }}</span>
+                                <h5 class="text-white fw-bold mb-1">{{ case.client_name }}</h5>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-white fw-bold mb-3">{{ case.title }}</h4>
+                        <p class="text-white-50 mb-4">{{ case.short_description|truncatewords:20 }}</p>
+                        
+                        <a href="/cases/{{ case.slug }}/" class="btn btn-pink w-100">
+                            Ver Case Completo <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Grid de Todos os Cases -->
+<section class="py-5" style="background: {% if page.show_featured_section %}#111111{% else %}#000000{% endif %};">
+    <div class="container">
+        {% if page.show_featured_section %}
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold text-white mb-4">Todos os Cases</h2>
+                <p class="lead text-white">Explore nossa biblioteca completa de sucessos</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if cases %}
+        <div class="row g-4">
+            {% for case in cases %}
+            <div class="col-lg-4 col-md-6">
+                <div class="case-card bg-dark border-secondary h-100">
+                    {% if case.hero_image %}
+                    <div class="case-image">
+                        {% image case.hero_image fill-400x250 class="img-fluid" %}
+                        <div class="case-overlay">
+                            <div class="case-metric">
+                                <span class="metric-value">{{ case.main_metric_value }}</span>
+                                <span class="metric-desc">{{ case.main_metric_description }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="case-content p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if case.client_logo %}
+                                {% image case.client_logo max-50x50 class="me-3" %}
+                            {% endif %}
+                            <div>
+                                <span class="badge bg-pink text-white">{{ case.get_category_display }}</span>
+                                <h5 class="text-white fw-bold mb-1">{{ case.client_name }}</h5>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-white fw-bold mb-3">{{ case.title }}</h4>
+                        <p class="text-white-50 mb-4">{{ case.short_description|truncatewords:20 }}</p>
+                        
+                        <a href="/cases/{{ case.slug }}/" class="btn btn-pink w-100">
+                            Ver Case Completo <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="alert alert-warning">
+                    <h4>Nenhum case encontrado</h4>
+                    <p>Os cases serão exibidos aqui quando forem cadastrados.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #ea0029 0%, #c7002a 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-4 fw-bold mb-4 text-white">Quer ser o próximo case de sucesso?</h2>
+                <p class="lead mb-4 text-white">Entre em contato e descubra como podemos transformar seu negócio</p>
+                <button type="button" class="btn btn-light btn-lg px-5 py-3" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    <i class="fas fa-rocket me-2"></i>FALE CONOSCO
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.case-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #333;
+}
+
+.case-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(234, 0, 41, 0.3);
+}
+
+.case-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.case-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(234, 0, 41, 0.8), rgba(199, 0, 42, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.case-card:hover .case-overlay {
+    opacity: 1;
+}
+
+.case-metric {
+    text-align: center;
+    color: white;
+}
+
+.metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.metric-desc {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.bg-pink {
+    background-color: #ea0029 !important;
+}
+
+.btn-pink {
+    background: linear-gradient(135deg, #ea0029, #ff6b6b);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-pink:hover {
+    background: linear-gradient(135deg, #c7002a, #ea0029);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(234, 0, 41, 0.3);
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in-up.delay-1 {
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .case-card {
+        margin-bottom: 2rem;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<!-- Modal Inteligente Multi-Passo -->
+{% include "includes/smart_modal.html" %}
+{% endblock internal_content %}
+

@@ -1,0 +1,481 @@
+<!-- Modal de Franqueado -->
+<div class="modal fade" id="franchiseModal" tabindex="-1" aria-labelledby="franchiseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="franchiseModalLabel">
+                    <i class="fas fa-store me-2"></i>
+                    <span id="franchise-modal-title">Torne-se um Franqueado Kaizen</span>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light">
+                <!-- Progress Bar -->
+                <div class="progress mb-4" style="height: 8px;">
+                    <div class="progress-bar bg-danger" role="progressbar" id="franchise-progress" style="width: 16.66%"></div>
+                </div>
+                
+                <!-- Step Indicator -->
+                <div class="step-indicator mb-4">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Dados Pessoais</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Perfil Profissional</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Investimento</div>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Documentos</div>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-number">5</div>
+                        <div class="step-label">Agendamento</div>
+                    </div>
+                    <div class="step" data-step="6">
+                        <div class="step-number">6</div>
+                        <div class="step-label">Concluído</div>
+                    </div>
+                </div>
+                
+                <!-- Step Content -->
+                <div class="step-content">
+                    <!-- Step 1: Dados Pessoais -->
+                    <div class="step-panel active" id="franchise-step1">
+                        <h4 class="text-center mb-4">Dados Pessoais</h4>
+                        <p class="text-center text-muted mb-4">Conte-nos sobre você para começarmos</p>
+                        
+                        <form id="franchise-form-step1">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-full-name" class="form-label">Nome Completo *</label>
+                                    <input type="text" class="form-control" id="franchise-full-name" name="full_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-email" class="form-label">E-mail *</label>
+                                    <input type="email" class="form-control" id="franchise-email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-phone" class="form-label">Telefone *</label>
+                                    <input type="tel" class="form-control" id="franchise-phone" name="phone" placeholder="(11) 99999-9999" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-cpf" class="form-label">CPF *</label>
+                                    <input type="text" class="form-control" id="franchise-cpf" name="cpf" placeholder="000.000.000-00" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-rg" class="form-label">RG *</label>
+                                    <input type="text" class="form-control" id="franchise-rg" name="rg" placeholder="00.000.000-0" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-birth-date" class="form-label">Data de Nascimento *</label>
+                                    <input type="date" class="form-control" id="franchise-birth-date" name="birth_date" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-marital-status" class="form-label">Estado Civil *</label>
+                                    <select class="form-select" id="franchise-marital-status" name="marital_status" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="single">Solteiro(a)</option>
+                                        <option value="married">Casado(a)</option>
+                                        <option value="divorced">Divorciado(a)</option>
+                                        <option value="widowed">Viúvo(a)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-nationality" class="form-label">Nacionalidade</label>
+                                    <input type="text" class="form-control" id="franchise-nationality" name="nationality" value="Brasileira">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-8 mb-3">
+                                    <label for="franchise-address" class="form-label">Endereço</label>
+                                    <input type="text" class="form-control" id="franchise-address" name="address">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="franchise-zipcode" class="form-label">CEP</label>
+                                    <input type="text" class="form-control" id="franchise-zipcode" name="zipcode" placeholder="00000-000">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-city" class="form-label">Cidade</label>
+                                    <input type="text" class="form-control" id="franchise-city" name="city">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-state" class="form-label">Estado</label>
+                                    <select class="form-select" id="franchise-state" name="state">
+                                        <option value="">Selecione...</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 2: Perfil Profissional -->
+                    <div class="step-panel" id="franchise-step2">
+                        <h4 class="text-center mb-4">Perfil Profissional</h4>
+                        <p class="text-center text-muted mb-4">Fale sobre sua experiência e objetivos</p>
+                        
+                        <form id="franchise-form-step2">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-profession" class="form-label">Profissão *</label>
+                                    <input type="text" class="form-control" id="franchise-profession" name="profession" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-experience-years" class="form-label">Anos de Experiência *</label>
+                                    <input type="number" class="form-control" id="franchise-experience-years" name="experience_years" min="0" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-current-company" class="form-label">Empresa Atual</label>
+                                    <input type="text" class="form-control" id="franchise-current-company" name="current_company">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-current-position" class="form-label">Cargo Atual</label>
+                                    <input type="text" class="form-control" id="franchise-current-position" name="current_position">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-education-level" class="form-label">Nível de Escolaridade *</label>
+                                    <select class="form-select" id="franchise-education-level" name="education_level" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="elementary">Ensino Fundamental</option>
+                                        <option value="high_school">Ensino Médio</option>
+                                        <option value="technical">Técnico</option>
+                                        <option value="college">Superior</option>
+                                        <option value="postgraduate">Pós-graduação</option>
+                                        <option value="master">Mestrado</option>
+                                        <option value="phd">Doutorado</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-management-experience" class="form-label">Experiência em Gestão *</label>
+                                    <select class="form-select" id="franchise-management-experience" name="management_experience" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="none">Nenhuma</option>
+                                        <option value="low">Pouca (1-2 anos)</option>
+                                        <option value="medium">Média (3-5 anos)</option>
+                                        <option value="high">Alta (6-10 anos)</option>
+                                        <option value="expert">Expert (10+ anos)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-sales-experience" class="form-label">Experiência em Vendas *</label>
+                                    <select class="form-select" id="franchise-sales-experience" name="sales_experience" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="none">Nenhuma</option>
+                                        <option value="low">Pouca (1-2 anos)</option>
+                                        <option value="medium">Média (3-5 anos)</option>
+                                        <option value="high">Alta (6-10 anos)</option>
+                                        <option value="expert">Expert (10+ anos)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-marketing-experience" class="form-label">Experiência em Marketing *</label>
+                                    <select class="form-select" id="franchise-marketing-experience" name="marketing_experience" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="none">Nenhuma</option>
+                                        <option value="low">Pouca (1-2 anos)</option>
+                                        <option value="medium">Média (3-5 anos)</option>
+                                        <option value="high">Alta (6-10 anos)</option>
+                                        <option value="expert">Expert (10+ anos)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 3: Investimento e Localização -->
+                    <div class="step-panel" id="franchise-step3">
+                        <h4 class="text-center mb-4">Investimento e Localização</h4>
+                        <p class="text-center text-muted mb-4">Informações sobre investimento e região de interesse</p>
+                        
+                        <form id="franchise-form-step3">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-investment-capacity" class="form-label">Capacidade de Investimento *</label>
+                                    <select class="form-select" id="franchise-investment-capacity" name="investment_capacity" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="low">Até R$ 50.000</option>
+                                        <option value="medium">R$ 50.000 - R$ 150.000</option>
+                                        <option value="high">R$ 150.000 - R$ 300.000</option>
+                                        <option value="very_high">Acima de R$ 300.000</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-expected-start-date" class="form-label">Data Esperada para Início *</label>
+                                    <input type="date" class="form-control" id="franchise-expected-start-date" name="expected_start_date" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-preferred-city" class="form-label">Cidade de Interesse *</label>
+                                    <input type="text" class="form-control" id="franchise-preferred-city" name="preferred_city" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-preferred-state" class="form-label">Estado de Interesse *</label>
+                                    <select class="form-select" id="franchise-preferred-state" name="preferred_state" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-team-size" class="form-label">Tamanho da Equipe Pretendida *</label>
+                                    <select class="form-select" id="franchise-team-size" name="team_size" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="solo">Só eu</option>
+                                        <option value="small">2-5 pessoas</option>
+                                        <option value="medium">6-15 pessoas</option>
+                                        <option value="large">16-50 pessoas</option>
+                                        <option value="enterprise">50+ pessoas</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-available-time" class="form-label">Tempo Disponível *</label>
+                                    <select class="form-select" id="franchise-available-time" name="available_time" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="part_time">Meio período</option>
+                                        <option value="full_time">Tempo integral</option>
+                                        <option value="weekends">Fins de semana</option>
+                                        <option value="flexible">Flexível</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-risk-tolerance" class="form-label">Tolerância ao Risco *</label>
+                                    <select class="form-select" id="franchise-risk-tolerance" name="risk_tolerance" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="low">Baixa</option>
+                                        <option value="medium">Média</option>
+                                        <option value="high">Alta</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-expected-revenue" class="form-label">Receita Esperada (R$)</label>
+                                    <input type="number" class="form-control" id="franchise-expected-revenue" name="expected_revenue" step="0.01" min="0">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="franchise-target-market" class="form-label">Mercado-Alvo de Interesse</label>
+                                <input type="text" class="form-control" id="franchise-target-market" name="target_market">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="franchise-business-goals" class="form-label">Objetivos de Negócio *</label>
+                                <textarea class="form-control" id="franchise-business-goals" name="business_goals" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="franchise-why-franchise" class="form-label">Por que quer ser franqueado? *</label>
+                                <textarea class="form-control" id="franchise-why-franchise" name="why_franchise" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="franchise-references" class="form-label">Referências</label>
+                                <textarea class="form-control" id="franchise-references" name="references" rows="2" placeholder="Nome, telefone e e-mail de 2 referências..."></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 4: Documentação -->
+                    <div class="step-panel" id="franchise-step4">
+                        <h4 class="text-center mb-4">Documentação</h4>
+                        <p class="text-center text-muted mb-4">Envie os documentos necessários</p>
+                        
+                        <form id="franchise-form-step4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-curriculum" class="form-label">Currículo</label>
+                                    <input type="file" class="form-control" id="franchise-curriculum" name="curriculum" accept=".pdf,.doc,.docx">
+                                    <div class="form-text">PDF, DOC ou DOCX (máx. 10MB)</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-business-plan" class="form-label">Plano de Negócios</label>
+                                    <input type="file" class="form-control" id="franchise-business-plan" name="business_plan" accept=".pdf,.doc,.docx">
+                                    <div class="form-text">PDF, DOC ou DOCX (máx. 10MB)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-financial-statement" class="form-label">Demonstrativo Financeiro</label>
+                                    <input type="file" class="form-control" id="franchise-financial-statement" name="financial_statement" accept=".pdf,.doc,.docx">
+                                    <div class="form-text">PDF, DOC ou DOCX (máx. 10MB)</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-identity-document" class="form-label">Documento de Identidade</label>
+                                    <input type="file" class="form-control" id="franchise-identity-document" name="identity_document" accept=".pdf,.jpg,.jpeg,.png">
+                                    <div class="form-text">PDF, JPG ou PNG (máx. 10MB)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-address-proof" class="form-label">Comprovante de Endereço</label>
+                                    <input type="file" class="form-control" id="franchise-address-proof" name="address_proof" accept=".pdf,.jpg,.jpeg,.png">
+                                    <div class="form-text">PDF, JPG ou PNG (máx. 10MB)</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="franchise-income-proof" class="form-label">Comprovante de Renda</label>
+                                    <input type="file" class="form-control" id="franchise-income-proof" name="income_proof" accept=".pdf,.jpg,.jpeg,.png">
+                                    <div class="form-text">PDF, JPG ou PNG (máx. 10MB)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Importante:</strong> Todos os documentos são opcionais neste momento, mas podem ser solicitados posteriormente durante o processo de análise.
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 5: Agendamento -->
+                    <div class="step-panel" id="franchise-step5">
+                        <h4 class="text-center mb-4">Agendamento</h4>
+                        <p class="text-center text-muted mb-4">Agende sua reunião com nosso time de franquias</p>
+                        
+                        <div class="text-center mb-4">
+                            <i class="fas fa-calendar-alt fa-3x text-danger mb-3"></i>
+                            <h5>Reunião Estratégica</h5>
+                            <p class="text-muted">Nossa equipe entrará em contato em até 24 horas para agendar uma reunião personalizada.</p>
+                        </div>
+                        
+                        <form id="franchise-form-step5">
+                            <div class="mb-3">
+                                <label for="franchise-meeting-notes" class="form-label">Observações Adicionais</label>
+                                <textarea class="form-control" id="franchise-meeting-notes" name="meeting_notes" rows="3" placeholder="Alguma informação adicional que gostaria de compartilhar?"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Step 6: Concluído -->
+                    <div class="step-panel" id="franchise-step6">
+                        <div class="text-center">
+                            <i class="fas fa-check-circle fa-4x text-success mb-4"></i>
+                            <h4 class="text-success mb-3">Processo Iniciado!</h4>
+                            <p class="text-muted mb-4">Seu processo de franqueado foi iniciado com sucesso</p>
+                            
+                            <div class="alert alert-success">
+                                <h6><i class="fas fa-envelope me-2"></i>Próximos Passos:</h6>
+                                <ul class="list-unstyled mb-0">
+                                    <li>✓ Você receberá um e-mail de confirmação</li>
+                                    <li>✓ Nossa equipe entrará em contato em até 24 horas</li>
+                                    <li>✓ Agendaremos uma reunião estratégica</li>
+                                    <li>✓ Enviaremos o kit completo de franqueado</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <button type="button" class="btn btn-outline-primary me-2" id="franchise-download-kit">
+                                    <i class="fas fa-download me-2"></i>Baixar Kit Franqueado
+                                </button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                                    <i class="fas fa-check me-2"></i>Fechar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancelar
+                </button>
+                <button type="button" class="btn btn-outline-primary" id="franchise-prev-btn" style="display: none;">
+                    <i class="fas fa-arrow-left me-2"></i>Anterior
+                </button>
+                <button type="button" class="btn btn-primary" id="franchise-next-btn">
+                    <i class="fas fa-arrow-right me-2"></i>Próximo
+                </button>
+                <button type="button" class="btn btn-success" id="franchise-submit-btn" style="display: none;">
+                    <i class="fas fa-paper-plane me-2"></i>Enviar Aplicação
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

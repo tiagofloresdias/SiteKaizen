@@ -1,0 +1,72 @@
+/* Kaizen Modern Theme - UX pass */
+:root{
+  --ka-pink:#D62042;
+  --ka-pink-2:#ff6b6b;
+  --ka-dark:#0b0b0c;
+  --ka-dark-2:#141416;
+  --ka-border:rgba(255,255,255,.12);
+  --ka-tint:rgba(214,32,66,.18);
+  --ka-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+
+/* Typography */
+body{color:#e9eaee;background:#000;}
+h1,h2,h3{letter-spacing:.2px}
+.lead{opacity:.9}
+
+/* Global buttons */
+.btn-pink, .btn-hero{background:linear-gradient(135deg,var(--ka-pink),var(--ka-pink-2));border:0;color:#fff;border-radius:12px;padding:.9rem 1.6rem;font-weight:700}
+.btn-pink:hover,.btn-hero:hover{filter:brightness(1.05);color:#fff}
+.btn-outline-light{border-width:2px;border-radius:12px}
+
+/* Hero improvements */
+.home-hero{min-height:86vh}
+.home-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 15%, rgba(214,32,66,.25), transparent 55%);mix-blend-mode:screen;pointer-events:none}
+.home-hero__title{font-weight:800}
+.home-hero__subtitle{max-width:900px;margin:0 auto}
+
+/* Section spacing */
+section{scroll-margin-top:90px}
+.ka-section{padding:64px 0}
+.ka-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+
+/* Glass cards used across solutions/results */
+.service-card, .ka-card{background:rgba(20,20,22,.72)!important;border:1px solid var(--ka-border)!important;border-radius:18px!important;backdrop-filter:blur(10px);box-shadow:var(--ka-shadow);transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+.service-card:hover,.ka-card:hover{transform:translateY(-6px);border-color:rgba(214,32,66,.35)!important;box-shadow:0 18px 50px rgba(214,32,66,.18)}
+.service-icon{color:var(--ka-pink);text-shadow:0 6px 20px rgba(214,32,66,.25)}
+
+/* Section headings */
+.section-dark{background:#000}
+.section-dark h2{font-weight:800}
+
+/* Modern responsive grid utilities */
+.ka-grid{display:grid;gap:24px}
+.ka-grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ka-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width: 992px){
+  .ka-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 576px){
+  .ka-grid-2,.ka-grid-3{grid-template-columns:1fr}
+}
+
+/* Location cards */
+.location-card__icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--ka-pink),var(--ka-pink-2));color:#fff}
+.location-card__title{margin:0;color:#fff;font-weight:700}
+.location-card__address{color:rgba(255,255,255,.7)}
+
+/* CTA area */
+.cta-button{background:linear-gradient(135deg,var(--ka-pink),var(--ka-pink-2));border:0!important;border-radius:48px;padding:.95rem 2.1rem;font-weight:700}
+.cta-button:hover{filter:brightness(1.08)}
+
+/* Footer tweaks */
+footer .form-control{border-radius:10px}
+
+/* Dropdown polish */
+.dropdown-menu{backdrop-filter:blur(10px)}
+
+
+/* AboutPage - CEO glow ring and metrics count */
+.glow-ring{position:relative;box-shadow:0 0 0 4px rgba(214,32,66,.3),0 0 24px rgba(214,32,66,.35),inset 0 0 24px rgba(214,32,66,.2)}
+.kaizen-count{font-size:clamp(1.75rem,2.5vw,2.25rem)}
+

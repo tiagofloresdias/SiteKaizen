@@ -1,0 +1,15 @@
+<section class="py-5" style="background: linear-gradient(135deg,#ea0029,#ff6b6b);">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <h2 class="display-6 fw-bold text-white mb-3">{{ self.title }}</h2>
+        <p class="lead text-white mb-4">{{ self.subtitle }}</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="tel:08005508000" class="btn btn-light btn-lg">{{ self.phone }}</a>
+          <a href="https://wa.me/5508005508000?text={{ self.whatsapp_text|urlencode }}" class="btn btn-outline-light btn-lg">chame no whatsapp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,384 @@
+/**
+ * CSS para Modal de Franqueado
+ * Estilos específicos para o fluxo de 6 passos
+ */
+
+/* Modal de Franqueado */
+#franchiseModal .modal-dialog {
+    max-width: 900px;
+}
+
+#franchiseModal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#franchiseModal .modal-header {
+    background: linear-gradient(135deg, #000000 0%, #212529 100%);
+    border-bottom: 3px solid #D62042;
+    padding: 1.5rem;
+}
+
+#franchiseModal .modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+#franchiseModal .modal-body {
+    padding: 2rem;
+    min-height: 500px;
+}
+
+#franchiseModal .modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 2rem;
+}
+
+/* Progress Bar */
+#franchise-progress {
+    background: linear-gradient(90deg, #D62042 0%, #ff6b6b 100%);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Step Indicator */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e9ecef;
+    z-index: 1;
+}
+
+.step-indicator .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.step-indicator .step .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.step-indicator .step .step-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-align: center;
+    max-width: 80px;
+    line-height: 1.2;
+    transition: all 0.3s ease;
+}
+
+.step-indicator .step.active .step-number {
+    background-color: #D62042;
+    color: white;
+    transform: scale(1.1);
+}
+
+.step-indicator .step.active .step-label {
+    color: #D62042;
+    font-weight: 700;
+}
+
+.step-indicator .step.completed .step-number {
+    background-color: #28a745;
+    color: white;
+}
+
+.step-indicator .step.completed .step-label {
+    color: #28a745;
+}
+
+/* Step Panels */
+.step-content {
+    position: relative;
+    min-height: 400px;
+}
+
+.step-panel {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.step-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Styling */
+#franchiseModal .form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+#franchiseModal .form-control,
+#franchiseModal .form-select {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+#franchiseModal .form-control:focus,
+#franchiseModal .form-select:focus {
+    border-color: #D62042;
+    box-shadow: 0 0 0 0.2rem rgba(214, 32, 66, 0.25);
+}
+
+#franchiseModal .form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+#franchiseModal .invalid-feedback {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+#franchiseModal .form-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+/* File Upload Styling */
+#franchiseModal input[type="file"] {
+    padding: 0.5rem;
+}
+
+#franchiseModal input[type="file"]::-webkit-file-upload-button {
+    background-color: #D62042;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#franchiseModal input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #b51a3a;
+}
+
+/* Buttons */
+#franchiseModal .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+#franchiseModal .btn-primary {
+    background: linear-gradient(135deg, #D62042 0%, #ff6b6b 100%);
+    border: none;
+}
+
+#franchiseModal .btn-primary:hover {
+    background: linear-gradient(135deg, #b51a3a 0%, #e55a5a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(214, 32, 66, 0.3);
+}
+
+#franchiseModal .btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+}
+
+#franchiseModal .btn-success:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+#franchiseModal .btn-outline-primary {
+    border: 2px solid #D62042;
+    color: #D62042;
+}
+
+#franchiseModal .btn-outline-primary:hover {
+    background-color: #D62042;
+    border-color: #D62042;
+    color: white;
+}
+
+/* Step 6 - Success State */
+#franchise-step6 .fa-check-circle {
+    animation: bounceIn 0.8s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#franchise-step6 .alert-success {
+    border: none;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border-left: 4px solid #28a745;
+}
+
+#franchise-step6 .alert-success ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+#franchise-step6 .alert-success li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #franchiseModal .modal-dialog {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+    
+    #franchiseModal .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .step-indicator {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .step-indicator .step {
+        flex: 1;
+        min-width: 80px;
+    }
+    
+    .step-indicator .step .step-label {
+        font-size: 0.7rem;
+        max-width: 60px;
+    }
+    
+    #franchiseModal .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .step-indicator .step .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+    
+    .step-indicator .step .step-label {
+        font-size: 0.65rem;
+        max-width: 50px;
+    }
+    
+    #franchiseModal .modal-body {
+        padding: 1rem;
+    }
+    
+    #franchiseModal .modal-footer {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Loading States */
+#franchiseModal .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#franchiseModal .btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+#franchiseModal .btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Custom Scrollbar */
+#franchiseModal .modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#franchiseModal .modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#franchiseModal .modal-body::-webkit-scrollbar-thumb {
+    background: #D62042;
+    border-radius: 3px;
+}
+
+#franchiseModal .modal-body::-webkit-scrollbar-thumb:hover {
+    background: #b51a3a;
+}
+

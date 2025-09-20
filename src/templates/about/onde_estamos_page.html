@@ -1,0 +1,365 @@
+{% extends "base_internal.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block internal_content %}
+    <!-- Hero Section (sem bloco branco) -->
+    <div class="container-fluid py-5" style="background: transparent;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h1 class="display-4 fw-bold text-white mb-3">{{ page.hero_title|linebreaksbr }}</h1>
+                    <div class="lead text-white-50 mb-2">{{ page.hero_subtitle|richtext }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Escritórios Section -->
+    <div class="container-fluid py-5" style="background: rgba(0, 0, 0, 0.7);">
+        <div class="container">
+            <!-- Mapa Interativo -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div id="units-map" style="height: 420px; border-radius: 12px; overflow: hidden; border: 1px solid #333;"></div>
+                </div>
+            </div>
+            <div class="ka-grid ka-grid-3">
+                {% for loc in locations %}
+                <div class="ka-card h-100 p-4" style="background:#000;border:1px solid #333;border-radius:16px;">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3">
+                            <div class="location-card__icon"><i class="fas fa-map-marker-alt"></i></div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h5 class="location-card__title mb-1">{{ loc.city }} - {{ loc.state }}</h5>
+                            <div class="location-card__address small">{{ loc.address }}</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+                        {% if loc.phone %}
+                        <a href="tel:{{ loc.phone|cut:' ' }}" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-phone me-1"></i>{{ loc.phone }}
+                        </a>
+                        {% endif %}
+                        {% if loc.latitude and loc.longitude %}
+                        <a href="https://www.google.com/maps/dir/?api=1&destination={{ loc.latitude }},{{ loc.longitude }}" target="_blank" class="btn btn-pink btn-sm">
+                            <i class="fas fa-location-arrow me-1"></i>Direções
+                        </a>
+                        {% elif loc.maps_url %}
+                        <a href="{{ loc.maps_url }}" target="_blank" class="btn btn-pink btn-sm">
+                            <i class="fas fa-location-arrow me-1"></i>Direções
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action com 0800 -->
+    <div class="container-fluid py-4" style="background: linear-gradient(135deg, #D62042 0%, #ff6b6b 100%);">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="text-white fw-bold h5 me-4 mb-0">Entre em contato:</span>
+                        <a href="tel:{{ page.cta_phone|cut:'-'|cut:' ' }}" class="btn btn-light btn-lg">
+                            <i class="fas fa-phone me-2"></i>0800-550-8000
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acelere negócios Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.expansion_title|linebreaksbr }}</h2>
+                    <div class="text-white mb-4">{{ page.expansion_text_1|richtext }}</div>
+                    <div class="text-white mb-4">{{ page.expansion_text_2|richtext }}</div>
+                    <a href="{{ page.expansion_cta_url }}" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>{{ page.expansion_cta_text }}
+                    </a>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative">
+                        <!-- Círculo decorativo -->
+                        <div class="bg-gradient rounded-circle mx-auto" style="width: 300px; height: 300px; background: linear-gradient(135deg, #D62042, #9E1D59); opacity: 0.8;"></div>
+                        
+                        <!-- Ícones sobrepostos -->
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <i class="fas fa-rocket fa-5x text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Por que se tornar franqueado Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.franchise_title }}</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for b in page.franchise_benefits %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100" style="background: #000000; border: 1px solid #333;">
+                        <div class="card-body text-center p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x" style="color: #D62042;"></i>
+                            </div>
+                            <h6 class="text-white fw-bold mb-3">{{ b.value.title }}</h6>
+                            <p class="text-white small">{{ b.value.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="row mt-5 text-center">
+                <div class="col-12">
+                    <button type="button" class="btn btn-pink btn-lg" data-bs-toggle="modal" data-bs-target="#franchiseModal">
+                        <i class="fas fa-handshake me-2"></i>QUERO SER UM FRANQUEADO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Franquias Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        Se você quer empreender no mercado de marketing e<br>
+                        vendas com um modelo de negócios sólido, esta é a sua<br>
+                        chance.
+                    </h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for f in page.franchises %}
+                <div class="col-lg-6">
+                    <div class="card h-100" style="background: #000000; border: 1px solid #333;">
+                        <div class="card-body p-5">
+                            <h3 class="text-white fw-bold mb-4">{{ f.value.title|linebreaksbr }}</h3>
+                            <p class="text-white mb-4">{{ f.value.description }}</p>
+                            <a href="{{ f.value.cta_url }}" class="btn btn-pink">
+                                <i class="fas fa-info-circle me-2"></i>{{ f.value.cta_text }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p class="text-white lead mb-4">{{ page.access_text|richtext }}</p>
+                    <a href="{{ page.access_cta_url }}" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>{{ page.access_cta_text }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acesso exclusivo Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        Acesso exclusivo e<br>
+                        investimento sólido
+                    </h2>
+                    <p class="text-white mb-4">
+                        O modelo de franquia da Kaizen é baseado em resultados reais e metodologias testadas. 
+                        Oferecemos suporte completo, desde o treinamento inicial até o acompanhamento contínuo 
+                        para garantir o sucesso da sua unidade.
+                    </p>
+                    <p class="text-white mb-5">
+                        Seja parte de um grupo que não para de crescer. Invista em um negócio com propósito, 
+                        metodologia sólida e potencial de expansão nacional.
+                    </p>
+                    <a href="/contato/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>QUERO SABER MAIS
+                    </a>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative">
+                        <!-- Círculo decorativo -->
+                        <div class="bg-gradient rounded-circle mx-auto" style="width: 250px; height: 250px; background: linear-gradient(135deg, #D62042, #9E1D59); opacity: 0.6;"></div>
+                        
+                        <!-- Ícone sobreposto -->
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <i class="fas fa-handshake fa-4x text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Depoimentos Section -->
+    <div class="container-fluid py-4" style="background: linear-gradient(135deg, #D62042 0%, #ff6b6b 100%);">
+        <div class="container">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <h3 class="text-white fw-bold mb-4">Veja o que dizem nossos franqueados</h3>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for t in page.testimonials %}
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-user-circle fa-3x text-white"></i>
+                        </div>
+                        <blockquote class="text-white">“{{ t.value.quote }}”</blockquote>
+                        <p class="text-white fw-bold">- {{ t.value.author }}</p>
+                        {% if t.value.role %}<p class="text-white small">{{ t.value.role }}</p>{% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Final -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.final_cta_title }}</h2>
+                    <div class="lead text-white mb-5">{{ page.final_cta_text|richtext }}</div>
+                    
+                    {% if page.show_interest_form %}
+                    <!-- Formulário de Interesse -->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card" style="background: #111111; border: 1px solid #333;">
+                                <div class="card-body p-4">
+                                    <form action="/contato/" method="post">
+                                        {% csrf_token %}
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <input type="text" name="name" class="form-control bg-black text-white border-secondary" placeholder="Nome" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="email" name="email" class="form-control bg-black text-white border-secondary" placeholder="E-mail corporativo" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="tel" name="phone" class="form-control bg-black text-white border-secondary" placeholder="Telefone/WhatsApp" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select name="subject" class="form-select bg-black text-white border-secondary" required>
+                                                    <option value="">Área de interesse</option>
+                                                    <option value="franquia-consultoria">Franquia de Consultoria</option>
+                                                    <option value="franquia-agencia">Franquia de Agência</option>
+                                                    <option value="informacoes-gerais">Informações Gerais</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12">
+                                                <textarea name="message" class="form-control bg-black text-white border-secondary" rows="3" placeholder="Qual é sua expectativa de investimento?" required></textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-pink btn-lg w-100">
+                                                    <i class="fas fa-paper-plane me-2"></i>QUERO MAIS INFORMAÇÕES
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Structured Data para Onde Estamos - Local Business -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+        {% for loc in locations %}
+        {
+            "@type": "ListItem",
+            "position": {{ forloop.counter }},
+            "item": {{ loc.jsonld|safe }}
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+
+<!-- Modal de Franqueados Multi-Passo -->
+{% include "includes/franchise_modal.html" %}
+{% endblock internal_content %}
+
+{% block extra_js %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+    (function() {
+        const mapEl = document.getElementById('units-map');
+        if (!mapEl) return;
+        const map = L.map('units-map');
+        const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        const bounds = [];
+        const locations = [
+            {% for loc in locations %}
+            {
+                city: "{{ loc.city|escapejs }}",
+                state: "{{ loc.state|escapejs }}",
+                lat: {{ loc.latitude|default:"null" }},
+                lng: {{ loc.longitude|default:"null" }},
+                maps_url: "{{ loc.maps_url|default:""|escapejs }}",
+                address: "{{ loc.address|escapejs }}"
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+
+        let anyMarker = false;
+        locations.forEach(function(l) {
+            if (l.lat !== null && l.lng !== null) {
+                const m = L.marker([l.lat, l.lng]).addTo(map);
+                anyMarker = true;
+                bounds.push([l.lat, l.lng]);
+                const dirUrl = `https://www.google.com/maps/dir/?api=1&destination=${l.lat},${l.lng}`;
+                m.bindPopup(`<strong>${l.city} - ${l.state}</strong><br>${l.address}<br><a href="${dirUrl}" target="_blank" class="btn btn-sm btn-pink mt-2">Direções</a>`);
+            }
+        });
+
+        if (anyMarker) {
+            map.fitBounds(bounds, {padding: [20, 20]});
+        } else {
+            map.setView([-14.2350, -51.9253], 4); // Brasil
+        }
+    })();
+    </script>
+{% endblock %}
+

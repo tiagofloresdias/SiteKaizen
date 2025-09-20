@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Página não encontrada (404) - Agência Kaizen{% endblock %}
+{% block meta_description %}A página que você procura não foi encontrada. Conheça nossos serviços de marketing digital e desenvolvimento web na Agência Kaizen.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-404 {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .error-404::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "images/logo-kaizen-header.webp" %}') no-repeat center center;
+        background-size: 300px;
+        opacity: 0.05;
+        z-index: 1;
+    }
+    
+    .error-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+    
+    .error-number {
+        font-size: 8rem;
+        font-weight: 900;
+        color: #ea0029;
+        text-shadow: 0 0 30px rgba(234, 0, 41, 0.5);
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+    
+    .error-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+    
+    .error-description {
+        font-size: 1.2rem;
+        color: #ccc;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+    
+    .btn-error {
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .btn-primary-error {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        color: white;
+        border: none;
+    }
+    
+    .btn-primary-error:hover {
+        background: linear-gradient(135deg, #c70022, #e55a5a);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(234, 0, 41, 0.3);
+    }
+    
+    .btn-outline-error {
+        background: transparent;
+        color: #ea0029;
+        border: 2px solid #ea0029;
+    }
+    
+    .btn-outline-error:hover {
+        background: #ea0029;
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    .popular-links {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .popular-links h3 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+    
+    .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .link-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: white;
+        display: block;
+    }
+    
+    .link-item:hover {
+        background: rgba(234, 0, 41, 0.2);
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+    }
+    
+    .link-item i {
+        color: #ea0029;
+        margin-right: 8px;
+    }
+    
+    .search-box {
+        max-width: 500px;
+        margin: 2rem auto;
+    }
+    
+    .search-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 12px 20px;
+        color: white;
+        width: 100%;
+        font-size: 1rem;
+    }
+    
+    .search-input::placeholder {
+        color: #999;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #ea0029;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    @media (max-width: 768px) {
+        .error-number {
+            font-size: 6rem;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+        }
+        
+        .error-description {
+            font-size: 1rem;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn-error {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-404">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-number">404</div>
+            <h1 class="error-title">Ops! Página não encontrada</h1>
+            <p class="error-description">
+                A página que você está procurando não existe ou foi movida. 
+                Mas não se preocupe, temos muitas outras páginas incríveis para você explorar!
+            </p>
+            
+            <div class="error-actions">
+                <a href="/" class="btn-error btn-primary-error">
+                    <i class="fas fa-home"></i>
+                    Voltar ao Início
+                </a>
+                <a href="/contato/" class="btn-error btn-outline-error">
+                    <i class="fas fa-envelope"></i>
+                    Fale Conosco
+                </a>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="O que você está procurando?" id="searchInput">
+            </div>
+            
+            <div class="popular-links">
+                <h3>Páginas Populares</h3>
+                <div class="links-grid">
+                    <a href="/solucoes/" class="link-item">
+                        <i class="fas fa-rocket"></i>
+                        <strong>Soluções</strong><br>
+                        <small>Marketing Digital Completo</small>
+                    </a>
+                    <a href="/portfolio/" class="link-item">
+                        <i class="fas fa-briefcase"></i>
+                        <strong>Portfólio</strong><br>
+                        <small>Cases de Sucesso</small>
+                    </a>
+                    <a href="/sobre-nos/" class="link-item">
+                        <i class="fas fa-users"></i>
+                        <strong>Sobre Nós</strong><br>
+                        <small>Conheça a Kaizen</small>
+                    </a>
+                    <a href="/blog/" class="link-item">
+                        <i class="fas fa-blog"></i>
+                        <strong>Blog</strong><br>
+                        <small>Conteúdo Exclusivo</small>
+                    </a>
+                    <a href="/onde-estamos/" class="link-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <strong>Onde Estamos</strong><br>
+                        <small>Nossos Escritórios</small>
+                    </a>
+                    <a href="/universidade-kaizen/" class="link-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <strong>Universidade</strong><br>
+                        <small>Evolução Contínua</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Structured Data para SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Página não encontrada (404) - Agência Kaizen",
+    "description": "A página que você procura não foi encontrada. Conheça nossos serviços de marketing digital e desenvolvimento web na Agência Kaizen.",
+    "url": "{{ request.build_absolute_uri }}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "url": "https://www.agenciakaizen.com.br",
+        "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp",
+        "description": "Agência de Marketing Digital de Alta Performance, especializada em soluções completas para crescimento empresarial.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+555133334444",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/kaizenmarketingdigital/",
+            "https://www.instagram.com/agenciakaizen/",
+            "https://www.facebook.com/agenciakaizen"
+        ]
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Início",
+                "item": "https://www.agenciakaizen.com.br"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Página não encontrada"
+            }
+        ]
+    }
+}
+</script>
+
+<script>
+// Funcionalidade de busca simples
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        const query = this.value.trim();
+        if (query) {
+            // Redirecionar para página de busca ou home com parâmetro
+            window.location.href = '/?search=' + encodeURIComponent(query);
+        }
+    }
+});
+
+// Animação de entrada
+document.addEventListener('DOMContentLoaded', function() {
+    const errorNumber = document.querySelector('.error-number');
+    const errorTitle = document.querySelector('.error-title');
+    const errorDescription = document.querySelector('.error-description');
+    
+    // Animar elementos sequencialmente
+    setTimeout(() => {
+        errorNumber.style.opacity = '0';
+        errorNumber.style.transform = 'scale(0.5)';
+        errorNumber.style.transition = 'all 0.8s ease';
+        
+        setTimeout(() => {
+            errorNumber.style.opacity = '1';
+            errorNumber.style.transform = 'scale(1)';
+        }, 100);
+    }, 200);
+    
+    setTimeout(() => {
+        errorTitle.style.opacity = '0';
+        errorTitle.style.transform = 'translateY(20px)';
+        errorTitle.style.transition = 'all 0.6s ease';
+        
+        setTimeout(() => {
+            errorTitle.style.opacity = '1';
+            errorTitle.style.transform = 'translateY(0)';
+        }, 100);
+    }, 400);
+    
+    setTimeout(() => {
+        errorDescription.style.opacity = '0';
+        errorDescription.style.transform = 'translateY(20px)';
+        errorDescription.style.transition = 'all 0.6s ease';
+        
+        setTimeout(() => {
+            errorDescription.style.opacity = '1';
+            errorDescription.style.transform = 'translateY(0)';
+        }, 100);
+    }, 600);
+});
+</script>
+{% endblock %}
+

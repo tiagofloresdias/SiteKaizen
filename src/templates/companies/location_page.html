@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<div class="container-fluid" style="background: #000000; min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container-fluid py-5" style="background: #000000; min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h1 class="display-3 fw-bold text-white mb-4">
+                        {{ page.hero_title }}
+                    </h1>
+                    <div class="lead text-white mb-5">
+                        {{ page.hero_subtitle|richtext }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Localizações -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.locations_title }}</h2>
+                    <p class="lead text-white">{{ page.locations_subtitle }}</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for location in locations %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-map-marker-alt fa-3x text-pink"></i>
+                            </div>
+                            <h5 class="text-white fw-bold mb-3">{{ location.city }}</h5>
+                            <p class="text-white-50">{{ location.address }}</p>
+                            {% if location.phone %}
+                            <p class="text-white-50 mt-2">
+                                <i class="fas fa-phone me-2"></i>{{ location.phone }}
+                            </p>
+                            {% endif %}
+                            {% if location.email %}
+                            <p class="text-white-50">
+                                <i class="fas fa-envelope me-2"></i>{{ location.email }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Contato -->
+    <div class="container-fluid py-3" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <span class="text-white fw-bold">Entre em contato:</span>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <span class="text-white fw-bold">
+                        <i class="fas fa-phone me-2"></i>0800-550-8000
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Franquia -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h6 class="text-white-50 mb-3">{{ page.franchise_subtitle }}</h6>
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.franchise_title }}</h2>
+                    <div class="text-white mb-4">
+                        {{ page.franchise_text|richtext }}
+                    </div>
+                    <a href="/contato/" class="btn btn-pink btn-lg px-5 py-3">
+                        {{ page.franchise_button_text }}
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative">
+                        <!-- Placeholder para imagem/gráfico -->
+                        <div class="bg-gradient rounded-circle mx-auto" style="width: 300px; height: 300px; background: linear-gradient(135deg, #ea0029, #ff6b6b); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-rocket fa-5x text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Benefícios da Franquia -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.benefits_title }}</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Modelo testado e validado:</h6>
+                            <p class="text-white-50">Metodologia comprovada com mais de 15 anos de experiência</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Marca forte e reconhecida:</h6>
+                            <p class="text-white-50">Google Partner Premier com credibilidade no mercado</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Suporte completo:</h6>
+                            <p class="text-white-50">Treinamento, ferramentas e acompanhamento contínuo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Demanda crescente:</h6>
+                            <p class="text-white-50">Mercado em expansão com oportunidades reais</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 text-center">
+                <div class="col-12">
+                    <a href="/contato/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Quero ser um franqueado
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Modelos de Franquia -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.models_title }}</h2>
+                    <p class="lead text-white">{{ page.models_subtitle }}</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body">
+                            <h5 class="text-white fw-bold mb-3">Franquia de Consultoria Aquisição de Clientes</h5>
+                            <p class="text-white-50">
+                                Especialize-se em estratégias de aquisição de clientes e torne-se um especialista 
+                                em marketing de performance. Ideal para quem quer trabalhar com consultoria estratégica.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-body">
+                            <h5 class="text-white fw-bold mb-3">Franquia de Agência de Marketing Digital</h5>
+                            <p class="text-white-50">
+                                Opere uma agência completa de marketing digital com nossa metodologia e ferramentas. 
+                                Perfeito para quem quer ter seu próprio negócio no setor.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Investimento -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.investment_title }}</h2>
+                    <div class="text-white mb-4">
+                        {{ page.investment_text|richtext }}
+                    </div>
+                    <a href="/contato/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Quero saber mais
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative">
+                        <!-- Placeholder para imagem/gráfico -->
+                        <div class="bg-gradient rounded-circle mx-auto" style="width: 300px; height: 300px; background: linear-gradient(135deg, #ea0029, #ff6b6b); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chart-line fa-5x text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Depoimentos -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.testimonials_title }}</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card bg-white h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-quote-left fa-2x text-pink"></i>
+                            </div>
+                            <p class="text-dark mb-3">
+                                "A metodologia Kaizen transformou completamente meu negócio. 
+                                Em 6 meses já tínhamos triplicado nossa receita."
+                            </p>
+                            <h6 class="text-dark fw-bold">Darlene</h6>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card bg-white h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-quote-left fa-2x text-pink"></i>
+                            </div>
+                            <p class="text-dark mb-3">
+                                "O suporte da equipe é excepcional. Sempre que preciso, 
+                                estão prontos para ajudar e orientar."
+                            </p>
+                            <h6 class="text-dark fw-bold">Lucas Santos</h6>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card bg-white h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-quote-left fa-2x text-pink"></i>
+                            </div>
+                            <p class="text-dark mb-3">
+                                "Investir na franquia Kaizen foi a melhor decisão da minha vida profissional. 
+                                Resultados garantidos desde o primeiro mês."
+                            </p>
+                            <h6 class="text-dark fw-bold">Arthur Boeira</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Contato/Formulário -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.contact_title }}</h2>
+                    <p class="lead text-white">{{ page.contact_subtitle }}</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form class="bg-dark p-5 rounded">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-white">Nome</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Seu nome completo">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white">E-mail corporativo</label>
+                                <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="seu@email.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white">Telefone com DDD</label>
+                                <input type="tel" class="form-control bg-dark text-white border-secondary" placeholder="(11) 99999-9999">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white">Como você nos achou?</label>
+                                <select class="form-select bg-dark text-white border-secondary">
+                                    <option>Google</option>
+                                    <option>Facebook</option>
+                                    <option>Instagram</option>
+                                    <option>Indicação</option>
+                                    <option>Outros</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white">Quando você pretende assumir a sua franquia?</label>
+                                <select class="form-select bg-dark text-white border-secondary">
+                                    <option>Imediatamente</option>
+                                    <option>Em 3 meses</option>
+                                    <option>Em 6 meses</option>
+                                    <option>Em 1 ano</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white">Qual a sua disponibilidade de investimento?</label>
+                                <select class="form-select bg-dark text-white border-secondary">
+                                    <option>Até R$ 50.000</option>
+                                    <option>R$ 50.000 - R$ 100.000</option>
+                                    <option>R$ 100.000 - R$ 200.000</option>
+                                    <option>Acima de R$ 200.000</option>
+                                </select>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-pink btn-lg px-5 py-3">
+                                    <i class="fas fa-rocket me-2"></i>Enviar e começar a escalar!
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Structured Data para Página de Localizações -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Onde Estamos - Agência Kaizen",
+    "description": "Conheça nossas localizações e oportunidades de franquia. Estamos nas principais regiões do Brasil levando estratégias de alto performance.",
+    "url": "{% if request %}{{ request.build_absolute_uri }}{% else %}https://www.agenciakaizen.com.br{{ page.url }}{% endif %}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "description": "Agência de marketing digital de alta performance",
+        "url": "https://www.agenciakaizen.com.br",
+        "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp",
+        "address": [
+            {% for location in locations %}
+            {
+                "@type": "PostalAddress",
+                "addressLocality": "{{ location.city }}",
+                "streetAddress": "{{ location.address }}"
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid" style="background: #000000; min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container py-5 text-center text-white">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-bold mb-4">Junte-se à Nossa Equipe</h1>
+                <p class="lead mb-5">Faça parte de uma equipe que acredita na melhoria contínua e na excelência operacional.</p>
+                <a href="/quero-ser-um-foguete/" class="btn btn-lg px-5 py-3" style="background: linear-gradient(135deg, #ea0029, #ff6b6b); color: white; border: none;">
+                    <i class="fas fa-rocket me-2"></i>Formulário de Recrutamento
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-dark p-5 rounded shadow-lg text-white">
+                    <h2 class="text-center mb-5">Formulário de Candidatura</h2>
+                    
+                    <!-- Formulário de Candidatura -->
+                    <form id="recruitmentForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <!-- Dados Pessoais -->
+                        <div class="mb-4">
+                            <h4 class="text-pink mb-3">
+                                <i class="fas fa-user me-2"></i>Dados Pessoais
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="full_name" class="form-label">Nome Completo *</label>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="full_name" name="full_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">E-mail *</label>
+                                    <input type="email" class="form-control bg-dark text-white border-secondary" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Telefone *</label>
+                                    <input type="tel" class="form-control bg-dark text-white border-secondary" id="phone" name="phone" placeholder="(11) 99999-9999" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cpf" class="form-label">CPF *</label>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experiência Profissional -->
+                        <div class="mb-4">
+                            <h4 class="text-pink mb-3">
+                                <i class="fas fa-briefcase me-2"></i>Experiência Profissional
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="current_position" class="form-label">Cargo Atual</label>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="current_position" name="current_position">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="current_company" class="form-label">Empresa Atual</label>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="current_company" name="current_company">
+                                </div>
+                                <div class="col-12">
+                                    <label for="experience_years" class="form-label">Anos de Experiência *</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="experience_years" name="experience_years" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="0">0-1 ano</option>
+                                        <option value="2">1-3 anos</option>
+                                        <option value="4">3-5 anos</option>
+                                        <option value="8">5-10 anos</option>
+                                        <option value="10">10+ anos</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="skills" class="form-label">Principais Habilidades</label>
+                                    <textarea class="form-control bg-dark text-white border-secondary" id="skills" name="skills" rows="3" placeholder="Descreva suas principais habilidades técnicas e profissionais"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interesse na Vaga -->
+                        <div class="mb-4">
+                            <h4 class="text-pink mb-3">
+                                <i class="fas fa-star me-2"></i>Interesse na Vaga
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="position_interest" class="form-label">Posição *</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="position_interest" name="position_interest" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="desenvolvedor">Desenvolvedor</option>
+                                        <option value="designer">Designer</option>
+                                        <option value="marketing">Marketing Digital</option>
+                                        <option value="vendas">Vendas</option>
+                                        <option value="rh">Recursos Humanos</option>
+                                        <option value="financeiro">Financeiro</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="salary_expectation" class="form-label">Pretensão Salarial *</label>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="salary_expectation" name="salary_expectation" placeholder="Ex.: R$ 3.500,00" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="work_modality_preference" class="form-label">Qual a sua modalidade de preferência? *</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="work_modality_preference" name="work_modality_preference" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="presencial">Presencial</option>
+                                        <option value="remoto">Remoto</option>
+                                        <option value="hibrido">Híbrido</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="motivation" class="form-label">Por que a Kaizen deve te contratar? *</label>
+                                    <textarea class="form-control bg-dark text-white border-secondary" id="motivation" name="motivation" rows="4" required placeholder="Conte-nos o que te motiva a fazer parte da equipe Kaizen"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Currículo -->
+                        <div class="mb-4">
+                            <h4 class="text-pink mb-3">
+                                <i class="fas fa-file-pdf me-2"></i>Currículo
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="resume" class="form-label">Anexar Currículo (PDF) *</label>
+                                    <input type="file" class="form-control bg-dark text-white border-secondary" id="resume" name="resume" accept=".pdf" required>
+                                    <div class="form-text text-white-50">Tamanho máximo: 5MB</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Redes e Portfólio -->
+                        <div class="mb-4">
+                            <h4 class="text-pink mb-3">
+                                <i class="fas fa-hashtag me-2"></i>Redes e Portfólio
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="linkedin_profile" class="form-label">LinkedIn</label>
+                                    <input type="url" class="form-control bg-dark text-white border-secondary" id="linkedin_profile" name="linkedin_profile" placeholder="https://linkedin.com/in/usuario">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="instagram_profile" class="form-label">Instagram *</label>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="instagram_profile" name="instagram_profile" placeholder="@usuario" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="portfolio_url" class="form-label">Portfólio</label>
+                                    <input type="url" class="form-control bg-dark text-white border-secondary" id="portfolio_url" name="portfolio_url" placeholder="https://seu-portfolio.com">
+                                </div>
+                            </div>
+                        </div>
+
+        
+                        <!-- Localização -->
+                        <div class="mb-4">
+                            <h4 class="text-pink mb-3">
+                                <i class="fas fa-map-marker-alt me-2"></i>Localização
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="state" class="form-label">Qual o seu Estado? *</label>
+                                    <select class="form-select bg-dark text-white border-secondary" id="state" name="state" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="city" class="form-label">Qual o nome da sua cidade de residência? *</nlabel>
+                                    <input type="text" class="form-control bg-dark text-white border-secondary" id="city" name="city" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botão de Envio -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-lg px-5 py-3" style="background: linear-gradient(135deg, #ea0029, #ff6b6b); color: white; border: none;">
+                                <i class="fas fa-paper-plane me-2"></i>Enviar Candidatura
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript para o formulário -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('recruitmentForm');
+    
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            
+            try {
+                const response = await fetch('/api/application/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Candidatura enviada com sucesso! Entraremos em contato em breve.');
+                    form.reset();
+                } else {
+                    alert('Erro ao enviar candidatura: ' + (result.message || 'Tente novamente.'));
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro de conexão. Tente novamente.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
+});
+</script>
+{% endblock %}
+

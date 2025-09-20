@@ -1,0 +1,121 @@
+{% extends "base_internal.html" %}
+{% load wagtailcore_tags %}
+
+{% block internal_content %}
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 100vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 fw-bold text-white mb-4">{{ page.title }}</h1>
+                <div class="text-light lead">
+                    {{ page.intro|richtext }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="row g-4">
+                    <!-- Portfolio Item 1 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-laptop-code fa-3x text-pink"></i>
+                                </div>
+                                <h5 class="card-title text-white">Site Institucional</h5>
+                                <p class="card-text text-muted">Desenvolvimento de site corporativo com design responsivo e otimizado para SEO.</p>
+                                <a href="#" class="btn btn-pink">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Portfolio Item 2 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-shopping-cart fa-3x text-pink"></i>
+                                </div>
+                                <h5 class="card-title text-white">E-commerce</h5>
+                                <p class="card-text text-muted">Plataforma de vendas online com integração de pagamentos e gestão de estoque.</p>
+                                <a href="#" class="btn btn-pink">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Portfolio Item 3 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-mobile-alt fa-3x text-pink"></i>
+                                </div>
+                                <h5 class="card-title text-white">App Mobile</h5>
+                                <p class="card-text text-muted">Aplicativo mobile nativo para iOS e Android com funcionalidades avançadas.</p>
+                                <a href="#" class="btn btn-pink">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Portfolio Item 4 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-chart-line fa-3x text-pink"></i>
+                                </div>
+                                <h5 class="card-title text-white">Dashboard Analytics</h5>
+                                <p class="card-text text-muted">Painel de controle com métricas e relatórios em tempo real.</p>
+                                <a href="#" class="btn btn-pink">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Portfolio Item 5 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-bullhorn fa-3x text-pink"></i>
+                                </div>
+                                <h5 class="card-title text-white">Campanha Digital</h5>
+                                <p class="card-text text-muted">Estratégia completa de marketing digital com foco em conversão.</p>
+                                <a href="#" class="btn btn-pink">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Portfolio Item 6 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card bg-dark border-secondary h-100">
+                            <div class="card-body text-center">
+                                <div class="mb-3">
+                                    <i class="fas fa-cogs fa-3x text-pink"></i>
+                                </div>
+                                <h5 class="card-title text-white">Automação</h5>
+                                <p class="card-text text-muted">Sistema de automação de processos para otimizar operações.</p>
+                                <a href="#" class="btn btn-pink">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <div class="bg-gradient p-5 rounded" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
+                    <h3 class="text-white mb-3">Pronto para seu próximo projeto?</h3>
+                    <p class="text-white mb-4">Vamos transformar sua ideia em uma solução digital de sucesso!</p>
+                    <button type="button" class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#smartModal">Começar Projeto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Inteligente Multi-Passo -->
+{% include "includes/smart_modal.html" %}
+{% endblock internal_content %}

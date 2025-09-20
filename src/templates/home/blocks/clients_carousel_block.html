@@ -1,0 +1,21 @@
+{% load wagtailimages_tags %}
+<section class="py-5" style="background:#000;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="h3 fw-bold text-white">{{ self.title }}</h2>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
+      {% for company in companies %}
+        <a href="{{ company.website_url }}" target="_blank" rel="noopener" class="text-decoration-none" aria-label="{{ company.name }}">
+          {% if company.logo %}
+            {% image company.logo height-48 class="img-fluid" loading="lazy" alt=company.name %}
+          {% else %}
+            <span class="text-white-50">{{ company.name }}</span>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+

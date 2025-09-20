@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+<style>
+.home-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+}
+.home-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('{% static "images/fundo-site-kaizen.webp" %}') center/cover no-repeat fixed;
+    filter: brightness(0.35) saturate(1.1) contrast(1.05);
+    transform: scale(1.05);
+}
+.home-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(234,0,41,.18), transparent 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(234,0,41,.12), transparent 45%);
+    pointer-events: none;
+}
+.home-hero__content { position: relative; z-index: 2; text-align: center; }
+.home-hero__title { color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,.6); }
+.home-hero__subtitle { color: rgba(255,255,255,.85); font-size: 1.15rem; }
+.btn-hero {
+    background: linear-gradient(135deg, #ea0029, #ff6b6b);
+    color: #fff; border: 0; border-radius: 10px; padding: 0.9rem 2rem; font-weight: 700;
+}
+.btn-hero:hover { filter: brightness(1.05); color: #fff; }
+</style>
+
+<!-- HERO -->
+<section class="home-hero">
+  <div class="container home-hero__content">
+    <h1 class="display-3 fw-bold home-hero__title mb-4">{{ page.hero_title }}</h1>
+    {% if page.hero_subtitle %}
+    <div class="home-hero__subtitle lead mb-4">{{ page.hero_subtitle|richtext }}</div>
+    {% endif %}
+    <div class="d-flex gap-3 justify-content-center">
+      <button class="btn btn-hero btn-lg" data-bs-toggle="modal" data-bs-target="#smartModal">Quero vender +</button>
+      <a href="/solucoes/" class="btn btn-outline-light btn-lg" style="border-width:2px;">Ver soluções</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+{% if page.about_title or page.about_text %}
+<section class="py-5" style="background:#000;">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <h2 class="display-6 fw-bold text-white mb-3">{{ page.about_title }}</h2>
+        <div class="text-white-50">{{ page.about_text|richtext }}</div>
+        <div class="mt-4">
+          <a href="/portfolio/" class="btn btn-outline-light" style="border-width:2px;">Nossos cases</a>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        {% if page.about_image %}
+          {% image page.about_image fill-600x400 class="img-fluid rounded" %}
+        {% else %}
+          <div style="height:260px; background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.12);" class="w-100 rounded"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Seções dinâmicas (se existirem) -->
+{% if page.body %}
+  {# Injeta contexto adicional esperado pelos blocos (sections, companies) #}
+  {% with sections=sections companies=companies %}
+    {% for block in page.body %}
+      {% include_block block %}
+    {% endfor %}
+  {% endwith %}
+{% endif %}
+
+{% include "includes/smart_modal.html" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Agência Kaizen",
+  "url": "https://www.agenciakaizen.com.br/",
+  "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-maior.webp",
+  "sameAs": [
+    "https://www.linkedin.com/company/agenciakaizen/"
+  ]
+}
+</script>
+{% endblock %}
+

@@ -1,0 +1,144 @@
+{% load static wagtailimages_tags site_settings_tags %}
+
+<style>
+    /* Hover effect para links do footer */
+    .footer-links a {
+        transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        color: #ff6b6b !important;
+        text-decoration: none !important;
+    }
+</style>
+
+<!-- Footer -->
+<footer class="bg-black text-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Informações da Empresa com Logo Grande -->
+            <div class="col-lg-4 mb-4">
+                <div class="mb-4">
+                    <img src="{% static 'images/logo-kaizen-maior.webp' %}" alt="Agência Kaizen" style="height: 120px; max-width: 100%;" class="mb-3">
+                </div>
+                
+                <!-- Frase de Impacto -->
+                <p class="text-white mb-3">
+                    <strong>Com mais de 15 anos de experiência de mercado, a Agência Kaizen é uma empresa 
+                    Partner do Google, especializada em Marketing Digital de Alta Performance.</strong>
+                </p>
+                <p class="text-white mb-4">
+                    Com escritórios espalhados por vários estados do país, possuímos um sistema de 
+                    automação em geração de leads.
+                </p>
+                
+                <!-- 0800 em destaque no footer -->
+                <div class="mb-3 p-3 rounded" style="background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b;">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-phone fa-2x text-pink me-3"></i>
+                        <div>
+                            <h6 class="text-white mb-1 fw-bold">0800-550-8000</h6>
+                            <p class="text-muted mb-0 small">Ligue grátis de qualquer lugar do Brasil</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/KaizenMarketingDigital/?locale=pt_BR" target="_blank" class="text-light me-3" title="Facebook da Agência Kaizen"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/digitalkaizen" target="_blank" class="text-light me-3" title="Instagram da Agência Kaizen"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/kaizenmarketingdigital/" target="_blank" class="text-light me-3" title="LinkedIn da Agência Kaizen"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3 text-pink">Menu</h6>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="/" class="text-white text-decoration-none">Home</a></li>
+                    <li class="mb-2"><a href="/quem-somos/" class="text-white text-decoration-none">Quem somos</a></li>
+                    <li class="mb-2"><a href="/nossas-empresas/" class="text-white text-decoration-none">Nossas Empresas</a></li>
+                    <li class="mb-2"><a href="/onde-estamos/" class="text-white text-decoration-none">Onde estamos</a></li>
+                    <li class="mb-2"><a href="/aprenda-marketing-digital/" class="text-white text-decoration-none">Aprenda Marketing</a></li>
+                    <li class="mb-2"><a href="/solucoes/" class="text-white text-decoration-none">Soluções</a></li>
+                    <li class="mb-2"><a href="/contato/" class="text-white text-decoration-none">Fale Conosco</a></li>
+                </ul>
+            </div>
+
+            <!-- Soluções -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3 text-pink">Soluções</h6>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="/solucoes/#geracao-de-oportunidades-de-venda" class="text-white text-decoration-none">Geração de Oportunidades de Venda</a></li>
+                    <li class="mb-2"><a href="/solucoes/#assessoria-de-midia-paga" class="text-white text-decoration-none">Assessoria de Mídia Paga</a></li>
+                    <li class="mb-2"><a href="/solucoes/#branding" class="text-white text-decoration-none">Branding</a></li>
+                    <li class="mb-2"><a href="/solucoes/#consultoria-seo" class="text-white text-decoration-none">Consultoria SEO</a></li>
+                    <li class="mb-2"><a href="/solucoes/#hub-de-leads-kaizen" class="text-white text-decoration-none">HUB de Leads Kaizen</a></li>
+                    <li class="mb-2"><a href="/solucoes/#assessoria-em-funil-de-marketing" class="text-white text-decoration-none">Assessoria em Funil de Marketing</a></li>
+                </ul>
+            </div>
+
+            <!-- Consulte um Especialista -->
+            <div class="col-lg-4 mb-4">
+                <h6 class="fw-bold mb-3 text-pink">Consulte um dos nossos especialistas sem nenhum custo</h6>
+                
+                <form action="/contato/" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" name="name" class="form-control kaizen-form-control" placeholder="Nome" required style="padding: 12px;">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control kaizen-form-control" placeholder="E-mail corporativo" required style="padding: 12px;">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text text-white" style="background-color: #25d366; border: 2px solid #25d366; border-radius: 6px 0 0 6px;">
+                                <i class="fab fa-whatsapp"></i>
+                            </span>
+                            <input type="tel" name="phone" class="form-control kaizen-form-control" placeholder="WhatsApp:" required style="padding: 12px; border-left: none; border-radius: 0 6px 6px 0;">
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="subject_category" value="consulta-especialista">
+                    <input type="hidden" name="message" value="Solicitação de consulta com especialista através do footer.">
+                    
+                    <button type="submit" class="btn w-100" style="background: linear-gradient(135deg, #D62042, #ff6b6b); border: none; color: white; padding: 12px; font-weight: bold; border-radius: 6px;">
+                        Enviar e começar a escalar!
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Parceiros/Certificações (gerenciado pelo CMS) -->
+        {% with partners=get_partner_logos %}
+        {% if partners %}
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <h6 class="fw-bold mb-3 text-pink">Certificações e Parceiros</h6>
+            <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
+              {% for p in partners %}
+                {% if p.url %}<a href="{{ p.url }}" target="_blank" rel="noopener" class="d-inline-block">{% endif %}
+                  {% if p.logo %}{% image p.logo height-40 alt=p.name %}{% else %}<span class="badge bg-secondary">{{ p.name }}</span>{% endif %}
+                {% if p.url %}</a>{% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+        
+        <hr class="my-4" style="border-color: #333;">
+        
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="text-white mb-0">
+                    &copy; {% now "Y" %} Agência Kaizen Marketing Digital de Alta Performance. Todos os direitos reservados.
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <!-- Métodos de pagamento removidos -->
+            </div>
+        </div>
+    </div>
+</footer>

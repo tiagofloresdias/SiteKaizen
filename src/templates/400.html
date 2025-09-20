@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Requisição inválida (400) - Agência Kaizen{% endblock %}
+{% block meta_description %}A requisição não pôde ser processada. Verifique os dados enviados e tente novamente.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-400 {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .error-400::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('{% static "images/logo-kaizen-header.webp" %}') no-repeat center center;
+        background-size: 300px;
+        opacity: 0.05;
+        z-index: 1;
+    }
+    
+    .error-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+    
+    .error-number {
+        font-size: 8rem;
+        font-weight: 900;
+        color: #ea0029;
+        text-shadow: 0 0 30px rgba(234, 0, 41, 0.5);
+        margin-bottom: 1rem;
+        line-height: 1;
+    }
+    
+    .error-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+    
+    .error-description {
+        font-size: 1.2rem;
+        color: #ccc;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+    
+    .btn-error {
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .btn-primary-error {
+        background: linear-gradient(135deg, #ea0029, #ff6b6b);
+        color: white;
+        border: none;
+    }
+    
+    .btn-primary-error:hover {
+        background: linear-gradient(135deg, #c70022, #e55a5a);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(234, 0, 41, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .error-number {
+            font-size: 6rem;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+        }
+        
+        .error-description {
+            font-size: 1rem;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn-error {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-400">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-number">400</div>
+            <h1 class="error-title">Requisição inválida</h1>
+            <p class="error-description">
+                A requisição não pôde ser processada devido a dados inválidos. 
+                Verifique os dados enviados e tente novamente.
+            </p>
+            
+            <div class="error-actions">
+                <a href="/" class="btn-error btn-primary-error">
+                    <i class="fas fa-home"></i>
+                    Voltar ao Início
+                </a>
+                <a href="javascript:history.back()" class="btn-error btn-primary-error">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

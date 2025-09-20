@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ page.title }} - Agência Kaizen{% endblock %}
+
+{% block meta_description %}{{ page.meta_description|default:"Mídia Programática Inteligente - Alcance seu público-alvo com precisão através de tecnologia avançada de programmatic advertising. Consultoria gratuita disponível." }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section position-relative" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('{% static 'images/hero-bg.jpg' %}'); background-size: cover; background-position: center; min-height: 80vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-10">
+                <div class="mb-4">
+                    <span class="badge text-white px-4 py-2" style="background: linear-gradient(135deg, #D62042, #ea0029); font-size: 1rem; border-radius: 25px;">
+                        <i class="fas fa-bullseye me-2"></i>MÍDIA PROGRAMÁTICA INTELIGENTE
+                    </span>
+                </div>
+                
+                <h1 class="display-2 fw-bold text-white mb-4">
+                    {{ page.hero_title|default:"Mídia Programática <span class='text-pink'>Inteligente</span>"|richtext }}
+                </h1>
+                
+                <p class="lead text-white mb-5 fs-4">
+                    {{ page.hero_subtitle|default:"Alcance seu público-alvo com precisão através de tecnologia avançada de programmatic advertising. Nossa plataforma utiliza inteligência artificial e big data para otimizar campanhas em tempo real."|richtext }}
+                </p>
+                
+                <button type="button" class="btn btn-lg px-5 py-4" style="background: linear-gradient(135deg, #D62042, #ea0029); border: none; color: white; font-weight: bold; border-radius: 12px; font-size: 1.1rem;" data-bs-toggle="modal" data-bs-target="#smartModal">
+                    <i class="fas fa-comments me-2"></i>{{ page.hero_cta_text }}
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tecnologia Avançada Section -->
+<section class="py-5" style="background-color: #1a1a1a;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    {{ page.tech_title|default:"Tecnologia <span class='text-pink'>Avançada</span>" }}
+                </h2>
+                
+                <p class="lead text-white-50 mb-4">
+                    {{ page.tech_description|default:"Nossa plataforma utiliza inteligência artificial e big data para otimizar campanhas em tempo real, garantindo o máximo desempenho e ROI para seu negócio."|richtext }}
+                </p>
+                
+                <!-- Feature Cards -->
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="feature-card p-4" style="background: rgba(214, 32, 66, 0.1); border-radius: 12px; border: 1px solid rgba(214, 32, 66, 0.2);">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-bolt text-pink me-3" style="font-size: 2rem;"></i>
+                                <h5 class="text-white mb-0 fw-bold">Otimização em Tempo Real</h5>
+                            </div>
+                            <p class="text-white-50 mb-0">Algoritmos de IA que ajustam campanhas automaticamente para máximo desempenho.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card p-4" style="background: rgba(214, 32, 66, 0.1); border-radius: 12px; border: 1px solid rgba(214, 32, 66, 0.2);">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-crosshairs text-pink me-3" style="font-size: 2rem;"></i>
+                                <h5 class="text-white mb-0 fw-bold">Segmentação Precisa</h5>
+                            </div>
+                            <p class="text-white-50 mb-0">Alcance exatamente o público-alvo certo em todos os canais digitais.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card p-4" style="background: rgba(214, 32, 66, 0.1); border-radius: 12px; border: 1px solid rgba(214, 32, 66, 0.2);">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-chart-line text-pink me-3" style="font-size: 2rem;"></i>
+                                <h5 class="text-white mb-0 fw-bold">Cross-Platform</h5>
+                            </div>
+                            <p class="text-white-50 mb-0">Campanhas integradas em todas as plataformas e dispositivos.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card p-4" style="background: rgba(214, 32, 66, 0.1); border-radius: 12px; border: 1px solid rgba(214, 32, 66, 0.2);">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="fas fa-database text-pink me-3" style="font-size: 2rem;"></i>
+                                <h5 class="text-white mb-0 fw-bold">Big Data Analytics</h5>
+                            </div>
+                            <p class="text-white-50 mb-0">Análise de milhões de pontos de dados para insights precisos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <!-- Performance Metrics -->
+                <div class="metrics-container p-5" style="background: linear-gradient(135deg, #1a1a1a, #2d2d2d); border-radius: 20px; border: 2px solid #333;">
+                    <h4 class="text-white fw-bold mb-4 text-center">Performance Média</h4>
+                    <div class="row g-4">
+                        <div class="col-6 text-center">
+                            <div class="metric-item">
+                                <h3 class="text-pink fw-bold mb-2">+2M</h3>
+                                <p class="text-white-50 mb-0">Alcance Médio</p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="metric-item">
+                                <h3 class="text-pink fw-bold mb-2">3.2%</h3>
+                                <p class="text-white-50 mb-0">CTR Médio</p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="metric-item">
+                                <h3 class="text-pink fw-bold mb-2">450%</h3>
+                                <p class="text-white-50 mb-0">ROI Médio</p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="metric-item">
+                                <h3 class="text-pink fw-bold mb-2">-35%</h3>
+                                <p class="text-white-50 mb-0">Redução CPA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Canais de Mídia Section -->
+<section class="py-5" style="background-color: #000000;">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    {{ page.channels_title|default:"Canais de Mídia" }}
+                </h2>
+                <p class="lead text-white-50">
+                    {{ page.channels_subtitle|default:"Cobertura completa em todos os pontos de contato com seu público." }}
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Display Ads -->
+            <div class="col-md-6 col-lg-4">
+                <div class="channel-card p-4 h-100" style="background: #1a1a1a; border-radius: 12px; border: 1px solid #333; transition: all 0.3s ease;">
+                    <div class="text-center">
+                        <div class="channel-icon mb-3">
+                            <i class="fas fa-desktop text-pink" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="text-white fw-bold mb-3">Display Ads</h5>
+                        <p class="text-white-50">Banners inteligentes em sites premium com segmentação avançada e otimização em tempo real.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vídeo Ads -->
+            <div class="col-md-6 col-lg-4">
+                <div class="channel-card p-4 h-100" style="background: #1a1a1a; border-radius: 12px; border: 1px solid #333; transition: all 0.3s ease;">
+                    <div class="text-center">
+                        <div class="channel-icon mb-3">
+                            <i class="fas fa-play-circle text-pink" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="text-white fw-bold mb-3">Vídeo Ads</h5>
+                        <p class="text-white-50">Campanhas de vídeo no YouTube, streaming e plataformas digitais com targeting preciso.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Ads -->
+            <div class="col-md-6 col-lg-4">
+                <div class="channel-card p-4 h-100" style="background: #1a1a1a; border-radius: 12px; border: 1px solid #333; transition: all 0.3s ease;">
+                    <div class="text-center">
+                        <div class="channel-icon mb-3">
+                            <i class="fas fa-mobile-alt text-pink" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="text-white fw-bold mb-3">Mobile Ads</h5>
+                        <p class="text-white-50">Anúncios otimizados para dispositivos móveis e aplicativos com geolocalização.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TV Conectada -->
+            <div class="col-md-6 col-lg-4">
+                <div class="channel-card p-4 h-100" style="background: #1a1a1a; border-radius: 12px; border: 1px solid #333; transition: all 0.3s ease;">
+                    <div class="text-center">
+                        <div class="channel-icon mb-3">
+                            <i class="fas fa-tv text-pink" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="text-white fw-bold mb-3">TV Conectada</h5>
+                        <p class="text-white-50">Alcance audiências em Smart TVs e plataformas de streaming com programmatic TV.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- OOH Digital -->
+            <div class="col-md-6 col-lg-4">
+                <div class="channel-card p-4 h-100" style="background: #1a1a1a; border-radius: 12px; border: 1px solid #333; transition: all 0.3s ease;">
+                    <div class="text-center">
+                        <div class="channel-icon mb-3">
+                            <i class="fas fa-map-marker-alt text-pink" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="text-white fw-bold mb-3">OOH Digital</h5>
+                        <p class="text-white-50">Mídia programática outdoor digital com geolocalização e horários otimizados.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Áudio Ads -->
+            <div class="col-md-6 col-lg-4">
+                <div class="channel-card p-4 h-100" style="background: #1a1a1a; border-radius: 12px; border: 1px solid #333; transition: all 0.3s ease;">
+                    <div class="text-center">
+                        <div class="channel-icon mb-3">
+                            <i class="fas fa-volume-up text-pink" style="font-size: 3rem;"></i>
+                        </div>
+                        <h5 class="text-white fw-bold mb-3">Áudio Ads</h5>
+                        <p class="text-white-50">Campanhas em podcasts, Spotify e plataformas de áudio digital com targeting comportamental.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Como Trabalhamos Section -->
+<section class="py-5" style="background-color: #1a1a1a;">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    {{ page.process_title|default:"Como Trabalhamos" }}
+                </h2>
+                <p class="lead text-white-50">
+                    {{ page.process_subtitle|default:"Processo estruturado para máxima eficiência e resultados." }}
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Step 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step text-center">
+                    <div class="step-number mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: linear-gradient(135deg, #D62042, #ea0029); border-radius: 50%;">
+                            <span class="text-white fw-bold fs-3">1</span>
+                        </div>
+                    </div>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-search text-pink" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-3">Análise de Audiência</h5>
+                    <p class="text-white-50">Mapeamento detalhado do seu público-alvo com dados comportamentais e demográficos.</p>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step text-center">
+                    <div class="step-number mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: linear-gradient(135deg, #D62042, #ea0029); border-radius: 50%;">
+                            <span class="text-white fw-bold fs-3">2</span>
+                        </div>
+                    </div>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-cogs text-pink" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-3">Configuração da Plataforma</h5>
+                    <p class="text-white-50">Setup completo da plataforma e integração com DSPs para máxima performance.</p>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step text-center">
+                    <div class="step-number mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: linear-gradient(135deg, #D62042, #ea0029); border-radius: 50%;">
+                            <span class="text-white fw-bold fs-3">3</span>
+                        </div>
+                    </div>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-rocket text-pink" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-3">Lançamento e Otimização</h5>
+                    <p class="text-white-50">Campanhas ao vivo com otimização contínua através de algoritmos de IA.</p>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step text-center">
+                    <div class="step-number mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: linear-gradient(135deg, #D62042, #ea0029); border-radius: 50%;">
+                            <span class="text-white fw-bold fs-3">4</span>
+                        </div>
+                    </div>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-chart-bar text-pink" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h5 class="text-white fw-bold mb-3">Relatórios e Insights</h5>
+                    <p class="text-white-50">Dashboards em tempo real e relatórios detalhados com insights acionáveis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefícios Section -->
+<section class="py-5" style="background-color: #000000;">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    {{ page.benefits_title|default:"Por que Escolher Nossa Plataforma?" }}
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Benefício 1 -->
+            <div class="col-md-4">
+                <div class="benefit-card p-5 text-center h-100" style="background: linear-gradient(135deg, #1a1a1a, #2d2d2d); border-radius: 16px; border: 1px solid #333;">
+                    <div class="benefit-icon mb-4">
+                        <i class="fas fa-dollar-sign text-pink" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h4 class="text-white fw-bold mb-3">Economia de até 40%</h4>
+                    <p class="text-white-50">Redução significativa no CPA através de otimização inteligente e segmentação precisa.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 2 -->
+            <div class="col-md-4">
+                <div class="benefit-card p-5 text-center h-100" style="background: linear-gradient(135deg, #1a1a1a, #2d2d2d); border-radius: 16px; border: 1px solid #333;">
+                    <div class="benefit-icon mb-4">
+                        <i class="fas fa-chart-line text-pink" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h4 class="text-white fw-bold mb-3">Aumento de 300% no ROI</h4>
+                    <p class="text-white-50">Performance superior através de targeting preciso e otimização contínua.</p>
+                </div>
+            </div>
+            
+            <!-- Benefício 3 -->
+            <div class="col-md-4">
+                <div class="benefit-card p-5 text-center h-100" style="background: linear-gradient(135deg, #1a1a1a, #2d2d2d); border-radius: 16px; border: 1px solid #333;">
+                    <div class="benefit-icon mb-4">
+                        <i class="fas fa-users text-pink" style="font-size: 3.5rem;"></i>
+                    </div>
+                    <h4 class="text-white fw-bold mb-3">Alcance Qualificado</h4>
+                    <p class="text-white-50">Acesso a inventário premium e audiências de alta qualidade em todos os canais.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #D62042, #ea0029);">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="display-4 fw-bold text-white mb-4">
+                    {{ page.final_cta_title|default:"Pronto para <span class='text-white'>Revolucionar</span> sua Mídia Digital?"|richtext }}
+                </h2>
+                
+                <p class="lead text-white mb-5">
+                    {{ page.final_cta_subtitle|default:"Descubra como nossa plataforma de mídia programática pode transformar seus resultados digitais."|richtext }}
+                </p>
+                
+                <div class="d-flex flex-column flex-md-row gap-4 justify-content-center">
+                    <button type="button" class="btn btn-lg px-5 py-3" style="background: white; color: #D62042; border: none; font-weight: bold; border-radius: 12px;" data-bs-toggle="modal" data-bs-target="#smartModal">
+                        <i class="fas fa-comments me-2"></i>{{ page.final_cta_button_text }}
+                    </button>
+                    
+                    {% if page.final_cta_secondary_url %}
+                    <a href="{{ page.final_cta_secondary_url }}" class="btn btn-lg px-5 py-3" style="background: transparent; border: 2px solid white; color: white; font-weight: bold; border-radius: 12px; text-decoration: none;">
+                        <i class="fas fa-chart-bar me-2"></i>{{ page.final_cta_secondary_text }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Hover effects */
+    .channel-card:hover {
+        transform: translateY(-5px);
+        border-color: #D62042 !important;
+        box-shadow: 0 10px 30px rgba(214, 32, 66, 0.2);
+    }
+    
+    .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(214, 32, 66, 0.3);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(214, 32, 66, 0.2);
+    }
+    
+    /* Animations */
+    .process-step {
+        transition: all 0.3s ease;
+    }
+    
+    .process-step:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .display-2 {
+            font-size: 2.5rem;
+        }
+        
+        .display-4 {
+            font-size: 2rem;
+        }
+        
+        .hero-section {
+            min-height: 60vh;
+        }
+    }
+</style>
+{% endblock %}

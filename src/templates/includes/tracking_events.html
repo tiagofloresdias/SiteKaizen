@@ -1,0 +1,276 @@
+{% load wagtailsettings_tags %}
+{% get_settings as analytics_settings %}
+
+<script>
+// Configurações de tracking
+window.kaizenTracking = {
+    gtmEnabled: {% if analytics_settings.analytics.analyticssettings.gtm_enabled %}true{% else %}false{% endif %},
+    trackFormSubmissions: {% if analytics_settings.analytics.analyticssettings.track_form_submissions %}true{% else %}false{% endif %},
+    trackPhoneClicks: {% if analytics_settings.analytics.analyticssettings.track_phone_clicks %}true{% else %}false{% endif %},
+    trackWhatsappClicks: {% if analytics_settings.analytics.analyticssettings.track_whatsapp_clicks %}true{% else %}false{% endif %},
+    trackEmailClicks: {% if analytics_settings.analytics.analyticssettings.track_email_clicks %}true{% else %}false{% endif %},
+    trackExternalLinks: {% if analytics_settings.analytics.analyticssettings.track_external_links %}true{% else %}false{% endif %},
+    trackScrollDepth: {% if analytics_settings.analytics.analyticssettings.track_scroll_depth %}true{% else %}false{% endif %}
+};
+
+// Função para enviar eventos para o GTM
+function sendGTMEvent(eventName, parameters = {}) {
+    if (!window.kaizenTracking.gtmEnabled || typeof dataLayer === 'undefined') {
+        console.log('GTM não habilitado ou dataLayer não encontrado');
+        return;
+    }
+    
+    const eventData = {
+        event: eventName,
+        event_category: parameters.category || 'engagement',
+        event_label: parameters.label || '',
+        value: parameters.value || 0,
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        ...parameters
+    };
+    
+    dataLayer.push(eventData);
+    console.log('GTM Event:', eventData);
+}
+
+// Função para enviar eventos de conversão
+function sendConversionEvent(eventName, parameters = {}) {
+    sendGTMEvent(eventName, {
+        ...parameters,
+        category: 'conversion',
+        is_conversion: true
+    });
+    
+    // Enviar para Facebook Pixel se habilitado
+    {% if analytics_settings.analytics.analyticssettings.facebook_pixel_enabled %}
+    if (typeof fbq !== 'undefined') {
+        fbq('track', eventName, parameters);
+    }
+    {% endif %}
+    
+    // Enviar para LinkedIn se habilitado
+    {% if analytics_settings.analytics.analyticssettings.linkedin_enabled %}
+    if (typeof lintrk !== 'undefined') {
+        lintrk('track', { conversion_id: eventName });
+    }
+    {% endif %}
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Enviar evento de page view
+    sendGTMEvent('kaizen_page_view', {
+        category: 'navigation',
+        label: document.title
+    });
+    
+    // Tracking de cliques em telefone
+    if (window.kaizenTracking.trackPhoneClicks) {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                const phoneNumber = this.getAttribute('href').replace('tel:', '');
+                sendGTMEvent('phone_click', {
+                    category: 'contact',
+                    label: phoneNumber,
+                    phone_number: phoneNumber
+                });
+            });
+        });
+    }
+    
+    // Tracking de cliques no WhatsApp
+    if (window.kaizenTracking.trackWhatsappClicks) {
+        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                const href = this.getAttribute('href');
+                const phoneMatch = href.match(/(\d+)/);
+                const phoneNumber = phoneMatch ? phoneMatch[1] : 'unknown';
+                
+                sendConversionEvent('whatsapp_click', {
+                    category: 'contact',
+                    label: phoneNumber,
+                    phone_number: phoneNumber,
+                    contact_method: 'whatsapp'
+                });
+            });
+        });
+    }
+    
+    // Tracking de cliques em email
+    if (window.kaizenTracking.trackEmailClicks) {
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                const email = this.getAttribute('href').replace('mailto:', '');
+                sendGTMEvent('email_click', {
+                    category: 'contact',
+                    label: email,
+                    email_address: email
+                });
+            });
+        });
+    }
+    
+    // Tracking de links externos
+    if (window.kaizenTracking.trackExternalLinks) {
+        document.querySelectorAll('a[href^="http"]').forEach(function(link) {
+            if (!link.href.includes(window.location.hostname)) {
+                link.addEventListener('click', function() {
+                    sendGTMEvent('external_link_click', {
+                        category: 'outbound',
+                        label: this.href,
+                        destination_url: this.href
+                    });
+                });
+            }
+        });
+    }
+    
+    // Tracking de envio de formulários
+    if (window.kaizenTracking.trackFormSubmissions) {
+        document.querySelectorAll('form').forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                const formId = this.id || 'unnamed_form';
+                const formAction = this.action || window.location.href;
+                
+                // Capturar dados do formulário
+                const formData = new FormData(this);
+                const formFields = {};
+                for (let [key, value] of formData.entries()) {
+                    if (!key.includes('csrf') && !key.includes('password')) {
+                        formFields[key] = value;
+                    }
+                }
+                
+                sendConversionEvent('form_submit', {
+                    category: 'conversion',
+                    label: formId,
+                    form_id: formId,
+                    form_action: formAction,
+                    form_fields: Object.keys(formFields).join(','),
+                    lead_source: 'website_form'
+                });
+                
+                // Para formulário de contato principal
+                if (formFields.name && formFields.email) {
+                    sendConversionEvent('lead_generated', {
+                        category: 'conversion',
+                        label: 'contact_form',
+                        lead_type: 'contact_form',
+                        lead_source: 'website',
+                        customer_email: formFields.email,
+                        customer_name: formFields.name,
+                        customer_phone: formFields.phone || '',
+                        customer_area: formFields.area || '',
+                        customer_revenue: formFields.faturamento || ''
+                    });
+                }
+            });
+        });
+    }
+});
+
+// Tracking de profundidade de scroll
+if (window.kaizenTracking.trackScrollDepth) {
+    let scrollDepthMarks = [25, 50, 75, 100];
+    let scrollDepthReached = [];
+    
+    function trackScrollDepth() {
+        const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        
+        scrollDepthMarks.forEach(function(mark) {
+            if (scrollPercent >= mark && !scrollDepthReached.includes(mark)) {
+                scrollDepthReached.push(mark);
+                sendGTMEvent('scroll_depth', {
+                    category: 'engagement',
+                    label: mark + '%',
+                    value: mark,
+                    scroll_percent: mark
+                });
+            }
+        });
+    }
+    
+    // Throttle scroll events
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(trackScrollDepth, 100);
+    });
+}
+
+// Tracking de tempo na página
+let pageStartTime = Date.now();
+let timeOnPageSent = false;
+
+// Enviar evento de tempo na página quando o usuário sair
+window.addEventListener('beforeunload', function() {
+    if (!timeOnPageSent) {
+        const timeOnPage = Math.round((Date.now() - pageStartTime) / 1000);
+        sendGTMEvent('time_on_page', {
+            category: 'engagement',
+            label: document.title,
+            value: timeOnPage,
+            time_seconds: timeOnPage
+        });
+        timeOnPageSent = true;
+    }
+});
+
+// Enviar evento de tempo na página após 30 segundos (para sessões longas)
+setTimeout(function() {
+    if (!timeOnPageSent) {
+        const timeOnPage = Math.round((Date.now() - pageStartTime) / 1000);
+        sendGTMEvent('time_on_page_30s', {
+            category: 'engagement',
+            label: document.title,
+            value: timeOnPage,
+            time_seconds: timeOnPage
+        });
+    }
+}, 30000);
+
+// Função global para tracking personalizado
+window.kaizenTrack = {
+    event: sendGTMEvent,
+    conversion: sendConversionEvent,
+    
+    // Eventos específicos da Kaizen
+    contactFormStart: function() {
+        sendGTMEvent('contact_form_start', {
+            category: 'engagement',
+            label: 'form_interaction'
+        });
+    },
+    
+    serviceInterest: function(serviceName) {
+        sendGTMEvent('service_interest', {
+            category: 'engagement',
+            label: serviceName,
+            service_name: serviceName
+        });
+    },
+    
+    blogEngagement: function(action, articleTitle) {
+        sendGTMEvent('blog_engagement', {
+            category: 'content',
+            label: articleTitle,
+            action: action,
+            article_title: articleTitle
+        });
+    },
+    
+    downloadResource: function(resourceName, resourceType) {
+        sendConversionEvent('resource_download', {
+            category: 'conversion',
+            label: resourceName,
+            resource_name: resourceName,
+            resource_type: resourceType
+        });
+    }
+};
+
+console.log('Kaizen Tracking inicializado:', window.kaizenTracking);
+</script>

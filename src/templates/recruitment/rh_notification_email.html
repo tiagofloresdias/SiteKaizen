@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Candidatura - {{ application.full_name }}</title>
+    <style>
+        /* Reset e configurações base */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        
+        /* Estilos principais */
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .email-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ea0029 0%, #ff6b6b 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .alert-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .alert-box h2 {
+            color: #856404;
+            margin: 0 0 10px 0;
+            font-size: 20px;
+        }
+        
+        .candidate-info {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .candidate-info h3 {
+            color: #ea0029;
+            font-size: 18px;
+            margin: 0 0 20px 0;
+            border-bottom: 2px solid #ea0029;
+            padding-bottom: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .skills-section {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .skills-section h4 {
+            color: #155724;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .skill-item {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #155724;
+        }
+        
+        .skill-item.has-experience {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .motivation-section {
+            background-color: #e7f3ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        
+        .motivation-section h4 {
+            color: #004085;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+        }
+        
+        .motivation-text {
+            color: #004085;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        .actions-section {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .actions-section h3 {
+            color: #856404;
+            margin: 0 0 15px 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .action-button {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .primary-button {
+            background-color: #ea0029;
+            color: #ffffff !important;
+        }
+        
+        .secondary-button {
+            background-color: #6c757d;
+            color: #ffffff !important;
+        }
+        
+        .footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        /* Responsividade */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+            .content {
+                padding: 20px 15px !important;
+            }
+            .info-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .action-buttons {
+                flex-direction: column !important;
+            }
+            .action-button {
+                width: 100% !important;
+                margin-bottom: 10px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp" alt="Agência Kaizen" class="logo">
+            <h1>🎯 Nova Candidatura Recebida</h1>
+        </div>
+        
+        <!-- Conteúdo Principal -->
+        <div class="content">
+            <div class="alert-box">
+                <h2>⚡ Ação Necessária</h2>
+                <p>Uma nova candidatura foi recebida e está aguardando análise. Dados do candidato abaixo:</p>
+            </div>
+            
+            <!-- Informações do Candidato -->
+            <div class="candidate-info">
+                <h3>👤 Dados Pessoais</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Nome Completo</div>
+                        <div class="info-value">{{ application.full_name }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">E-mail</div>
+                        <div class="info-value">{{ application.email }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Telefone</div>
+                        <div class="info-value">{{ application.phone }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Data de Nascimento</div>
+                        <div class="info-value">{{ application.birth_date|date:"d/m/Y" }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Cidade/Estado</div>
+                        <div class="info-value">{{ application.city }}/{{ application.state }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Área de Interesse</div>
+                        <div class="info-value">{{ application.get_desired_area_display }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Informações Profissionais -->
+            <div class="candidate-info">
+                <h3>💼 Experiência Profissional</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Cargo Atual</div>
+                        <div class="info-value">{{ application.current_position }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Empresa Atual</div>
+                        <div class="info-value">{{ application.current_company }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Anos de Experiência</div>
+                        <div class="info-value">{{ application.experience_years }} anos</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Escolaridade</div>
+                        <div class="info-value">{{ application.get_education_level_display }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Curso</div>
+                        <div class="info-value">{{ application.course_name|default:"Não informado" }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Disponibilidade</div>
+                        <div class="info-value">{{ application.get_availability_display }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Habilidades Técnicas -->
+            <div class="skills-section">
+                <h4>🛠️ Experiência com Ferramentas</h4>
+                <div class="skills-grid">
+                    <div class="skill-item {% if application.crm_experience %}has-experience{% endif %}">
+                        📊 CRM {% if application.crm_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                    <div class="skill-item {% if application.social_media_experience %}has-experience{% endif %}">
+                        📱 Redes Sociais {% if application.social_media_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                    <div class="skill-item {% if application.google_ads_experience %}has-experience{% endif %}">
+                        🎯 Google Ads {% if application.google_ads_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                    <div class="skill-item {% if application.facebook_ads_experience %}has-experience{% endif %}">
+                        📘 Facebook Ads {% if application.facebook_ads_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                    <div class="skill-item {% if application.analytics_experience %}has-experience{% endif %}">
+                        📈 Analytics {% if application.analytics_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                    <div class="skill-item {% if application.seo_experience %}has-experience{% endif %}">
+                        🔍 SEO {% if application.seo_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                    <div class="skill-item {% if application.content_creation_experience %}has-experience{% endif %}">
+                        ✍️ Criação de Conteúdo {% if application.content_creation_experience %}✓{% else %}✗{% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Habilidades Técnicas Textuais -->
+            <div class="candidate-info">
+                <h3>🔧 Habilidades Técnicas</h3>
+                <div class="info-item full-width">
+                    <div class="info-value">{{ application.technical_skills }}</div>
+                </div>
+            </div>
+            
+            <!-- Idiomas -->
+            <div class="candidate-info">
+                <h3>🌍 Idiomas</h3>
+                <div class="info-item full-width">
+                    <div class="info-value">{{ application.languages }}</div>
+                </div>
+            </div>
+            
+            <!-- Motivação -->
+            <div class="motivation-section">
+                <h4>💭 Motivação</h4>
+                <div class="motivation-text">{{ application.motivation }}</div>
+            </div>
+            
+            <!-- Objetivos de Carreira -->
+            <div class="motivation-section">
+                <h4>🎯 Objetivos de Carreira</h4>
+                <div class="motivation-text">{{ application.career_goals }}</div>
+            </div>
+            
+            <!-- Informações Adicionais -->
+            <div class="candidate-info">
+                <h3>📋 Informações Adicionais</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Pretensão Salarial</div>
+                        <div class="info-value">{{ application.salary_expectation }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Como Conheceu a Vaga</div>
+                        <div class="info-value">{{ application.get_referral_source_display }}</div>
+                    </div>
+                    {% if application.linkedin_profile %}
+                    <div class="info-item">
+                        <div class="info-label">LinkedIn</div>
+                        <div class="info-value"><a href="{{ application.linkedin_profile }}" target="_blank">{{ application.linkedin_profile }}</a></div>
+                    </div>
+                    {% endif %}
+                    {% if application.portfolio_url %}
+                    <div class="info-item">
+                        <div class="info-label">Portfólio</div>
+                        <div class="info-value"><a href="{{ application.portfolio_url }}" target="_blank">{{ application.portfolio_url }}</a></div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Carta de Apresentação -->
+            {% if application.cover_letter %}
+            <div class="motivation-section">
+                <h4>📝 Carta de Apresentação</h4>
+                <div class="motivation-text">{{ application.cover_letter }}</div>
+            </div>
+            {% endif %}
+            
+            <!-- Ações -->
+            <div class="actions-section">
+                <h3>⚡ Ações Disponíveis</h3>
+                <div class="action-buttons">
+                    <a href="mailto:{{ application.email }}?subject=Processo Seletivo - Agência Kaizen&body=Olá {{ application.full_name }},%0D%0A%0D%0AEntramos em contato sobre sua candidatura..." class="action-button primary-button">
+                        📧 Enviar Email
+                    </a>
+                    <a href="tel:{{ application.phone }}" class="action-button secondary-button">
+                        📞 Ligar
+                    </a>
+                    <a href="https://www.agenciakaizen.com.br/admin/recruitment/recruitmentapplication/{{ application.id }}/change/" class="action-button secondary-button">
+                        ✏️ Editar no Admin
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Agência Kaizen</strong> - Sistema de Recrutamento</p>
+            <p>Esta candidatura foi recebida em {{ application.created_at|date:"d/m/Y H:i" }}</p>
+            <p>Candidatura ID: #{{ application.id }}</p>
+        </div>
+    </div>
+</body>
+</html>
+

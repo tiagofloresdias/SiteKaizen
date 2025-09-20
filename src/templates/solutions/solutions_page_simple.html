@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<style>
+.solutions-hero {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.solutions-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ea0029" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ea0029" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="800" r="400" fill="url(%23a)"/></svg>');
+    opacity: 0.3;
+}
+
+.section-dark {
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 0;
+}
+
+.section-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(234, 0, 41, 0.05) 50%, transparent 70%);
+    pointer-events: none;
+}
+
+.service-card {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(234, 0, 41, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    height: 100%;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ea0029, #ff6b6b);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(234, 0, 41, 0.5);
+    box-shadow: 0 20px 40px rgba(234, 0, 41, 0.2);
+}
+
+.service-icon {
+    color: #ea0029;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.connector-line {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(180deg, #ea0029, transparent);
+    margin: 0 auto;
+    position: relative;
+}
+
+.connector-line::after {
+    content: '↓';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ea0029;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #ea0029, #ff6b6b);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(234, 0, 41, 0.4);
+    color: white;
+    text-decoration: none;
+}
+</style>
+
+<!-- Hero Section -->
+<div class="solutions-hero">
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-10">
+                <h1 class="display-2 fw-bold text-white mb-4" style="text-shadow: 0 4px 8px rgba(0,0,0,0.5);">
+                    {{ page.hero_title|richtext }}
+                </h1>
+                {% if page.hero_subtitle %}
+                <div class="lead text-white mb-5" style="font-size: 1.3rem; opacity: 0.9;">
+                    {{ page.hero_subtitle|richtext }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seções de Soluções -->
+{% for section in sections %}
+<div class="section-dark">
+    <div class="container" style="position: relative; z-index: 2;">
+        <!-- Linha conectora -->
+        {% if not forloop.first %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-1 text-center">
+                <div class="connector-line"></div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Título da Seção -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="display-4 fw-bold text-white mb-4" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                    {{ section.title }}
+                </h2>
+                <p class="lead text-white-50" style="font-size: 1.2rem;">
+                    {{ section.subtitle }}
+                </p>
+            </div>
+        </div>
+        
+        <!-- Cards de Serviços -->
+        <div class="row g-4 mb-5">
+            {% for service in section.services.all %}
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card text-center">
+                    <div class="mb-4">
+                        <i class="{{ service.icon_class }} service-icon"></i>
+                    </div>
+                    <h5 class="fw-bold text-white mb-3" style="font-size: 1.3rem;">
+                        {{ service.title }}
+                    </h5>
+                    <p class="text-white-50" style="line-height: 1.6;">
+                        {{ service.description }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- CTA da Seção -->
+        {% if section.cta_text and section.cta_url %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <a href="{{ section.cta_url }}" class="cta-button">
+                    {{ section.cta_text }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<!-- CTA Final -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #ea0029, #ff6b6b);">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="display-5 fw-bold text-white mb-4">
+                    {{ page.final_cta_title }}
+                </h2>
+                <p class="lead text-white mb-5">
+                    {{ page.final_cta_subtitle }}
+                </p>
+                <a href="/contato/" class="btn btn-light btn-lg px-5 py-3 fw-bold" style="border-radius: 8px;">
+                    {{ page.final_cta_button_text }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

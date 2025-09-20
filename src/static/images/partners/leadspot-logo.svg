@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- Fundo roxo -->
+  <rect width="200" height="80" fill="#8B5CF6" rx="8"/>
+  
+  <!-- Símbolo da Leadspot (baseado na imagem) -->
+  <g transform="translate(20, 20)">
+    <!-- Formas entrelaçadas -->
+    <path d="M10 5 Q15 0 20 5 Q25 10 20 15 Q15 20 10 15 Q5 10 10 5 Z" fill="white"/>
+    <path d="M15 10 Q20 5 25 10 Q30 15 25 20 Q20 25 15 20 Q10 15 15 10 Z" fill="white" opacity="0.8"/>
+    <path d="M5 15 Q10 10 15 15 Q20 20 15 25 Q10 30 5 25 Q0 20 5 15 Z" fill="white" opacity="0.6"/>
+  </g>
+  
+  <!-- Texto "Leadspot" -->
+  <text x="60" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">Leadspot</text>
+  <text x="60" y="50" font-family="Arial, sans-serif" font-size="10" fill="white" opacity="0.8">CRM Inteligente</text>
+</svg>

@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<div class="container-fluid" style="background: #000000; min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h1 class="display-3 fw-bold text-white mb-4">
+                        {{ page.hero_title }}
+                    </h1>
+                    <div class="lead text-white mb-5">
+                        {{ page.hero_subtitle|richtext }}
+                    </div>
+                    <div class="d-flex justify-content-center gap-4">
+                        <a href="{{ page.instagram_url }}" target="_blank" class="btn btn-pink btn-lg px-5 py-3">
+                            <i class="fab fa-instagram me-2"></i>INSTAGRAM
+                        </a>
+                        <a href="{{ page.linkedin_url }}" target="_blank" class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="fab fa-linkedin me-2"></i>LINKEDIN
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.instagram_title }}</h2>
+                    <p class="lead text-white">{{ page.instagram_subtitle }}</p>
+                    <p class="text-pink">
+                        <i class="fab fa-instagram me-2"></i>@{{ page.instagram_username }}
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Instagram Widget Placeholder -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-12">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="col-md-8 mx-auto text-center">
+                                    <h5 class="text-white mb-3">
+                                        <i class="fab fa-instagram text-pink me-2"></i>
+                                        Instagram Feed
+                                    </h5>
+                                    <p class="text-muted mb-4">
+                                        Widget do Instagram será integrado aqui mostrando os últimos posts do @{{ page.instagram_username }}
+                                    </p>
+                                    <!-- Placeholder para Instagram Embed -->
+                                    <div class="bg-secondary rounded p-5 mb-4" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                                        <div class="text-center">
+                                            <i class="fab fa-instagram fa-5x text-pink mb-3"></i>
+                                            <h6 class="text-white">Instagram Feed</h6>
+                                            <p class="text-muted">Últimos posts do @{{ page.instagram_username }}</p>
+                                        </div>
+                                    </div>
+                                    <a href="{{ page.instagram_url }}" target="_blank" class="btn btn-pink btn-lg">
+                                        <i class="fab fa-instagram me-2"></i>SEGUIR NO INSTAGRAM
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LinkedIn Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%);">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.linkedin_title }}</h2>
+                    <p class="lead text-white">{{ page.linkedin_subtitle }}</p>
+                </div>
+            </div>
+            
+            <!-- LinkedIn Widget Placeholder -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-12">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="col-md-8 mx-auto text-center">
+                                    <h5 class="text-white mb-3">
+                                        <i class="fab fa-linkedin text-blue me-2"></i>
+                                        LinkedIn Posts
+                                    </h5>
+                                    <p class="text-muted mb-4">
+                                        Widget do LinkedIn será integrado aqui mostrando os últimos posts da empresa
+                                    </p>
+                                    <!-- Placeholder para LinkedIn Embed -->
+                                    <div class="bg-secondary rounded p-5 mb-4" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                                        <div class="text-center">
+                                            <i class="fab fa-linkedin fa-5x text-blue mb-3"></i>
+                                            <h6 class="text-white">LinkedIn Posts</h6>
+                                            <p class="text-muted">Últimos posts profissionais</p>
+                                        </div>
+                                    </div>
+                                    <a href="{{ page.linkedin_url }}" target="_blank" class="btn btn-outline-light btn-lg">
+                                        <i class="fab fa-linkedin me-2"></i>CONECTAR NO LINKEDIN
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Final Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.cta_title }}</h2>
+                    <div class="lead text-white mb-5">
+                        {{ page.cta_subtitle|richtext }}
+                    </div>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card bg-dark border-secondary h-100">
+                                <div class="card-body text-center p-4">
+                                    <i class="fab fa-instagram fa-3x text-pink mb-3"></i>
+                                    <h5 class="text-white mb-3">Instagram</h5>
+                                    <p class="text-muted mb-4">Conteúdo visual e cases de sucesso</p>
+                                    <a href="{{ page.instagram_url }}" target="_blank" class="btn btn-pink">
+                                        <i class="fab fa-instagram me-2"></i>Seguir
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card bg-dark border-secondary h-100">
+                                <div class="card-body text-center p-4">
+                                    <i class="fab fa-linkedin fa-3x text-blue mb-3"></i>
+                                    <h5 class="text-white mb-3">LinkedIn</h5>
+                                    <p class="text-muted mb-4">Networking e insights profissionais</p>
+                                    <a href="{{ page.linkedin_url }}" target="_blank" class="btn btn-outline-light">
+                                        <i class="fab fa-linkedin me-2"></i>Conectar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <a href="/contato/" class="btn btn-pink btn-lg px-5 py-3">
+                            <i class="fas fa-rocket me-2"></i>QUERO ACELERAR MEU NEGÓCIO
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+.text-blue {
+    color: #0077b5 !important;
+}
+.btn-pink {
+    background: linear-gradient(135deg, #ea0029, #ff6b6b);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-pink:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(234, 0, 41, 0.3);
+}
+</style>
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Conecte-se - Agência Kaizen",
+    "description": "Conecte-se com a Agência Kaizen nas redes sociais e acompanhe nossa jornada de aceleradora de vendas.",
+    "url": "{% if request %}{{ request.build_absolute_uri }}{% else %}https://www.agenciakaizen.com.br/conecte-se/{% endif %}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "sameAs": [
+            "{{ page.instagram_url }}",
+            "{{ page.linkedin_url }}"
+        ]
+    }
+}
+</script>
+{% endblock %}
+

@@ -1,0 +1,467 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<div class="container-fluid" style="background: #000000; min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%); min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h1 class="display-3 fw-bold text-white mb-4">{{ page.hero_title|richtext }}</h1>
+                    <div class="lead text-white mb-5">
+                        {{ page.hero_subtitle|richtext }}
+                    </div>
+                    <a href="/contato/" class="btn btn-pink btn-lg px-5 py-3">
+                        <i class="fas fa-rocket me-2"></i>QUERO VENDER MAIS ALTO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resultados / Métricas Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.results_title }}</h2>
+                    <p class="lead text-white">{{ page.results_subtitle }}</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                {% if page.metrics_block %}
+                    {% for block in page.metrics_block %}
+                        {% if block.block_type == 'metrics' %}
+                            {% for m in block.value.metrics %}
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card bg-dark border-secondary h-100 text-center">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <i class="{{ m.icon }} fa-3x text-pink"></i>
+                                        </div>
+                                        <h3 class="text-white fw-bold kaizen-count" data-count-to="{{ m.value }}" data-suffix="{{ m.suffix }}">0</h3>
+                                        <p class="text-muted">{{ m.label }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <!-- Fallback estático se não houver métricas cadastradas -->
+                    <div class="col-lg-3 col-md-6"><div class="card bg-dark border-secondary h-100 text-center"><div class="card-body"><div class="mb-3"><i class="fas fa-check-circle fa-3x text-pink"></i></div><h3 class="text-white fw-bold kaizen-count" data-count-to="1500" data-suffix="+">0</h3><p class="text-muted">Vendas</p></div></div></div>
+                    <div class="col-lg-3 col-md-6"><div class="card bg-dark border-secondary h-100 text-center"><div class="card-body"><div class="mb-3"><i class="fas fa-bullseye fa-3x text-pink"></i></div><h3 class="text-white fw-bold">300%</h3><p class="text-muted">ROI médio</p></div></div></div>
+                    <div class="col-lg-3 col-md-6"><div class="card bg-dark border-secondary h-100 text-center"><div class="card-body"><div class="mb-3"><i class="fas fa-users fa-3x text-pink"></i></div><h3 class="text-white fw-bold kaizen-count" data-count-to="300" data-suffix="%">0</h3><p class="text-muted">+ de leads</p></div></div></div>
+                    <div class="col-lg-3 col-md-6"><div class="card bg-dark border-secondary h-100 text-center"><div class="card-body"><div class="mb-3"><i class="fas fa-award fa-3x text-pink"></i></div><h5 class="text-white fw-bold">Google Partner Premier</h5><p class="text-muted">Única no RS</p></div></div></div>
+                {% endif %}
+            </div>
+            <div class="row mt-5 text-center">
+                <div class="col-12">
+                    <a href="/portfolio/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-chart-line me-2"></i>VEJA OS NOSSOS CASES
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- De uma ideia ambiciosa Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        De uma ideia ambiciosa<br>
+                        para um império de<br>
+                        resultados
+                    </h2>
+                    <p class="text-white mb-4">
+                        A Kaizen nasceu de uma visão simples: transformar pequenas empresas em gigantes do mercado. 
+                        Começamos como uma startup ousada, focada em resultados que importam de verdade.
+                    </p>
+                    <p class="text-white mb-4">
+                        Hoje, somos referência em aceleração de vendas e marketing de performance. 
+                        Nossa metodologia exclusiva já transformou centenas de negócios em máquinas de vendas.
+                    </p>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-pink me-3"></i>
+                                <span class="text-white">Alta performance sempre.</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-pink me-3"></i>
+                                <span class="text-white">Engajamento e foco no sucesso.</span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-pink me-3"></i>
+                                <span class="text-white">Escalas de crescimento que mais de que dobram receitas.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="/contato/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>QUERO ESCALAR TAMBÉM
+                    </a>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative">
+                        <!-- Placeholder para imagem/gráfico -->
+                        <div class="bg-gradient rounded-circle mx-auto" style="width: 300px; height: 300px; background: linear-gradient(135deg, #ff6b6b, #ee5a24); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-rocket fa-5x text-white"></i>
+                        </div>
+                        
+                        <!-- Logos de parceiros -->
+                        <div class="row mt-4 justify-content-center">
+                            <div class="col-6">
+                                <div class="bg-white rounded p-3 mb-3">
+                                    <span class="text-dark fw-bold">monday.com</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-white rounded p-3 mb-3">
+                                    <span class="text-dark fw-bold">Kommo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CEO + Missão Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            {% for block in page.ceo %}
+                {% if block.block_type == 'ceo' %}
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5 text-center">
+                        {% if block.value.photo %}
+                            {% image block.value.photo fill-400x400 format-webp as ceo_img %}
+                            <div class="mx-auto glow-ring rounded-circle overflow-hidden" style="width: 300px; height: 300px;">
+                                <img src="{{ ceo_img.url }}" width="300" height="300" alt="{{ block.value.name }} - {{ block.value.role }}" loading="lazy" decoding="async" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                        {% else %}
+                            <div class="bg-gradient rounded-circle mx-auto glow-ring" style="width: 300px; height: 300px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user-astronaut fa-5x text-white"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-7">
+                        <h2 class="display-5 fw-bold text-white mb-2">{{ block.value.name }}</h2>
+                        <h3 class="h5 text-pink mb-4">{{ block.value.role }}</h3>
+                        {% if page.mission_title %}
+                        <h2 class="h3 text-white mb-3">{{ page.mission_title }}</h2>
+                        {% endif %}
+                        <div class="text-white mb-4">{{ page.mission_text|richtext }}</div>
+                        <div class="d-flex gap-3">
+                            {% for s in block.value.social %}
+                                <a href="{{ s.url }}" class="text-white" target="_blank" rel="noopener"><i class="fab fa-{{ s.platform }} fa-lg"></i></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Valores Section -->
+    {% if page.values_block %}
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            {% for block in page.values_block %}
+                {% if block.block_type == 'values' %}
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2 class="display-5 fw-bold text-white mb-4">{{ block.value.title }}</h2>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    {% for v in block.value.values %}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card bg-dark border-secondary h-100 text-start service-card">
+                            <div class="card-body">
+                                <div class="mb-3"><i class="{{ v.icon }} fa-2x text-pink"></i></div>
+                                <h3 class="h5 text-white fw-bold mb-2">{{ v.title }}</h3>
+                                <p class="text-muted mb-0">{{ v.text }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Unidades de Negócio Section -->
+    {% if page.units_block %}
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            {% for block in page.units_block %}
+                {% if block.block_type == 'units' %}
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2 class="display-5 fw-bold text-white mb-3">{{ block.value.title }}</h2>
+                        {% if block.value.subtitle %}<p class="lead text-white">{{ block.value.subtitle }}</p>{% endif %}
+                    </div>
+                </div>
+                <div class="row g-4">
+                    {% for u in block.value.units %}
+                    <div class="col-lg-4">
+                        <a {% if u.url %}href="{{ u.url }}"{% endif %} class="text-decoration-none">
+                            <div class="card bg-dark border-secondary h-100 text-start service-card">
+                                <div class="card-body">
+                                    <div class="mb-3"><i class="{{ u.icon }} fa-2x text-pink"></i></div>
+                                    <h3 class="h5 text-white fw-bold mb-2">{{ u.title }}</h3>
+                                    <p class="text-muted mb-0">{{ u.description }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- CTA Final -->
+    {% if page.final_cta_title %}
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a1a2a 100%);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold text-white mb-3">{{ page.final_cta_title }}</h2>
+                    <p class="lead text-white mb-0">{{ page.final_cta_subtitle }}</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <a href="{{ page.final_cta_button_url }}" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>{{ page.final_cta_button_text }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        Somos Foguetes:<br>
+                        sem freios, sem medo, sem volta
+                    </h2>
+                    <p class="lead text-white">O que diferencia a Kaizen? Nossa mentalidade de foguete:</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Já trabalhamos com</h6>
+                            <p class="text-muted">quem quer crescer exponencialmente</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Nossos clientes não</h6>
+                            <p class="text-muted">procuram, não vendem contratos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Eles entregam escala,</h6>
+                            <p class="text-muted">nem promessas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card bg-dark border-secondary h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle fa-3x text-pink"></i>
+                            </div>
+                            <h6 class="text-white fw-bold">Nossos resultados</h6>
+                            <p class="text-muted">falam certeiro, busca crescer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 text-center">
+                <div class="col-12">
+                    <a href="/contato/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>ENTRE NA ÓRBITA KAIZEN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- História Section -->
+    <div class="container-fluid py-5" style="background: linear-gradient(135deg, #2a1a2a 0%, #1a1a1a 100%);">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold text-white mb-4">{{ page.history_title }}</h2>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="timeline">
+                        <div class="card bg-dark border-secondary mb-4">
+                            <div class="card-body">
+                                <h5 class="text-pink fw-bold">Em 2015, a Kaizen nasceu como uma agência tradicional</h5>
+                                <p class="text-white">
+                                    Começamos oferecendo serviços digitais em mercados diversos. Rapidamente percebemos que o mercado 
+                                    precisava de algo mais: resultados reais, não apenas promessas.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-dark border-secondary mb-4">
+                            <div class="card-body">
+                                <h5 class="text-pink fw-bold">Nossa primeira grande fase veio quando nos especializamos</h5>
+                                <p class="text-white">
+                                    Focamos exclusivamente em empresas que queriam escalar de verdade. Desenvolvemos metodologias 
+                                    próprias e começamos a entregar resultados que chamaram atenção do mercado.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-dark border-secondary mb-4">
+                            <div class="card-body">
+                                <h5 class="text-pink fw-bold">Em 2020, evoluímos para algo maior</h5>
+                                <p class="text-white">
+                                    Nos tornamos uma aceleradora de vendas completa, oferecendo não apenas marketing, 
+                                    mas transformação total de processos comerciais.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-dark border-secondary mb-4">
+                            <div class="card-body">
+                                <h5 class="text-pink fw-bold">Hoje somos referência nacional</h5>
+                                <p class="text-white">
+                                    Mais de 1.500 vendas impossíveis realizadas, ROI médio superior a 300%, e uma metodologia 
+                                    que transforma empresas em máquinas de vendas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-5">
+                        <p class="text-white lead mb-4">
+                            Mas uma coisa nunca mudou: nossa filosofia.<br>
+                            <strong>Aqui, só decola quem está pronto para desafiar limites.</strong>
+                        </p>
+                        <p class="text-white mb-5">
+                            Se você quer ser mais um no mercado, esse não é o seu lugar. 
+                            Mas se deseja crescer de verdade, com estratégia e método, então está no ambiente certo.
+                        </p>
+                        
+                        <a href="/contato/" class="btn btn-pink btn-lg px-5 py-3">
+                            <i class="fas fa-rocket me-2"></i>ENTRE NA ÓRBITA KAIZEN
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apenas os melhores Section -->
+    <div class="container-fluid py-5" style="background: #000000;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        {{ page.team_title|richtext }}
+                    </h2>
+                    <div class="text-white mb-5">
+                        {{ page.team_text|richtext }}
+                    </div>
+                    
+                    <a href="/contato/" class="btn btn-pink btn-lg">
+                        <i class="fas fa-rocket me-2"></i>QUERO SER UM FOGUETE
+                    </a>
+                </div>
+                
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        Se seu negócio quer escalar,<br>
+                        o melhor momento para agir<br>
+                        é agora.
+                    </h2>
+                    <p class="text-white mb-5">
+                        Acelerar vendas não é sobre sorte ou timing. É sobre estratégia, execução e mentalidade certa. 
+                        Na Kaizen, você não contrata uma agência. Você ganha um parceiro de crescimento.
+                    </p>
+                    
+                    <div class="bg-gradient p-4 rounded" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
+                        <h5 class="text-white fw-bold mb-3">Pronto para decolar?</h5>
+                        <p class="text-white mb-3">
+                            Vamos conversar sobre como transformar seu negócio em uma máquina de vendas.
+                        </p>
+                        <a href="/contato/" class="btn btn-light btn-lg w-100">
+                            <i class="fas fa-phone me-2"></i>FALE COM A NOSSA EQUIPE AGORA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Structured Data Organization + Person (CEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Agência Kaizen",
+      "url": "https://www.agenciakaizen.com.br",
+      "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp"
+    }
+    {% for block in page.ceo %}{% if block.block_type == 'ceo' %}
+    ,{
+      "@type": "Person",
+      "name": "{{ block.value.name|escapejs }}",
+      "jobTitle": "{{ block.value.role|escapejs }}",
+      "worksFor": { "@type": "Organization", "name": "Agência Kaizen" }
+    }
+    {% endif %}{% endfor %}
+  ]
+}
+</script>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+<section class="ka-section" style="background:#000;">
+  <div class="container text-center mb-5">
+    <h1 class="display-4 fw-bold text-white mb-3">Transforme seu conhecimento em resultados</h1>
+    <p class="lead text-white-50">Aprenda com especialistas e descubra táticas que realmente funcionam.</p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="container mb-4">
+    <div class="d-flex gap-2 flex-wrap justify-content-center">
+      {% for c in categories %}
+        <a href="/blog/categorias/{{ c.slug }}/" class="btn btn-sm btn-outline-light">{{ c.name }}</a>
+      {% endfor %}
+      {% for t in popular_tags %}
+        <a href="/blog/tags/{{ t.slug }}/" class="btn btn-sm" style="background:rgba(214,32,66,.18); border:1px solid rgba(214,32,66,.35); color:#fff;">#{{ t.slug }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Grid de posts -->
+  <div class="container">
+    <div id="blog-grid" class="row g-4">
+      {% for post in blogpages %}
+      <div class="col-12 col-md-6 col-lg-4 blog-card" data-page="{{ blogpages.number }}">
+        <a href="{{ post.url }}" class="text-decoration-none">
+          <div class="ka-card h-100">
+            <div class="ratio ratio-16x9 rounded-top">
+              {% if post.social_image %}
+                {% image post.social_image fill-640x360 class="w-100 h-100 object-fit-cover rounded-top" loading="lazy" %}
+              {% else %}
+                <img src="{% static 'images/fundo-site-kaizen.webp' %}" alt="" class="w-100 h-100 object-fit-cover rounded-top" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="p-3">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <small class="text-white-50">{{ post.date|date:"d M Y" }}</small>
+                <small class="badge bg-dark border" style="border-color: rgba(255,255,255,.15)!important;">{{ post.reading_time }} min</small>
+              </div>
+              <h5 class="text-white mb-2">{{ post.title }}</h5>
+              {% if post.intro %}<p class="text-white-50 mb-0">{{ post.intro }}</p>{% endif %}
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Paginação/Lazyload -->
+    {% if blogpages.has_next %}
+    <div class="text-center mt-4">
+      <button id="loadMore" class="btn btn-pink" data-next="{{ blogpages.next_page_number }}">Carregar mais</button>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Lazyload de posts via paginação progressive enhancement
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('loadMore');
+  if(!btn) return;
+  const grid = document.getElementById('blog-grid');
+  btn.addEventListener('click', async () => {
+    const next = btn.dataset.next;
+    btn.disabled = true; btn.textContent = 'Carregando...';
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('page', next);
+      const res = await fetch(url.toString(), { headers: { 'X-Requested-With': 'XMLHttpRequest' }});
+      const html = await res.text();
+      // Extrai os cards da próxima página (server-side render → SEO-friendly)
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      const newCards = temp.querySelectorAll('#blog-grid .blog-card');
+      newCards.forEach(card => grid.appendChild(card));
+      const newBtn = temp.querySelector('#loadMore');
+      if(newBtn){
+        btn.dataset.next = newBtn.dataset.next;
+        btn.disabled = false; btn.textContent = 'Carregar mais';
+      } else {
+        btn.remove();
+      }
+    } catch(e){
+      btn.disabled = false; btn.textContent = 'Carregar mais';
+    }
+  });
+});
+</script>
+{% endblock %}

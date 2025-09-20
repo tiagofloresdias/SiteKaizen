@@ -1,0 +1,22 @@
+{% load static %}
+{% extends "admin/login.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin_brand.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="ak-login-gradient"></div>
+<div class="ak-login-card">
+  {{ block.super }}
+  <div class="ak-login-footer">
+    <p>Agência Kaizen • Painel Administrativo</p>
+  </div>
+  <script>
+    try { localStorage.setItem('ak-admin-theme','kaizen'); } catch(e) {}
+  </script>
+</div>
+{% endblock %}
+
+

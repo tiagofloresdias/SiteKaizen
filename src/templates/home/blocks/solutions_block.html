@@ -1,0 +1,32 @@
+{% load wagtailimages_tags %}
+<section class="py-5" style="background:#000;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-5 fw-bold text-white">{{ self.title }}</h2>
+      <p class="lead text-white-50">{{ self.subtitle }}</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      {% for section in sections %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <a href="/solucoes/{{ section.title|slugify }}/" class="text-decoration-none">
+          <div class="h-100 p-0" style="border:1px solid rgba(234,0,41,.25); border-radius:16px; background:rgba(20,20,20,.85); overflow:hidden;">
+            <div class="ratio ratio-16x9">
+              {% if section.image %}
+                {% image section.image fill-640x360 class="w-100 h-100 object-fit-cover" loading="lazy" %}
+              {% else %}
+                <div style="background:rgba(255,255,255,.04);"></div>
+              {% endif %}
+            </div>
+            <div class="p-4 text-center">
+              <h5 class="text-white mb-2">{{ section.title }}</h5>
+              <p class="text-white-50 mb-3">{{ section.subtitle }}</p>
+              <span class="btn btn-sm" style="background: linear-gradient(135deg,#ea0029,#ff6b6b); color:#fff; border:0;">Saiba mais</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+

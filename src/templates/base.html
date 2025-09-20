@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% if page and page.seo_title %}{{ page.seo_title }}{% elif page and page.title %}{{ page.title }} - Agência Kaizen{% else %}Agência Kaizen{% endif %}{% endblock %}</title>
+    
+    {% load static wagtailcore_tags site_settings_tags %}
+    
+    <!-- GTM e Analytics -->
+    {% if analytics_settings %}
+        {% include "includes/gtm_head.html" %}
+    {% endif %}
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="{% block meta_description %}{% if page and page.search_description %}{{ page.search_description }}{% else %}Agência Kaizen - Soluções digitais inovadoras para seu negócio{% endif %}{% endblock %}">
+    <meta name="keywords" content="agência digital, marketing digital, desenvolvimento web, design, SEO, agência kaizen">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}{% if page and page.title %}{{ page.title }}{% else %}Agência Kaizen{% endif %}{% endblock %} - Agência Kaizen">
+    <meta property="og:description" content="{% block og_description %}{% if page and page.search_description %}{{ page.search_description }}{% else %}Agência Kaizen - Soluções digitais inovadoras para seu negócio{% endif %}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% if page and page.hero_image %}{{ page.hero_image.url }}{% else %}https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp{% endif %}{% endblock %}">
+    
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/agenciakaizen.css' %}" rel="stylesheet">
+    <link href="{% static 'css/notifications.css' %}" rel="stylesheet">
+    <link href="{% static 'css/franchise-modal.css' %}" rel="stylesheet">
+    <link href="{% static 'css/kaizen-modern.css' %}" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Compensar header fixo */
+        body {
+            padding-top: 76px;
+        }
+        
+        /* Garantir que a modal tenha prioridade sobre outros elementos */
+        #smartModal {
+            z-index: 1050 !important;
+        }
+        
+        #smartModal .modal-dialog {
+            z-index: 1051 !important;
+        }
+        
+        #smartModal .modal-content {
+            z-index: 1052 !important;
+        }
+        
+        .modal-backdrop {
+            z-index: 1049 !important;
+        }
+        
+        /* Forçar posicionamento correto da modal */
+        .modal.show {
+            display: block !important;
+            z-index: 1050 !important;
+        }
+        
+        .modal.show .modal-dialog {
+            z-index: 1051 !important;
+        }
+        
+        .modal.show .modal-content {
+            z-index: 1052 !important;
+        }
+        
+        /* Garantir que elementos da página não interfiram com a modal */
+        .container, .container-fluid, .row, .col, .col-* {
+            z-index: auto !important;
+        }
+        
+        /* Garantir que textos e elementos de fundo não interfiram */
+        h1, h2, h3, h4, h5, h6, p, div, section, article {
+            z-index: auto !important;
+        }
+        
+        /* Garantir que botões e elementos interativos fiquem abaixo do modal */
+        .btn, button, a, .card, .badge {
+            position: relative;
+            z-index: 1 !important;
+        }
+        
+        /* Garantir que seções específicas fiquem abaixo do modal */
+        #midia-programatica, .anchor-offset {
+            position: relative;
+            z-index: 1 !important;
+        }
+        
+        /* Forçar que a modal apareça acima de tudo */
+        .modal {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 1050 !important;
+        }
+        
+        .modal-dialog {
+            position: relative !important;
+            z-index: 1051 !important;
+        }
+        
+        .modal-content {
+            position: relative !important;
+            z-index: 1052 !important;
+        }
+        
+        /* Menu responsivo */
+        .navbar-nav {
+            font-size: 0.9rem;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        
+        /* Menu ativo com barrinha vermelha */
+        .navbar-nav .nav-link.active {
+            position: relative;
+            color: #ff6b6b !important;
+        }
+        
+        .navbar-nav .nav-link.active::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background-color: #D62042;
+            border-radius: 2px;
+        }
+        
+        /* Hover effect */
+        .navbar-nav .nav-link:hover {
+            color: #ff6b6b !important;
+        }
+        
+        /* Dropdown hover effects */
+        .dropdown-menu {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            border: 1px solid #333 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+            backdrop-filter: blur(10px) !important;
+        }
+        
+        .dropdown-item {
+            color: #fff !important;
+            padding: 0.75rem 1rem !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #ff6b6b !important;
+            color: #fff !important;
+        }
+        
+        .dropdown-divider {
+            border-color: #333 !important;
+        }
+        
+        /* Responsividade do menu */
+        @media (max-width: 1200px) {
+            .navbar-nav {
+                font-size: 0.8rem;
+            }
+            .navbar-nav .nav-link {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .navbar-nav {
+                font-size: 0.9rem;
+            }
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Telefone em destaque responsivo */
+        .phone-highlight {
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 20px;
+            margin-left: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .phone-highlight {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        
+        /* Estilo do botão rosa */
+        .btn-pink {
+            background: linear-gradient(135deg, #D62042, #ff6b6b);
+            border: none;
+            color: white;
+        }
+        
+        .btn-pink:hover {
+            background: linear-gradient(135deg, #ff6b6b, #D62042);
+            color: white;
+        }
+        
+           /* Cor rosa para textos */
+           .text-pink {
+               color: #D62042 !important;
+           }
+           
+           /* Estilos para formulários com melhor contraste */
+           .form-control:focus,
+           .form-select:focus {
+               background-color: #2a2a2a !important;
+               border-color: #D62042 !important;
+               box-shadow: 0 0 0 0.2rem rgba(214, 32, 66, 0.25) !important;
+               color: white !important;
+           }
+           
+           .form-control::placeholder,
+           .form-select::placeholder {
+               color: #999 !important;
+               opacity: 1 !important;
+           }
+           
+           /* Estilo para campos de formulário melhorado */
+           .kaizen-form-control {
+               background-color: #1a1a1a !important;
+               border: 2px solid #444 !important;
+               color: white !important;
+               border-radius: 8px !important;
+               padding: 15px !important;
+               transition: all 0.3s ease !important;
+           }
+           
+           .kaizen-form-control:focus {
+               background-color: #2a2a2a !important;
+               border-color: #D62042 !important;
+               box-shadow: 0 0 0 0.2rem rgba(214, 32, 66, 0.25) !important;
+               color: white !important;
+           }
+           
+           .kaizen-form-control::placeholder {
+               color: #999 !important;
+               opacity: 1 !important;
+           }
+           
+           /* Select dropdown styling */
+           .kaizen-form-control option {
+               background-color: #1a1a1a !important;
+               color: white !important;
+           }
+           
+           .kaizen-form-control option:hover {
+               background-color: #D62042 !important;
+               color: white !important;
+           }
+
+        /* Background padrão para páginas internas */
+        .page-global-bg {
+            position: fixed;
+            top: 76px; /* compensar header fixo */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            pointer-events: none;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "url": "https://www.agenciakaizen.com.br",
+        "logo": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp",
+        "description": "Agência digital especializada em soluções inovadoras para seu negócio",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-0800-550-8000",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+   </head>
+   <body>
+       <!-- GTM Body -->
+       {% if analytics_settings %}
+           {% include "includes/gtm_body.html" %}
+       {% endif %}
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(135deg, #000000 0%, #212529 100%); backdrop-filter: blur(10px);">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+                <img src="{% static 'images/logo-kaizen-header.webp' %}" alt="Agência Kaizen" style="height: 40px;" class="me-2">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                           <li class="nav-item">
+                               <a class="nav-link text-white{% if request.path == '/' %} active{% endif %}" href="/">home</a>
+                           </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white{% if 'quem-somos' in request.path %} active{% endif %}" href="/quem-somos/">quem somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white{% if 'nossas-empresas' in request.path %} active{% endif %}" href="/nossas-empresas/">nossas empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white{% if 'onde-estamos' in request.path %} active{% endif %}" href="/onde-estamos/">onde estamos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white{% if 'aprenda-marketing-digital' in request.path %} active{% endif %}" href="/aprenda-marketing-digital/">aprenda marketing digital</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white{% if 'solucoes' in request.path %} active{% endif %}" href="/solucoes/" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Soluções de Marketing Digital e Desenvolvimento Web - Agência Kaizen">
+                            soluções
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/solucoes/#branding" title="Serviços de Branding e Identidade Visual - Agência Kaizen">Branding</a></li>
+                            <li><a class="dropdown-item" href="/solucoes/#desenvolvimento-sites" title="Desenvolvimento de Sites e Aplicações Web - Agência Kaizen">Desenvolvimento de Sites</a></li>
+                            <li><a class="dropdown-item" href="/solucoes/#marketing-digital" title="Estratégias de Marketing Digital Completo - Agência Kaizen">Marketing Digital</a></li>
+                            <li><a class="dropdown-item" href="/solucoes/#seo" title="Consultoria SEO e Otimização para Buscadores - Agência Kaizen">Consultoria SEO</a></li>
+                            <li><a class="dropdown-item" href="/solucoes/#midia-paga" title="Gestão de Mídia Paga Google Ads e Facebook Ads - Agência Kaizen">Assessoria de Mídia Paga</a></li>
+                            <li><a class="dropdown-item" href="/solucoes/#funil-marketing" title="Criação e Otimização de Funis de Marketing - Agência Kaizen">Assessoria em Funil de Marketing</a></li>
+                            <li><a class="dropdown-item" href="/solucoes/#midia-programatica" title="Mídia Programática Inteligente - Agência Kaizen">Mídia Programática</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/solucoes/" title="Conheça todas as nossas soluções de marketing digital">Ver todas as soluções</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white{% if 'contato' in request.path or 'quero-ser-um-foguete' in request.path or 'recrutamento' in request.path %} active{% endif %}" href="/contato/" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Entre em contato conosco ou junte-se à nossa equipe">
+                            contato
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/contato/" title="Fale conosco para conhecer nossas soluções">
+                                <i class="fas fa-envelope me-2"></i>Fale Conosco
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-pink fw-bold" href="/quero-ser-um-foguete/" title="Junte-se à equipe Kaizen e quero ser um foguete">
+                                <i class="fas fa-rocket me-2"></i>🚀 Quero Ser um Foguete
+                            </a></li>
+                        </ul>
+                    </li>
+                    <!-- 0800 em destaque -->
+                    <li class="nav-item">
+                        <a href="tel:08005508000" class="nav-link text-pink fw-bold phone-highlight">
+                            <i class="fas fa-phone me-1"></i>0800-550-8000
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><img src="{% static 'images/flag-br.png' %}" width="20" class="me-2">PT</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="{% static 'images/flag-us.png' %}" width="20" class="me-2">EN</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="{% static 'images/flag-es.png' %}" width="20" class="me-2">ES</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Background (internas) -->
+    {% with bg_style=get_background_style %}
+    <div class="page-global-bg" {% if bg_style %}style="{{ bg_style }}"{% else %}style="background-image: linear-gradient(180deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.95) 40%, rgba(0,0,0,1) 75%, rgba(0,0,0,1) 100%), url('{% static 'images/group-young-professionals-working-computers-modern-office@3x-scaled.webp' %}'); background-position: top center; background-size: cover; background-repeat: no-repeat; background-attachment: scroll;"{% endif %}></div>
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include "includes/footer.html" %}
+    
+    <!-- WhatsApp Fixo -->
+    <a href="https://wa.me/5508005508000?text=Olá! Vim pelo site da Agência Kaizen e gostaria de saber mais sobre os serviços." class="whatsapp-fixed" style="position: fixed; bottom: 20px; left: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000;" title="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal Inteligente Multi-Passo -->
+    {% include "includes/smart_modal.html" %}
+    
+    <!-- Modal de Franqueado -->
+    {% include "includes/franchise_modal.html" %}
+
+       <!-- JavaScript -->
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+       <script src="{% static 'js/agenciakaizen.js' %}"></script>
+       <script src="{% static 'js/notifications.js' %}"></script>
+       <script src="{% static 'js/gtm-tracking.js' %}"></script>
+       <script src="{% static 'js/i18n.js' %}"></script>
+       <script src="{% static 'js/franchise-modal.js' %}"></script>
+       
+       <!-- Tracking Events -->
+       {% if analytics_settings %}
+           {% include "includes/tracking_events.html" %}
+       {% endif %}
+       
+       <!-- Custom JavaScript -->
+       {% block extra_js %}{% endblock %}
+</body>
+</html>
+
+

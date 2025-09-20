@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+{% load blog_filters %}
+
+{% block content %}
+<!-- Hero Section do Post -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-light">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/aprenda-marketing-digital/" class="text-light">Aprenda Marketing</a></li>
+                        <li class="breadcrumb-item active text-pink" aria-current="page">{{ page.title }}</li>
+                    </ol>
+                </nav>
+
+                <!-- Título do Post -->
+                <h1 class="display-4 fw-bold text-white mb-4">{{ page.title }}</h1>
+                
+                <!-- Meta informações -->
+                <div class="d-flex flex-wrap align-items-center text-muted mb-4">
+                    <span class="me-4"><i class="fas fa-calendar-alt me-2"></i>{{ page.date|date:"d/m/Y" }}</span>
+                    <span class="me-4"><i class="fas fa-clock me-2"></i>{{ page.reading_time }} min de leitura</span>
+                    {% if page.categories.all %}
+                    <span class="me-4">
+                        <i class="fas fa-tags me-2"></i>
+                        {% for category in page.categories.all %}
+                            <span class="badge bg-secondary me-1">{{ category.name }}</span>
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                </div>
+
+                <!-- Imagem destacada -->
+                {% if page.featured_image %}
+                    {% image page.featured_image fill-1200x600 as featured_img %}
+                    <div class="mb-5">
+                        <img src="{{ featured_img.url }}" class="img-fluid rounded shadow" alt="{{ page.title }}">
+                    </div>
+                {% endif %}
+
+                <!-- Introdução -->
+                {% if page.intro %}
+                <div class="lead text-light mb-5">
+                    {{ page.intro|clean_content|richtext }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Conteúdo Principal do Post -->
+<div class="container-fluid py-5" style="background: #000000;">
+    <div class="container">
+        <div class="row">
+            <!-- Conteúdo do Post -->
+            <div class="col-lg-8 mx-auto">
+                <article class="blog-post-content">
+                    <div class="text-white">
+                        {{ page.body|clean_content|richtext }}
+                    </div>
+                </article>
+
+                <!-- Tags -->
+                {% if page.tags.all %}
+                <div class="mt-5 pt-4 border-top border-secondary">
+                    <h6 class="text-pink fw-bold mb-3">Tags:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for tag in page.tags.all %}
+                            <a href="?tag={{ tag.slug }}" class="badge bg-secondary text-decoration-none hover-pink">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Compartilhamento Social -->
+                <div class="mt-5 pt-4 border-top border-secondary">
+                    <h6 class="text-pink fw-bold mb-3">Compartilhe este post:</h6>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                           target="_blank" 
+                           class="btn btn-outline-primary btn-sm"
+                           onclick="kaizenTrack.event('social_share', {platform: 'facebook', post: '{{ page.title }}'})">
+                            <i class="fab fa-facebook-f me-2"></i>Facebook
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
+                           target="_blank" 
+                           class="btn btn-outline-primary btn-sm"
+                           onclick="kaizenTrack.event('social_share', {platform: 'linkedin', post: '{{ page.title }}'})">
+                            <i class="fab fa-linkedin-in me-2"></i>LinkedIn
+                        </a>
+                        <a href="https://wa.me/?text={{ page.title }} - {{ request.build_absolute_uri }}" 
+                           target="_blank" 
+                           class="btn btn-outline-success btn-sm"
+                           onclick="kaizenTrack.event('social_share', {platform: 'whatsapp', post: '{{ page.title }}'})">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA do Post -->
+                <div class="mt-5 p-4 rounded" style="background: linear-gradient(135deg, #D62042, #ff6b6b);">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h5 class="text-white fw-bold mb-2">Gostou do conteúdo?</h5>
+                            <p class="text-white mb-0">Que tal aplicar essas estratégias no seu negócio? Nossa equipe pode te ajudar!</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                            <a href="/contato/" 
+                               class="btn btn-light btn-lg"
+                               onclick="kaizenTrack.event('blog_cta_click', {post: '{{ page.title }}', cta_type: 'contact'})">
+                                <i class="fas fa-rocket me-2"></i>Fale Conosco
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="sticky-top" style="top: 100px;">
+                    <!-- Posts Relacionados -->
+                    <div class="bg-dark p-4 rounded shadow-sm border-secondary mb-4">
+                        <h5 class="fw-bold text-white mb-4">Posts Relacionados</h5>
+                        {% for related_post in page.get_siblings.live.public|slice:":3" %}
+                            {% if related_post.id != page.id %}
+                            <div class="mb-3">
+                                <a href="{% pageurl related_post %}" 
+                                   class="text-decoration-none"
+                                   onclick="kaizenTrack.event('related_post_click', {post: '{{ related_post.title }}'})">
+                                    <h6 class="text-light hover-pink mb-2">{{ related_post.title }}</h6>
+                                </a>
+                                <small class="text-muted">{{ related_post.date|date:"d/m/Y" }}</small>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- Categorias -->
+                    <div class="bg-dark p-4 rounded shadow-sm border-secondary mb-4">
+                        <h5 class="fw-bold text-white mb-4">Categorias</h5>
+                        <ul class="list-unstyled">
+                            {% for category in page.categories.all %}
+                                <li class="mb-2">
+                                    <a href="?category={{ category.slug }}" 
+                                       class="text-light text-decoration-none hover-pink">
+                                        <i class="fas fa-arrow-right me-2"></i>{{ category.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="bg-gradient p-4 rounded shadow-sm" style="background: linear-gradient(135deg, #D62042, #ff6b6b);">
+                        <h5 class="text-white fw-bold mb-3">Receba nossos insights</h5>
+                        <p class="text-white small mb-3">Fique por dentro das melhores estratégias de marketing digital.</p>
+                        <form action="/newsletter/" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="email" 
+                                       name="email" 
+                                       class="form-control kaizen-form-control" 
+                                       placeholder="Seu melhor e-mail" 
+                                       required>
+                            </div>
+                            <button type="submit" 
+                                    class="btn btn-light w-100"
+                                    onclick="kaizenTrack.event('newsletter_signup', {source: 'blog_sidebar'})">
+                                <i class="fas fa-envelope me-2"></i>Inscrever-se
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Posts Relacionados (Seção completa) -->
+{% if page.get_siblings.live.public.count > 1 %}
+<div class="container-fluid py-5" style="background: #1a1a1a;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="fw-bold text-white mb-5 text-center">Continue Aprendendo</h3>
+                <div class="row g-4">
+                    {% for related_post in page.get_siblings.live.public|slice:":3" %}
+                        {% if related_post.id != page.id %}
+                        <div class="col-lg-4">
+                            <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
+                                {% if related_post.featured_image %}
+                                    {% image related_post.featured_image fill-400x250 as related_img %}
+                                    <img src="{{ related_img.url }}" class="card-img-top" alt="{{ related_post.title }}">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold text-pink">{{ related_post.title }}</h5>
+                                    <p class="card-text text-muted">{{ related_post.intro|truncatewords:20 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center text-muted small mb-3">
+                                        <span><i class="fas fa-calendar-alt me-1"></i>{{ related_post.date|date:"d/m/Y" }}</span>
+                                        <span><i class="fas fa-clock me-1"></i>{{ related_post.reading_time }} min</span>
+                                    </div>
+                                    <a href="{% pageurl related_post %}" 
+                                       class="btn btn-outline-pink btn-sm"
+                                       onclick="kaizenTrack.event('related_post_click', {post: '{{ related_post.title }}'})">
+                                        Leia Mais
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Call to Action com 0800 -->
+{% include "includes/contact_bar.html" %}
+
+<!-- Structured Data para Blog Post -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ page.title }}",
+    "description": "{{ page.search_description|default:page.intro|striptags|truncatewords:30 }}",
+    "image": "{% if page.featured_image %}{{ page.featured_image.url }}{% endif %}",
+    "author": {
+        "@type": "Organization",
+        "name": "Agência Kaizen"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp"
+        }
+    },
+    "datePublished": "{{ page.date|date:'c' }}",
+    "dateModified": "{{ page.last_published_at|date:'c' }}",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ request.build_absolute_uri }}"
+    }
+}
+</script>
+{% endblock content %}
+
+{% block extra_css %}
+<style>
+    /* Estilos específicos para posts do blog */
+    .blog-post-content h2 {
+        color: #D62042;
+        font-weight: bold;
+        margin: 2rem 0 1rem 0;
+        font-size: 1.8rem;
+    }
+    
+    .blog-post-content h3 {
+        color: #ff6b6b;
+        font-weight: bold;
+        margin: 1.5rem 0 1rem 0;
+        font-size: 1.4rem;
+    }
+    
+    .blog-post-content h4 {
+        color: #ffffff;
+        font-weight: bold;
+        margin: 1.2rem 0 0.8rem 0;
+        font-size: 1.2rem;
+    }
+    
+    .blog-post-content ul, .blog-post-content ol {
+        margin: 1rem 0;
+        padding-left: 2rem;
+    }
+    
+    .blog-post-content li {
+        margin: 0.5rem 0;
+        color: #e0e0e0;
+    }
+    
+    .blog-post-content p {
+        margin: 1rem 0;
+        line-height: 1.7;
+        color: #e0e0e0;
+    }
+    
+    .blog-post-content blockquote {
+        border-left: 4px solid #D62042;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        color: #b0b0b0;
+    }
+    
+    .blog-post-content code {
+        background-color: #2a2a2a;
+        color: #ff6b6b;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+    
+    .blog-post-content pre {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+    
+    .hover-pink:hover {
+        color: #D62042 !important;
+        transition: color 0.3s ease;
+    }
+    
+    .breadcrumb {
+        background: transparent;
+        padding: 0;
+    }
+    
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: #666;
+    }
+    
+    .sticky-top {
+        position: sticky;
+        top: 100px;
+    }
+</style>
+{% endblock %}

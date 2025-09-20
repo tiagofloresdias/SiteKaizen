@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatura Recebida - Agência Kaizen</title>
+    <style>
+        /* Reset e configurações base */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+        
+        /* Estilos principais */
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ea0029 0%, #ff6b6b 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .message {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ea0029;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box h3 {
+            color: #ea0029;
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        
+        .next-steps {
+            background-color: #e8f5e8;
+            border: 1px solid #d4edda;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .next-steps h3 {
+            color: #155724;
+            font-size: 18px;
+            margin: 0 0 15px 0;
+        }
+        
+        .next-steps ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .next-steps li {
+            color: #155724;
+            margin-bottom: 8px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ea0029, #ff6b6b);
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px 0;
+            text-align: center;
+            border: none;
+        }
+        
+        .footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        
+        .contact-info {
+            font-size: 14px;
+            color: #cccccc;
+            margin-top: 20px;
+        }
+        
+        .contact-info a {
+            color: #ea0029;
+            text-decoration: none;
+        }
+        
+        /* Responsividade */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+            .content {
+                padding: 20px 15px !important;
+            }
+            .header {
+                padding: 30px 15px !important;
+            }
+            .header h1 {
+                font-size: 24px !important;
+            }
+            .cta-button {
+                display: block !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp" alt="Agência Kaizen" class="logo">
+            <h1>🚀 Candidatura Recebida!</h1>
+        </div>
+        
+        <!-- Conteúdo Principal -->
+        <div class="content">
+            <div class="greeting">
+                Olá, {{ application.full_name }}!
+            </div>
+            
+            <div class="message">
+                Recebemos sua candidatura com muito entusiasmo! Estamos animados para conhecer mais sobre você e suas experiências.
+            </div>
+            
+            <div class="highlight-box">
+                <h3>📋 Sua Candidatura</h3>
+                <p><strong>Área de Interesse:</strong> {{ application.get_desired_area_display }}</p>
+                <p><strong>Experiência:</strong> {{ application.experience_years }} anos</p>
+                <p><strong>Escolaridade:</strong> {{ application.get_education_level_display }}</p>
+                <p><strong>Disponibilidade:</strong> {{ application.get_availability_display }}</p>
+            </div>
+            
+            <div class="next-steps">
+                <h3>🔄 Próximos Passos</h3>
+                <ul>
+                    <li>Nossa equipe de RH analisará sua candidatura em até 48 horas</li>
+                    <li>Seu perfil será avaliado pela área de interesse selecionada</li>
+                    <li>Entraremos em contato via email ou telefone para próximas etapas</li>
+                    <li>Você receberá feedback sobre o processo seletivo</li>
+                </ul>
+            </div>
+            
+            <div class="message">
+                <strong>Por que escolhemos você?</strong><br>
+                Sua experiência em <strong>{{ application.get_desired_area_display }}</strong> e sua motivação para fazer parte da nossa equipe chamaram nossa atenção. Estamos ansiosos para conhecer mais sobre seus objetivos de carreira e como podemos crescer juntos!
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://www.agenciakaizen.com.br/" class="cta-button">
+                    Conheça Mais Sobre a Kaizen
+                </a>
+            </div>
+            
+            <div class="message">
+                <strong>💡 Dica:</strong> Acompanhe nossas redes sociais para ficar por dentro das novidades e cultura da empresa!
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <img src="https://www.agenciakaizen.com.br/static/images/logo-kaizen-header.webp" alt="Agência Kaizen" class="footer-logo">
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/KaizenMarketingDigital/" target="_blank">📘 Facebook</a>
+                <a href="https://instagram.com/digitalkaizen" target="_blank">📷 Instagram</a>
+                <a href="https://www.linkedin.com/company/kaizenmarketingdigital/" target="_blank">💼 LinkedIn</a>
+            </div>
+            
+            <div class="contact-info">
+                <p><strong>Agência Kaizen</strong><br>
+                Marketing Digital de Alta Performance</p>
+                <p>📞 <a href="tel:08005508000">0800-550-8000</a><br>
+                ✉️ <a href="mailto:rh@agenciakaizen.com.br">rh@agenciakaizen.com.br</a><br>
+                🌐 <a href="https://www.agenciakaizen.com.br">www.agenciakaizen.com.br</a></p>
+                
+                <p style="font-size: 12px; color: #999; margin-top: 20px;">
+                    Este email foi enviado para {{ application.email }} em resposta à sua candidatura.<br>
+                    Se você não se candidatou, por favor ignore este email.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
