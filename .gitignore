@@ -62,6 +62,8 @@ node_modules/
 # Backup files
 *.bak
 *.backup
+*.sql
+agenci93_wp177.sql
 
 # Cache
 .cache/
