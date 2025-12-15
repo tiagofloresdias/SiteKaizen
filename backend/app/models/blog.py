@@ -43,50 +43,7 @@ class Tag(Base):
         return f"<Tag {self.name}>"
 
 
-# ArticleCategory já está definido em app.models.article
-# Importar de lá para evitar duplicação
-from app.models.article import ArticleCategory
-
-
-class Article(Base):
-    """Artigo/Blog Post - Migrado de BlogPage"""
-    __tablename__ = "articles"
-
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    title = Column(String(255), nullable=False, index=True)
-    slug = Column(String(255), nullable=False, unique=True, index=True)
-    
-    # Conteúdo
-    intro = Column(String(250), nullable=True)  # Migrado de intro
-    body = Column(Text, nullable=False)  # Migrado de body (RichTextField)
-    
-    # Datas
-    date = Column(Date, nullable=False, index=True)  # Data de publicação
-    published_at = Column(DateTime(timezone=True), nullable=True, index=True)
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    
-    # Status e destaque
-    is_featured = Column(Boolean, default=False, nullable=False, index=True)
-    is_published = Column(Boolean, default=True, nullable=False, index=True)
-    is_live = Column(Boolean, default=True, nullable=False, index=True)  # Equivalente ao live() do Wagtail
-    
-    # Metadata
-    reading_time = Column(Integer, default=5)  # minutos
-    
-    # SEO
-    meta_description = Column(String(160), nullable=True)
-    meta_keywords = Column(String(255), nullable=True)
-    seo_title = Column(String(255), nullable=True)
-    
-    # Imagens
-    cover_image_url = Column(String(500), nullable=True)
-    social_image_url = Column(String(500), nullable=True)
-    
-    # Relationships
-    categories = relationship("ArticleCategory", secondary=article_categories_assoc, back_populates="articles")
-    tags = relationship("Tag", secondary=article_tags, back_populates="articles")
-    
-    def __repr__(self):
-        return f"<Article {self.title}>"
+# ArticleCategory e Article já estão definidos em app.models.article
+# Não duplicar aqui - usar os modelos de article.py
+# As tabelas de associação (article_tags, article_categories_assoc) são usadas pelos modelos de article.py
 

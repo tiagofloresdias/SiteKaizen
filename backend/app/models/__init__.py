@@ -2,7 +2,7 @@
 Modelos SQLAlchemy - Importação centralizada
 """
 from app.models.article import Article, ArticleCategory
-from app.models.blog import Tag, Article as BlogArticle
+from app.models.blog import Tag
 from app.models.portfolio import PortfolioItem, PortfolioCategory, PortfolioGalleryImage
 from app.models.page import StandardPage
 from app.models.contact import Newsletter, ContactMessage
