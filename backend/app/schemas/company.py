@@ -81,6 +81,24 @@ class Company(CompanyBase):
         from_attributes = True
 
 
+class CompanyUpdate(BaseModel):
+    """Schema para atualizar empresa - todos os campos opcionais"""
+    name: Optional[str] = Field(None, max_length=100)
+    slug: Optional[str] = Field(None, max_length=100)
+    tagline: Optional[str] = Field(None, max_length=200)
+    description: Optional[str] = None
+    logo_url: Optional[str] = Field(None, max_length=500)
+    featured_image_url: Optional[str] = Field(None, max_length=500)
+    website_url: Optional[str] = Field(None, max_length=500)
+    contact_email: Optional[str] = Field(None, max_length=255)
+    phone: Optional[str] = Field(None, max_length=20)
+    is_active: Optional[bool] = None
+    order: Optional[int] = Field(None, ge=0)
+    meta_description: Optional[str] = Field(None, max_length=160)
+    founded_date: Optional[date] = None
+    category_id: Optional[UUID] = None
+
+
 class CompanyList(BaseModel):
     """Schema para lista de empresas"""
     data: List[Company]
