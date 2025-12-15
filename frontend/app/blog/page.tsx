@@ -21,7 +21,7 @@ export default async function BlogPage() {
 
   const breadcrumbItems = [
     { name: 'Home', url: '/' },
-    { name: 'Blog', url: '/blog' },
+    { name: 'Aprenda Marketing', url: '/aprenda-marketing' },
   ]
 
   return (
@@ -53,7 +53,7 @@ export default async function BlogPage() {
               {articles.map((article) => (
                 <Link
                   key={article.id}
-                  href={`/blog/${article.slug}`}
+                  href={`/aprenda-marketing/${article.slug}`}
                   className="ka-card p-6 block group"
                 >
                   {article.cover_image_url && (

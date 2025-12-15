@@ -64,7 +64,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
   const breadcrumbItems = [
     { name: 'Home', url: '/' },
-    { name: 'Blog', url: '/blog' },
+    { name: 'Aprenda Marketing', url: '/aprenda-marketing' },
     { name: article.title },
   ]
 
@@ -165,7 +165,7 @@ export default async function ArticlePage({ params }: PageProps) {
               <Link href="/contato" className="btn-primary text-lg px-8 py-4">
                 Fale Conosco
               </Link>
-              <Link href="/blog" className="btn-outline text-lg px-8 py-4">
+              <Link href="/aprenda-marketing" className="btn-outline text-lg px-8 py-4">
                 Ver Mais Artigos
               </Link>
             </div>

@@ -180,7 +180,7 @@ export function generateArticleSchema(article: {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    '@id': `${siteUrl}/blog/${article.slug}`,
+    '@id': `${siteUrl}/aprenda-marketing/${article.slug}`,
     headline: article.title,
     description: article.description || '',
     image: article.image ? (article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`) : undefined,

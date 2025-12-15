@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const sitemapData = await getSitemapData().catch(() => ({
       companies: [],
       articles: [],
-      static_pages: ['/', '/nossas-empresas', '/blog', '/onde-estamos', '/contato'],
+      static_pages: ['/', '/nossas-empresas', '/aprenda-marketing', '/onde-estamos', '/contato'],
     }))
 
     const staticPages: MetadataRoute.Sitemap = sitemapData.static_pages.map((path) => ({
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
     const articlePages: MetadataRoute.Sitemap = sitemapData.articles.map((slug) => ({
-      url: `${siteUrl}/blog/${slug}`,
+      url: `${siteUrl}/aprenda-marketing/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.6,
@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
       },
       {
-        url: `${siteUrl}/blog`,
+        url: `${siteUrl}/aprenda-marketing`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.8,
