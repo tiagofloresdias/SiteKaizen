@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-poppins: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Cores Kaizen */
+  --ka-pink: #D62042;
+  --ka-pink-2: #ff6b6b;
+  --ka-dark: #0b0b0c;
+  --ka-dark-2: #141416;
+  --ka-border: rgba(255, 255, 255, 0.12);
+  --ka-tint: rgba(214, 32, 66, 0.18);
+  --ka-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-inter);
+  color: #e9eaee;
+  background: #000;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-light text-white font-bold rounded-xl px-6 py-3 transition-all duration-300;
+    background: linear-gradient(135deg, var(--ka-pink), var(--ka-pink-2));
+  }
+  
+  .btn-primary:hover {
+    filter: brightness(1.05);
+  }
+  
+  .btn-outline {
+    @apply border-2 text-white font-bold rounded-xl px-6 py-3 transition-all duration-300 bg-transparent;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  .btn-outline:hover {
+    border-color: rgba(214, 32, 66, 0.5);
+  }
+  
+  .section-dark {
+    @apply bg-black;
+  }
+  
+  .ka-card {
+    @apply rounded-2xl backdrop-blur-lg;
+    background-color: rgba(20, 20, 22, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--ka-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  
+  .ka-card:hover {
+    @apply -translate-y-1;
+    border-color: rgba(214, 32, 66, 0.35);
+    box-shadow: 0 18px 50px rgba(214, 32, 66, 0.18);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--ka-pink), var(--ka-pink-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

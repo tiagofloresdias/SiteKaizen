@@ -1,0 +1,61 @@
+{
+  "site_url": "https://agenciakaizen.com.br/",
+  "pages_scraped": [
+    "https://agenciakaizen.com.br/",
+    "https://agenciakaizen.com.br/nossas-empresas/"
+  ],
+  "assets": {
+    "backgrounds": [
+      "img/backgrounds/7324d1f9-vector-smart-object_106y021000000000000028@3x.webp",
+      "img/backgrounds/PRINCIPAL-COM-SOBRA@3x.webp",
+      "img/backgrounds/1Black-White-1@3x.webp",
+      "img/backgrounds/check_1292834@3x.webp",
+      "img/backgrounds/3Vector-Smart-Object@3x.webp",
+      "img/backgrounds/Layer-8@3x.webp",
+      "img/backgrounds/Agrupar-1@3x.webp",
+      "img/backgrounds/CASES.webp",
+      "img/backgrounds/ap_badge.webp",
+      "img/backgrounds/CASES@3x-scaled.webp",
+      "img/backgrounds/view-futuristic-space-rocket@3x-scaled.webp",
+      "img/backgrounds/flags@2x.png",
+      "img/backgrounds/Asset-36@3x.webp",
+      "img/backgrounds/Camada-1@3x-scaled.webp",
+      "img/backgrounds/6Vector-Smart-Object-copy-11@3x.webp",
+      "img/backgrounds/1Vector-Smart-Object@3x.webp",
+      "img/backgrounds/4Vector-Smart-Object@3x.webp",
+      "img/backgrounds/flags.png",
+      "img/backgrounds/Asset-30@3x.webp",
+      "img/backgrounds/location-1@3x.webp",
+      "img/backgrounds/futuristic-space-rocket-with-fantasy-design@3x-1-scaled.webp",
+      "img/backgrounds/businessmen-handshake@3x-scaled.webp",
+      "img/backgrounds/activecampaign.webp",
+      "img/backgrounds/group-young-professionals-working-computers-modern-office@3x-scaled.webp",
+      "img/backgrounds/2Vector-Smart-Object@3x.webp",
+      "img/backgrounds/Badge-dark-300x113@3x.webp",
+      "img/backgrounds/4Brightness_Contrast-1@3x.webp",
+      "img/backgrounds/5Vector-Smart-Object-copy-7@3x.webp",
+      "img/backgrounds/linha-copy@3x.webp",
+      "img/backgrounds/Fundo-WhatsApp.webp",
+      "img/backgrounds/grafico@3x-scaled.webp",
+      "img/backgrounds/selo_platinum_2025_atualizado-300x150.webp"
+    ],
+    "icons": [
+      "img/icons/cropped-cropped-agenciakaizen-180x180.webp",
+      "img/icons/cropped-cropped-agenciakaizen-32x32.webp",
+      "img/icons/cropped-cropped-agenciakaizen-192x192.webp"
+    ],
+    "logos": [
+      "img/logos/logo@3x.webp",
+      "img/logos/logo-kaizen-rcmkpcegw8gcgamvtd1qq18lfsij7t4rrmdx1xv8ms.webp",
+      "img/logos/logo2@3x.webp",
+      "img/logos/2Logo_unimed1@3x.webp",
+      "img/logos/3Copia-de-_Logotipo-03-copia@3x.webp",
+      "img/logos/monday.com-white-logo-300x87@3x.webp"
+    ],
+    "fonts": []
+  },
+  "total_backgrounds": 32,
+  "total_icons": 3,
+  "total_logos": 6,
+  "total_fonts": 0
+}
