@@ -1,225 +1,131 @@
-# 🤖 Agência Kaizen CMS + Agente de IA
+# 🚀 Site Kaizen - FastAPI + Next.js + PostgreSQL
 
-Sistema completo de gerenciamento de conteúdo com **Agente de IA avançado** para criação automática de posts e páginas evergreen, construído com Django, Wagtail e CrewAI.
+## 📋 Estrutura do Projeto
 
-## ✨ Principais Funcionalidades
+```
+/var/www/agenciakaizen/
+├── backend/          # FastAPI Backend (PostgreSQL)
+│   ├── app/
+│   │   ├── api/v1/   # Endpoints REST
+│   │   ├── core/     # Auth, templates
+│   │   ├── models/   # SQLAlchemy models
+│   │   └── schemas/  # Pydantic schemas
+│   └── scripts/      # Scripts utilitários
+├── frontend/         # Next.js Frontend
+│   ├── app/          # App Router
+│   ├── components/   # Componentes React
+│   └── lib/          # Utilitários e API client
+└── src/              # Django/Wagtail (legado - em migração)
+```
 
-### 🤖 Agente de IA Inteligente
-- **Criação Automática de Conteúdo**: Posts de blog e páginas evergreen
-- **3 Agentes Especializados**: Pesquisador, Escritor e Editor
-- **Otimização SEO**: Conteúdo otimizado para mecanismos de busca
-- **Integração Completa**: API REST integrada com o sistema de blog
+## 🔧 Configuração
 
-### 📝 Sistema de Blog Completo
-- **Gerenciamento de Posts**: Criação, edição e publicação
-- **Páginas Evergreen**: Conteúdo atemporal otimizado para SEO
-- **API REST**: Endpoints completos para integração
-- **Categorias e Tags**: Organização inteligente de conteúdo
+### Backend FastAPI
 
-### 🎯 SEO e Performance
-- **Otimização Automática**: Meta tags, títulos e descrições
-- **Estrutura Semântica**: H1, H2, H3 otimizados
-- **Call-to-Actions**: CTAs relevantes e estratégicos
-- **Analytics Integrado**: Acompanhamento de performance
-
-## 🚀 Instalação Rápida
-
-### 1. Clone e Configure
+**Sempre usar venv isolado**:
 ```bash
-git clone <repository-url>
-cd agenciakaizen
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
+cd /var/www/agenciakaizen/backend
+source ../venv/bin/activate  # ou backend/venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### 2. Instale Dependências
-```bash
-pip install -r src/requirements.txt
-```
-
-### 3. Configure o Sistema
-```bash
-# Configure o agente de IA
-python cli/setup_ai_agent.py
-
-# Configure variáveis de ambiente
-cp env.example .env
-# Edite .env com suas chaves de API
-```
-
-### 4. Execute o Sistema
-```bash
-cd src
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
-```
-
-## 🤖 Como Usar o Agente de IA
-
-### Criar um Post de Blog
-```bash
-python cli/ai_content_agent.py \
-  --topic "Marketing Digital 2024" \
-  --audience "empresários" \
-  --words 1500
-```
-
-### Criar Página Evergreen
-```bash
-python cli/ai_content_agent.py \
-  --topic "Guia Completo de SEO" \
-  --type evergreen \
-  --keyword "seo" \
-  --audience "pequenos empresários"
-```
-
-### Testar o Sistema
-```bash
-python cli/test_ai_agent.py
-```
-
-## 🔌 API REST
-
-### Endpoints Principais
-- `GET /api/blog/posts/` - Listar posts
-- `POST /api/blog/posts/` - Criar post
-- `GET /api/blog/evergreen/` - Listar páginas evergreen
-- `GET /api/blog/stats/` - Estatísticas do blog
-
-### Exemplo de Uso
-```bash
-# Listar posts
-curl -H "Authorization: Token your_token" \
-     http://localhost:8000/api/blog/posts/
-
-# Criar post via API
-curl -X POST \
-     -H "Authorization: Token your_token" \
-     -H "Content-Type: application/json" \
-     -d '{"title": "Novo Post", "intro": "Introdução", "body": "<p>Conteúdo</p>"}' \
-     http://localhost:8000/api/blog/posts/
-```
-
-## 🏗️ Arquitetura
-
-```
-Agência Kaizen CMS
-├── 🤖 Agente de IA (CrewAI)
-│   ├── 🔍 Pesquisador de Conteúdo
-│   ├── ✍️ Escritor de Conteúdo
-│   └── 📝 Editor de Conteúdo
-├── 📝 Sistema de Blog (Wagtail)
-│   ├── Posts do Blog
-│   ├── Páginas Evergreen
-│   └── Categorias e Tags
-├── 🔌 API REST (Django REST Framework)
-│   ├── Endpoints de Posts
-│   ├── Endpoints de Páginas
-│   └── Estatísticas e Analytics
-└── 🎨 Frontend Responsivo
-    ├── Templates Otimizados
-    ├── Design Moderno
-    └── SEO-Friendly
-```
-
-## 📚 Documentação Completa
-
-### 🚀 Início Rápido
-- [Instalação e Configuração](docs/instalacao.md)
-- [Primeiros Passos](docs/primeiros-passos.md)
-- [Configuração do Agente de IA](docs/agente-ia-setup.md)
-
-### 🤖 Agente de IA
-- [Visão Geral do Agente](docs/agente-ia-overview.md)
-- [Como Usar o Agente](docs/agente-ia-uso.md)
-- [API do Blog](docs/api-blog.md)
-- [Tools e Integrações](docs/tools-integracao.md)
-
-### 🔧 Desenvolvimento
-- [Troubleshooting](docs/troubleshooting.md)
-- [Contribuindo](docs/contribuindo.md)
-- [Deploy](docs/deploy.md)
-
-## 🎯 Casos de Uso
-
-### Para Agências de Marketing
-- Criação automática de conteúdo para clientes
-- Páginas evergreen para SEO
-- Integração com sistemas existentes
-
-### Para Empresas
-- Blog corporativo automatizado
-- Conteúdo otimizado para SEO
-- Redução de custos com criação de conteúdo
-
-### Para Desenvolvedores
-- API REST completa
-- Integração com sistemas externos
-- Automação de workflows de conteúdo
-
-## 🔧 Configuração Avançada
-
-### Variáveis de Ambiente
+**Variáveis de ambiente** (`.env`):
 ```env
-# OpenAI (obrigatório)
-OPENAI_API_KEY=sk-your-key-here
-
-# Django
-SECRET_KEY=your-secret-key
-DEBUG=True
-
-# Email
-SENDGRID_API_KEY=your-sendgrid-key
-DEFAULT_FROM_EMAIL=noreply@www.agenciakaizen.com.br
-
-# API do Blog
-BLOG_API_TOKEN=your-blog-token
+DB_NAME=agenciakaizen_cms
+DB_USER=postgres
+DB_PASSWORD=senha
+DB_HOST=localhost
+DB_PORT=5432
+SECRET_KEY=seu-secret-key-aqui
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
-### Personalização do Agente
-```python
-# Configurações personalizadas
-CREWAI_CONFIG = {
-    'MODEL_NAME': 'gpt-4o-mini',
-    'TEMPERATURE': 0.7,
-    'MAX_TOKENS': 4000,
-}
+**Rodar servidor**:
+```bash
+cd /var/www/agenciakaizen/backend
+source ../venv/bin/activate
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8006
 ```
 
-## 📊 Métricas e Analytics
+### Frontend Next.js
 
-- **Posts Criados**: Contagem automática
-- **Performance SEO**: Otimização contínua
-- **Engajamento**: CTAs e conversões
-- **Qualidade**: Revisão automática
+```bash
+cd /var/www/agenciakaizen/frontend
+npm install
+npm run dev  # Desenvolvimento
+npm run build  # Produção
+```
 
-## 🚨 Suporte e Troubleshooting
+**Variáveis de ambiente** (Vercel):
+```env
+NEXT_PUBLIC_API_URL=https://site2025.agenciakaizen.com.br/api/v1
+NEXT_PUBLIC_SITE_URL=https://site2025.agenciakaizen.com.br
+```
 
-### Problemas Comuns
-- [Troubleshooting Completo](docs/troubleshooting.md)
-- [Teste do Sistema](cli/test_ai_agent.py)
-- [Logs e Monitoramento](docs/monitoramento.md)
+## 🌐 Nginx - Proxy Reverso
 
-### Contato
-- **Email**: comercial@www.agenciakaizen.com.br
-- **Documentação**: [docs/](docs/)
-- **Issues**: Repositório do projeto
+**Configuração**: `/etc/nginx/sites-available/site2025.agenciakaizen.com.br`
 
-## 🎉 Próximos Passos
+- `/api/*` → FastAPI (porta 8006)
+- `/*` → Next.js (porta 3000 local ou Vercel)
 
-1. **Configure sua chave da OpenAI** no arquivo `.env`
-2. **Execute o teste** com `python cli/test_ai_agent.py`
-3. **Crie seu primeiro post** com o agente de IA
-4. **Explore a API** em `http://localhost:8000/api/blog/`
-5. **Consulte a documentação** em `docs/`
+## 🔐 Autenticação JWT
 
-## 📄 Licença
+### Criar Primeiro Admin
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+```bash
+cd /var/www/agenciakaizen/backend
+source ../venv/bin/activate
+python scripts/create_admin_user.py
+```
+
+### Endpoints
+
+- `POST /api/v1/auth/login/json` - Login
+- `GET /api/v1/auth/me` - Usuário atual
+- `POST /api/v1/auth/register` - Registrar (admin only)
+- `GET /api/v1/admin/users` - Listar usuários (admin)
+
+## 📦 Banco de Dados
+
+**PostgreSQL** - Único banco de dados (sem MongoDB)
+
+**Migrações Alembic**:
+```bash
+cd /var/www/agenciakaizen/backend
+source ../venv/bin/activate
+alembic revision --autogenerate -m "Descrição"
+alembic upgrade head
+```
+
+## 🚀 Deploy
+
+### Frontend (Vercel)
+1. Conectar repositório GitHub
+2. Configurar variáveis de ambiente
+3. Deploy automático
+
+### Backend (Servidor)
+1. Atualizar código: `git pull`
+2. Ativar venv: `source venv/bin/activate`
+3. Instalar dependências: `pip install -r backend/requirements.txt`
+4. Rodar migrações: `alembic upgrade head`
+5. Reiniciar serviço: `systemctl restart agenciakaizen-api.service`
+
+## 📝 Notas Importantes
+
+- ✅ **Sempre usar venv isolado** para Python
+- ✅ PostgreSQL como banco único
+- ✅ JWT para autenticação
+- ✅ Nginx gerencia roteamento
+- ✅ Sem conflitos de porta
+
+## 🔗 Links Úteis
+
+- **Repositório**: https://github.com/tiagofloresdias/SiteKaizen
+- **Site**: https://site2025.agenciakaizen.com.br
+- **API Docs**: https://site2025.agenciakaizen.com.br/api/docs
 
 ---
 
-**Desenvolvido com ❤️ pela Agência Kaizen**  
-**Powered by CrewAI + OpenAI GPT-4**
-
+**Desenvolvido com ❤️ pela Agência Kaizen**
