@@ -10,14 +10,87 @@ export const metadata: Metadata = {
   description: 'Mais que uma agência, um ecossistema de crescimento. Conheça as empresas do Grupo Kaizen que aceleram negócios em diferentes áreas.',
 }
 
+// Dados estáticos das empresas (fallback caso API não retorne)
+const defaultCompanies = [
+  {
+    id: '1',
+    name: 'Agência Kaizen',
+    slug: 'agencia-kaizen',
+    tagline: 'Marketing Digital de Alta Performance',
+    description: 'A <strong>Agência Kaizen</strong> é a principal empresa do grupo, especializada em marketing digital de performance. Google Partner Premier, ajudamos empresas a escalar suas vendas com estratégias afiadas, dados precisos e um time de elite.<br/><br/>Desde 2015, já ajudamos mais de 1.000 empresas a crescerem exponencialmente.',
+    logo_url: '/img/logos/logo-kaizen-header.webp',
+    website_url: 'https://www.agenciakaizen.com.br',
+    is_active: true,
+    order: 0,
+  },
+  {
+    id: '2',
+    name: 'Leadspot',
+    slug: 'leadspot',
+    tagline: 'Geração de Leads Qualificados',
+    description: '<strong>Leadspot</strong> é a empresa do grupo especializada em geração de leads qualificados B2B. Utilizamos tecnologia de ponta e estratégias data-driven para conectar empresas aos seus clientes ideais.<br/><br/>Nossa plataforma proprietária identifica, qualifica e nutre leads até que estejam prontos para a conversão.',
+    logo_url: '/img/logo-leadspot.webp',
+    website_url: 'https://www.leadspot.com.br',
+    is_active: true,
+    order: 1,
+  },
+  {
+    id: '3',
+    name: 'Launcher',
+    slug: 'launcher',
+    tagline: 'Estratégia, Escala e Resultados Reais',
+    description: '<strong>Launcher</strong> é especializada em acelerar o crescimento de infoprodutores e criadores de conteúdo. Oferecemos estratégias completas de lançamento, automação e escalabilidade para transformar conhecimento em negócios de sucesso.',
+    logo_url: '/img/logo-launcher.webp',
+    website_url: 'https://www.launcherx.com.br',
+    is_active: true,
+    order: 2,
+  },
+  {
+    id: '4',
+    name: 'Hacker das Vendas',
+    slug: 'hacker-das-vendas',
+    tagline: 'Consultoria e Mentoria Estratégica',
+    description: '<strong>Hacker das Vendas</strong> oferece consultoria e mentoria estratégica para escalar o crescimento de negócios. Com metodologias comprovadas e insights de mercado, ajudamos empresas a hackear o sistema de vendas e alcançar resultados exponenciais.',
+    logo_url: '/img/logo-hacker-das-vendas.webp',
+    website_url: 'https://www.hackerdasvendas.com.br',
+    is_active: true,
+    order: 3,
+  },
+  {
+    id: '5',
+    name: 'Fluxo',
+    slug: 'fluxo',
+    tagline: 'Automação, Eficiência e Escalabilidade',
+    description: '<strong>Fluxo</strong> é nossa solução de automação e eficiência operacional. Desenvolvemos sistemas e processos que eliminam gargalos, otimizam recursos e permitem que empresas escalem sem aumentar proporcionalmente os custos operacionais.',
+    logo_url: '/img/logo-fluxo.webp',
+    website_url: 'https://lp.agenciakaizen.com.br/fluxo/',
+    is_active: true,
+    order: 4,
+  },
+]
+
 export default async function NossasEmpresasPage() {
   let companies: Company[] = []
   try {
     const companiesResponse = await getCompanies({ is_active: true, limit: 100 })
     companies = companiesResponse.data || []
   } catch (error) {
-    console.warn('Erro ao buscar empresas:', error)
-    companies = []
+    console.warn('Erro ao buscar empresas da API, usando dados estáticos:', error)
+  }
+
+  // Usar dados estáticos se API não retornar empresas
+  if (companies.length === 0) {
+    companies = defaultCompanies as Company[]
+  } else {
+    // Mesclar com dados estáticos para garantir que todas apareçam
+    const staticSlugs = new Set(defaultCompanies.map(c => c.slug))
+    const apiSlugs = new Set(companies.map(c => c.slug))
+    const missingCompanies = defaultCompanies.filter(c => !apiSlugs.has(c.slug))
+    companies = [...companies, ...missingCompanies as Company[]].sort((a, b) => {
+      const aOrder = 'order' in a ? a.order : 0
+      const bOrder = 'order' in b ? b.order : 0
+      return aOrder - bOrder
+    })
   }
 
   const organizationSchema = generateOrganizationSchema()
@@ -55,49 +128,53 @@ export default async function NossasEmpresasPage() {
         {/* Companies Grid */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            {companies.length === 0 ? (
-              <div className="text-center py-20">
-                <p className="text-text-muted text-lg">
-                  Nenhuma empresa cadastrada no momento.
-                </p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {companies.map((company) => (
-                  <Link
-                    key={company.id}
-                    href={`/nossas-empresas/${company.slug}`}
-                    className="ka-card p-6 block group"
-                  >
-                    {company.logo_url && (
-                      <div className="mb-4">
-                        <Image
-                          src={company.logo_url}
-                          alt={company.name}
-                          width={200}
-                          height={80}
-                          className="h-16 w-auto object-contain"
-                        />
-                      </div>
-                    )}
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
-                      {company.name}
-                    </h3>
-                    {company.tagline && (
-                      <p className="text-primary mb-4 font-medium">{company.tagline}</p>
-                    )}
-                    {company.description && (
-                      <p className="text-text-muted line-clamp-3" dangerouslySetInnerHTML={{ __html: company.description }} />
-                    )}
-                    {company.website_url && (
-                      <span className="inline-block mt-4 text-primary text-sm font-medium group-hover:underline">
-                        Saiba mais →
-                      </span>
-                    )}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {companies.map((company) => (
+                <div
+                  key={company.id}
+                  className="ka-card p-6 group"
+                >
+                  {company.logo_url && (
+                    <div className="mb-6 flex items-center justify-center h-20">
+                      <Image
+                        src={company.logo_url}
+                        alt={company.name}
+                        width={200}
+                        height={80}
+                        className="max-h-16 w-auto object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+                      />
+                    </div>
+                  )}
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    {company.name}
+                  </h3>
+                  {company.tagline && (
+                    <p className="text-primary mb-4 font-semibold text-sm uppercase tracking-wide">
+                      {company.tagline}
+                    </p>
+                  )}
+                  {company.description && (
+                    <div 
+                      className="text-text-muted text-sm leading-relaxed mb-4 line-clamp-4"
+                      dangerouslySetInnerHTML={{ __html: company.description }} 
+                    />
+                  )}
+                  {company.website_url && (
+                    <a
+                      href={company.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center mt-4 text-primary text-sm font-medium group-hover:underline transition-all"
+                    >
+                      Saiba mais
+                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </div>
