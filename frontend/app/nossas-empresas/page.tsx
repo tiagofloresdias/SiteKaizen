@@ -27,8 +27,8 @@ const defaultCompanies = [
     id: '2',
     name: 'Leadspot',
     slug: 'leadspot',
-    tagline: 'Geração de Leads Qualificados',
-    description: '<strong>Leadspot</strong> é a empresa do grupo especializada em geração de leads qualificados B2B. Utilizamos tecnologia de ponta e estratégias data-driven para conectar empresas aos seus clientes ideais.<br/><br/>Nossa plataforma proprietária identifica, qualifica e nutre leads até que estejam prontos para a conversão.',
+    tagline: 'CRM para Negócios Locais',
+    description: '<strong>Leadspot</strong> é o CRM desenvolvido para negócios locais se conectarem com seus clientes durante toda a jornada.<br/><br/>Com tecnologia própria e processos otimizados, nossa solução permite gestão inteligente de leads, automação, integração com Hotspot, gravação de chamadas e insights estratégicos para que nenhuma oportunidade seja desperdiçada.',
     logo_url: '/img/logo-leadspot.webp',
     website_url: 'https://www.leadspot.com.br',
     is_active: true,
@@ -135,21 +135,19 @@ export default async function NossasEmpresasPage() {
                   className="ka-card p-6 group"
                 >
                   {company.logo_url && (
-                    <div className="mb-6 flex items-center justify-center h-20">
+                    <div className="mb-6 flex items-center justify-center h-24">
                       <Image
                         src={company.logo_url}
                         alt={company.name}
-                        width={200}
-                        height={80}
-                        className="max-h-16 w-auto object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+                        title={company.name}
+                        width={240}
+                        height={96}
+                        className="h-20 w-auto max-w-full object-contain"
                       />
                     </div>
                   )}
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
-                    {company.name}
-                  </h3>
                   {company.tagline && (
-                    <p className="text-primary mb-4 font-semibold text-sm uppercase tracking-wide">
+                    <p className="text-primary mb-4 font-semibold text-sm uppercase tracking-wide text-center">
                       {company.tagline}
                     </p>
                   )}
@@ -164,7 +162,7 @@ export default async function NossasEmpresasPage() {
                       href={company.website_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center mt-4 text-primary text-sm font-medium group-hover:underline transition-all"
+                      className="inline-flex items-center mt-4 text-primary text-sm font-medium group-hover:underline transition-all w-full justify-center"
                     >
                       Saiba mais
                       <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
