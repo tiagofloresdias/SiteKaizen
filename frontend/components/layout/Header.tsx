@@ -47,8 +47,8 @@ export default function Header() {
               <Link href="/onde-estamos" className="text-white hover:text-primary transition-colors text-sm font-medium">
                 onde estamos
               </Link>
-              <Link href="/blog" className="text-white hover:text-primary transition-colors text-sm font-medium">
-                blog
+              <Link href="/aprenda-marketing" className="text-white hover:text-primary transition-colors text-sm font-medium">
+                aprenda marketing
               </Link>
               
               {/* Dropdown Soluções */}
@@ -99,7 +99,7 @@ export default function Header() {
                 <Link href="/quem-somos" className="text-white hover:text-primary transition-colors">quem somos</Link>
                 <Link href="/nossas-empresas" className="text-white hover:text-primary transition-colors">nossas empresas</Link>
                 <Link href="/onde-estamos" className="text-white hover:text-primary transition-colors">onde estamos</Link>
-                <Link href="/blog" className="text-white hover:text-primary transition-colors">blog</Link>
+                <Link href="/aprenda-marketing" className="text-white hover:text-primary transition-colors">aprenda marketing</Link>
                 <Link href="/solucoes" className="text-white hover:text-primary transition-colors">soluções</Link>
                 <Link href="/contato" className="text-white hover:text-primary transition-colors">contato</Link>
                 <a

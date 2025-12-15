@@ -59,8 +59,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-text-muted hover:text-primary transition-colors">
-                  Blog
+                <Link href="/aprenda-marketing" className="text-text-muted hover:text-primary transition-colors">
+                  Aprenda Marketing
                 </Link>
               </li>
               <li>
