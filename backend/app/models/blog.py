@@ -43,23 +43,9 @@ class Tag(Base):
         return f"<Tag {self.name}>"
 
 
-class ArticleCategory(Base):
-    """Categoria de artigo do blog"""
-    __tablename__ = "article_categories"
-
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    name = Column(String(255), nullable=False)
-    slug = Column(String(80), nullable=False, unique=True, index=True)
-    description = Column(Text, nullable=True)
-    
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    
-    # Relationships
-    articles = relationship("Article", secondary=article_categories_assoc, back_populates="categories")
-    
-    def __repr__(self):
-        return f"<ArticleCategory {self.name}>"
+# ArticleCategory já está definido em app.models.article
+# Importar de lá para evitar duplicação
+from app.models.article import ArticleCategory
 
 
 class Article(Base):
