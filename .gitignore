@@ -9,6 +9,14 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+**/venv/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Django
 *.log
@@ -69,8 +77,31 @@ uploads/
 
 # Nginx configs (manter apenas os templates)
 nginx-*.conf
-!nginx-site2025.conf
+!nginx-site2025-fastapi-nextjs.conf
 
-# Arquivos de migração temporários
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.env*.local
+
+# Backend
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.env
+backend/*.db
+backend/*.sqlite
+
+# Logs e temporários
+*.log
+logs/
+*.tmp
+*.temp
+
+# Arquivos de documentação (manter README)
 *.md
 !README.md
+!DEPLOY*.md
+!CONFIGURACAO*.md
+!MIGRACAO*.md
+!RESUMO*.md
