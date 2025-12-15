@@ -1,0 +1,413 @@
+{
+  "site_url": "https://agenciakaizen.com.br/",
+  "downloaded": {
+    "images": [
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/logo@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/logo@3x.webp",
+        "filename": "logo@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/grafico@3x-scaled.webp",
+        "path": "src/static/images/cloned/images/2025/05/grafico@3x-scaled.webp",
+        "filename": "grafico@3x-scaled.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/linha-copy@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/linha-copy@3x.webp",
+        "filename": "linha-copy@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/Asset-36@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/Asset-36@3x.webp",
+        "filename": "Asset-36@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/7324d1f9-vector-smart-object_106y021000000000000028@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/7324d1f9-vector-smart-object_106y021000000000000028@3x.webp",
+        "filename": "7324d1f9-vector-smart-object_106y021000000000000028@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/Asset-30@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/Asset-30@3x.webp",
+        "filename": "Asset-30@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/PRINCIPAL-COM-SOBRA@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/PRINCIPAL-COM-SOBRA@3x.webp",
+        "filename": "PRINCIPAL-COM-SOBRA@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/linha-copy@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/linha-copy@3x.webp",
+        "filename": "linha-copy@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/1Vector-Smart-Object@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/1Vector-Smart-Object@3x.webp",
+        "filename": "1Vector-Smart-Object@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/2Vector-Smart-Object@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/2Vector-Smart-Object@3x.webp",
+        "filename": "2Vector-Smart-Object@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/3Vector-Smart-Object@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/3Vector-Smart-Object@3x.webp",
+        "filename": "3Vector-Smart-Object@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/4Vector-Smart-Object@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/4Vector-Smart-Object@3x.webp",
+        "filename": "4Vector-Smart-Object@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/5Vector-Smart-Object-copy-7@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/5Vector-Smart-Object-copy-7@3x.webp",
+        "filename": "5Vector-Smart-Object-copy-7@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/6Vector-Smart-Object-copy-11@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/6Vector-Smart-Object-copy-11@3x.webp",
+        "filename": "6Vector-Smart-Object-copy-11@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/linha-copy@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/linha-copy@3x.webp",
+        "filename": "linha-copy@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/09/CASES.webp",
+        "path": "src/static/images/cloned/images/2025/09/CASES.webp",
+        "filename": "CASES.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/4Brightness_Contrast-1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/4Brightness_Contrast-1@3x.webp",
+        "filename": "4Brightness_Contrast-1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/3Copia-de-_Logotipo-03-copia@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/3Copia-de-_Logotipo-03-copia@3x.webp",
+        "filename": "3Copia-de-_Logotipo-03-copia@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/2Logo_unimed1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/2Logo_unimed1@3x.webp",
+        "filename": "2Logo_unimed1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/1Black-White-1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/1Black-White-1@3x.webp",
+        "filename": "1Black-White-1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/location-1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/location-1@3x.webp",
+        "filename": "location-1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/location-1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/location-1@3x.webp",
+        "filename": "location-1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/location-1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/location-1@3x.webp",
+        "filename": "location-1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/logo2@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/logo2@3x.webp",
+        "filename": "logo2@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/Layer-8@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/Layer-8@3x.webp",
+        "filename": "Layer-8@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/06/ap_badge.webp",
+        "path": "src/static/images/cloned/images/2025/06/ap_badge.webp",
+        "filename": "ap_badge.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/06/activecampaign.webp",
+        "path": "src/static/images/cloned/images/2025/06/activecampaign.webp",
+        "filename": "activecampaign.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/monday.com-white-logo-300x87@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/monday.com-white-logo-300x87@3x.webp",
+        "filename": "monday.com-white-logo-300x87@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/Badge-dark-300x113@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/Badge-dark-300x113@3x.webp",
+        "filename": "Badge-dark-300x113@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/06/selo_platinum_2025_atualizado-300x150.webp",
+        "path": "src/static/images/cloned/images/2025/06/selo_platinum_2025_atualizado-300x150.webp",
+        "filename": "selo_platinum_2025_atualizado-300x150.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/Agrupar-1@3x.webp",
+        "path": "src/static/images/cloned/images/2025/05/Agrupar-1@3x.webp",
+        "filename": "Agrupar-1@3x.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/thumbs/logo-kaizen-rcmkpcegw8gcgamvtd1qq18lfsij7t4rrmdx1xv8ms.webp",
+        "path": "src/static/images/cloned/images/elementor/thumbs/logo-kaizen-rcmkpcegw8gcgamvtd1qq18lfsij7t4rrmdx1xv8ms.webp",
+        "filename": "logo-kaizen-rcmkpcegw8gcgamvtd1qq18lfsij7t4rrmdx1xv8ms.webp"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Black.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Black.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Bold.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Bold.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonProRegular.ttf",
+        "path": "src/static/images/cloned/images/FilsonProRegular.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonProThin.ttf",
+        "path": "src/static/images/cloned/images/FilsonProThin.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Medium.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Medium.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Black.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Black.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/view-futuristic-space-rocket@3x-scaled.webp",
+        "path": "src/static/images/cloned/images/view-futuristic-space-rocket@3x-scaled.webp",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/Camada-1@3x-scaled.webp",
+        "path": "src/static/images/cloned/images/Camada-1@3x-scaled.webp",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Bold.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Bold.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonProRegular.ttf",
+        "path": "src/static/images/cloned/images/FilsonProRegular.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonProThin.ttf",
+        "path": "src/static/images/cloned/images/FilsonProThin.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Medium.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Medium.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Black.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Black.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Bold.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Bold.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonProRegular.ttf",
+        "path": "src/static/images/cloned/images/FilsonProRegular.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonProThin.ttf",
+        "path": "src/static/images/cloned/images/FilsonProThin.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/FilsonPro-Medium.ttf",
+        "path": "src/static/images/cloned/images/FilsonPro-Medium.ttf",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/10/Fundo-WhatsApp.webp",
+        "path": "src/static/images/cloned/images/Fundo-WhatsApp.webp",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/fluentformpro/public/libs/intl-tel-input/img/flags@2x.png",
+        "path": "src/static/images/cloned/images/flags@2x.png",
+        "source": "css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/fluentformpro/public/libs/intl-tel-input/img/flags.png",
+        "path": "src/static/images/cloned/images/flags.png",
+        "source": "css"
+      }
+    ],
+    "css": [
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/css/reset.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/reset.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/css/theme.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/theme.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/header-footer.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/frontend.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-5.css?ver=1763623718",
+        "path": "src/static/images/cloned/css/post-5.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-menu-anchor.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-image.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.32.1",
+        "path": "src/static/images/cloned/css/widget-nav-menu.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-heading.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-icon-list.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-divider.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/css/fluent-forms-public.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/fluent-forms-public.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/css/fluentform-public-default.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/fluentform-public-default.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor-pro/assets/css/conditionals/popup.min.css?ver=3.32.1",
+        "path": "src/static/images/cloned/css/popup.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/plugins/sticky-header-effects-for-elementor/assets/css/she-header-style.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/she-header-style.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-spacer.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=1763623861",
+        "path": "src/static/images/cloned/css/swiper.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/e-swiper.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-image-carousel.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-image-carousel.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/elementor/assets/css/widget-google_maps.min.css?ver=3.33.1",
+        "path": "src/static/images/cloned/css/widget-google_maps.min.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-2.css?ver=1763676073",
+        "path": "src/static/images/cloned/css/post-2.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/css/fluent-forms-elementor-widget.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/fluent-forms-elementor-widget.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-171.css?ver=1763623718",
+        "path": "src/static/images/cloned/css/post-171.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-173.css?ver=1763675857",
+        "path": "src/static/images/cloned/css/post-173.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-7439.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/post-7439.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-7282.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/post-7282.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-7241.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/post-7241.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/elementor/css/post-7142.css?ver=1763623719",
+        "path": "src/static/images/cloned/css/post-7142.css"
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/plugins/fluentformpro/public/libs/intl-tel-input/css/intlTelInput.min.css?ver=18.1.1",
+        "path": "src/static/images/cloned/css/intlTelInput.min.css"
+      }
+    ],
+    "fonts": [],
+    "icons": [
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/cropped-cropped-agenciakaizen-32x32.webp",
+        "path": "src/static/images/cloned/cropped-cropped-agenciakaizen-32x32.webp",
+        "rel": [
+          "icon"
+        ]
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/cropped-cropped-agenciakaizen-192x192.webp",
+        "path": "src/static/images/cloned/cropped-cropped-agenciakaizen-192x192.webp",
+        "rel": [
+          "icon"
+        ]
+      },
+      {
+        "url": "https://agenciakaizen.com.br/wp-content/uploads/2025/05/cropped-cropped-agenciakaizen-180x180.webp",
+        "path": "src/static/images/cloned/cropped-cropped-agenciakaizen-180x180.webp",
+        "rel": [
+          "apple-touch-icon"
+        ]
+      }
+    ]
+  },
+  "total_images": 52,
+  "total_css": 29,
+  "total_fonts": 0,
+  "total_icons": 3
+}

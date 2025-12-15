@@ -1,0 +1,30 @@
+[Unit]
+Description=Agência Kaizen CMS - Site 2025 (Gunicorn)
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/agenciakaizen/src
+Environment="PATH=/var/www/agenciakaizen/venv/bin"
+Environment="DJANGO_SETTINGS_MODULE=agenciakaizen_cms.settings.production"
+ExecStart=/var/www/agenciakaizen/venv/bin/gunicorn \
+    --bind 127.0.0.1:8005 \
+    --workers 4 \
+    --threads 2 \
+    --timeout 120 \
+    --access-logfile /var/www/agenciakaizen/logs/gunicorn-access.log \
+    --error-logfile /var/www/agenciakaizen/logs/gunicorn-error.log \
+    --log-level info \
+    --capture-output \
+    agenciakaizen_cms.wsgi:application
+
+Restart=always
+RestartSec=10
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+

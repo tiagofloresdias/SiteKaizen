@@ -1,0 +1,32 @@
+[Unit]
+Description=Agência Kaizen API - FastAPI Backend
+After=network.target postgresql.service
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/agenciakaizen/backend
+Environment="PATH=/var/www/agenciakaizen/venv/bin"
+Environment="APP_NAME=Agência Kaizen API"
+Environment="APP_VERSION=1.0.0"
+Environment="DEBUG=False"
+Environment="DATABASE_URL=postgresql://postgres:postgres@localhost:5432/agenciakaizen"
+Environment="API_V1_PREFIX=/api/v1"
+Environment="CORS_ORIGINS=http://localhost:3001,http://127.0.0.1:3001,https://site2025.agenciakaizen.com.br,http://localhost:3000,http://127.0.0.1:3000"
+Environment="SITE_URL=https://site2025.agenciakaizen.com.br"
+Environment="SITE_NAME=Agência Kaizen"
+ExecStart=/var/www/agenciakaizen/venv/bin/uvicorn app.main:app \
+    --host 127.0.0.1 \
+    --port 8006 \
+    --workers 4 \
+    --log-level info \
+    --access-log \
+    --no-use-colors
+Restart=always
+RestartSec=10
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
+

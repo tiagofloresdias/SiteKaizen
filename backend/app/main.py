@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from app.config import get_settings
-from app.api.v1 import companies, articles, locations, sitemap
+from app.api.v1 import companies, articles, locations, sitemap, auth, admin
 from app.core.templates import render_template
 
 settings = get_settings()
@@ -38,6 +38,8 @@ if media_path.exists():
     app.mount("/media", StaticFiles(directory=str(media_path)), name="media")
 
 # Routers API
+app.include_router(auth.router, prefix=settings.api_v1_prefix, tags=["auth"])
+app.include_router(admin.router, prefix=settings.api_v1_prefix, tags=["admin"])
 app.include_router(companies.router, prefix=settings.api_v1_prefix, tags=["companies"])
 app.include_router(articles.router, prefix=settings.api_v1_prefix, tags=["articles"])
 app.include_router(locations.router, prefix=settings.api_v1_prefix, tags=["locations"])

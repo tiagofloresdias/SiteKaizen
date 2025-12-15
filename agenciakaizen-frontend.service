@@ -1,0 +1,21 @@
+[Unit]
+Description=Agência Kaizen Frontend - Next.js
+After=network.target agenciakaizen-api.service
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/agenciakaizen/frontend
+Environment="NODE_ENV=production"
+Environment="NEXT_PUBLIC_API_URL=http://localhost:8006/api/v1"
+Environment="NEXT_PUBLIC_SITE_URL=https://site2025.agenciakaizen.com.br"
+ExecStart=/usr/bin/npm start
+# PORT padrão do Next.js é 3000
+Restart=always
+RestartSec=10
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
+

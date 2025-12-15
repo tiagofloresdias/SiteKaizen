@@ -9,6 +9,7 @@ from app.models.lead import Lead, Touchpoint, UTMParameters
 from app.models.case import Case
 from app.models.company import Company, CompanyCategory, CompanyFeature
 from app.models.location import Location
+from app.models.user import User
 
 # Importar todos os modelos para que o Alembic possa detectá-los
 __all__ = [
@@ -37,4 +38,6 @@ __all__ = [
     "CompanyFeature",
     # Locations
     "Location",
+    # Users
+    "User",
 ]

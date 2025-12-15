@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <!-- === PERFORMANCE & SEO META TAGS === -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- === CRITICAL SEO META TAGS === -->
+    <title>{% block title %}{{ page.title }} - Agência Kaizen{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ page.search_description|default:"Agência Kaizen - Marketing Digital de Alta Performance. Transformamos visitantes em clientes com estratégias comprovadas." }}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}marketing digital, agência digital, desenvolvimento web, SEO, Google Ads, Facebook Ads, conversão, leads{% endblock %}">
+    <meta name="author" content="Agência Kaizen">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="{{ page.full_url }}">
+    
+    <!-- === STRUCTURED DATA (JSON-LD) === -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Agência Kaizen",
+        "url": "https://new.agenciakaizen.com.br",
+        "logo": "https://new.agenciakaizen.com.br/static/images/logo-kaizen-header.webp",
+        "description": "Agência de Marketing Digital de Alta Performance especializada em conversão e geração de leads.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua dos Andradas, 1234",
+            "addressLocality": "Porto Alegre",
+            "addressRegion": "RS",
+            "postalCode": "90020-000",
+            "addressCountry": "BR"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-51-0800-550-8000",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/agencia-kaizen",
+            "https://www.facebook.com/agencia.kaizen",
+            "https://www.instagram.com/agencia.kaizen"
+        ]
+    }
+    </script>
+    
+    <!-- === OPEN GRAPH & SOCIAL META === -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}{{ page.title }} - Agência Kaizen{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ page.search_description|default:"Agência Kaizen - Marketing Digital de Alta Performance" }}{% endblock %}">
+    <meta property="og:url" content="{{ page.full_url }}">
+    <meta property="og:image" content="{% block og_image %}https://new.agenciakaizen.com.br/static/images/og-default.jpg{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Agência Kaizen">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- === TWITTER CARD === -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ page.title }} - Agência Kaizen{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ page.search_description|default:"Marketing Digital de Alta Performance" }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}https://new.agenciakaizen.com.br/static/images/twitter-default.jpg{% endblock %}">
+    
+    <!-- === FAVICONS & APP ICONS === -->
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#D62042">
+    
+    <!-- === PRELOAD CRITICAL RESOURCES === -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- === CRITICAL CSS INLINE === -->
+    <style>
+        /* Critical above-the-fold CSS */
+        body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#212529}
+        .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px)}
+        .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#D62042,#ff6b6b)}
+        .loading{opacity:0;transition:opacity 0.3s ease}
+        .loaded{opacity:1}
+    </style>
+    
+    <!-- === GOOGLE FONTS OPTIMIZED === -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- === GOOGLE TAG MANAGER === -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    
+    <!-- === SCHEMA.ORG BREADCRUMBS === -->
+    {% if page.get_ancestors %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {% for ancestor in page.get_ancestors %}
+            {
+                "@type": "ListItem",
+                "position": {{ forloop.counter }},
+                "name": "{{ ancestor.title }}",
+                "item": "{{ ancestor.full_url }}"
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+            {
+                "@type": "ListItem",
+                "position": {{ page.get_ancestors|length|add:1 }},
+                "name": "{{ page.title }}",
+                "item": "{{ page.full_url }}"
+            }
+        ]
+    }
+    </script>
+    {% endif %}
+</head>
+
+<body class="loading">
+    <!-- === GOOGLE TAG MANAGER (noscript) === -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    <!-- === SKIP NAVIGATION (ACCESSIBILITY) === -->
+    <a href="#main-content" class="sr-only sr-only-focusable">Pular para o conteúdo principal</a>
+    
+    <!-- === HEADER OPTIMIZED === -->
+    <header class="header" role="banner">
+        <nav class="container" role="navigation" aria-label="Navegação principal">
+            <div class="nav-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="/" aria-label="Agência Kaizen - Página inicial">
+                        <img src="/static/images/logo-kaizen-header.webp" alt="Agência Kaizen" width="180" height="40" loading="eager">
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a href="/" role="menuitem">Home</a></li>
+                    <li role="none">
+                        <a href="/solucoes/" role="menuitem" aria-haspopup="true" aria-expanded="false">Soluções</a>
+                        <ul class="dropdown" role="menu">
+                            <li role="none"><a href="/solucoes/desenvolvimento-de-sites/" role="menuitem">Desenvolvimento de Sites</a></li>
+                            <li role="none"><a href="/solucoes/marketing-digital/" role="menuitem">Marketing Digital</a></li>
+                            <li role="none"><a href="/solucoes/consultoria-seo/" role="menuitem">Consultoria SEO</a></li>
+                            <li role="none"><a href="/solucoes/" role="menuitem">Ver todas as soluções</a></li>
+                        </ul>
+                    </li>
+                    <li role="none"><a href="/quem-somos/" role="menuitem">Quem Somos</a></li>
+                    <li role="none"><a href="/onde-estamos/" role="menuitem">Onde Estamos</a></li>
+                    <li role="none"><a href="/contato/" role="menuitem" class="btn btn-primary">Falar com Especialista</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- === MAIN CONTENT === -->
+    <main id="main-content" role="main">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- === FOOTER OPTIMIZED === -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <h3>Agência Kaizen</h3>
+                    <p>Marketing Digital de Alta Performance desde 2014. Transformamos visitantes em clientes com estratégias comprovadas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Facebook" rel="noopener"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="/solucoes/">Soluções</a></li>
+                        <li><a href="/quem-somos/">Quem Somos</a></li>
+                        <li><a href="/onde-estamos/">Onde Estamos</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="/solucoes/desenvolvimento-de-sites/">Desenvolvimento de Sites</a></li>
+                        <li><a href="/solucoes/marketing-digital/">Marketing Digital</a></li>
+                        <li><a href="/solucoes/consultoria-seo/">Consultoria SEO</a></li>
+                        <li><a href="/solucoes/assessoria-de-midia-paga/">Mídia Paga</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 0800-550-8000</p>
+                        <p><i class="fas fa-envelope"></i> contato@agenciakaizen.com.br</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Porto Alegre, RS</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Agência Kaizen. Todos os direitos reservados.</p>
+                    <div class="footer-links">
+                        <a href="/politica-privacidade/">Política de Privacidade</a>
+                        <a href="/termos-uso/">Termos de Uso</a>
+                        <a href="/sitemap.xml">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- === CONVERSION OPTIMIZATION COMPONENTS === -->
+    
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float" role="button" aria-label="Falar no WhatsApp">
+        <a href="https://wa.me/5551999999999?text=Olá!%20Vim%20pelo%20site%20da%20Agência%20Kaizen" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+    
+    <!-- Exit Intent Modal -->
+    <div id="exit-intent-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <h2 id="modal-title">Espera! Não vá embora ainda...</h2>
+            <p>Que tal uma consultoria gratuita para acelerar seu negócio?</p>
+            <form class="exit-intent-form">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="btn btn-primary">Quero Consultoria Grátis</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- === PERFORMANCE SCRIPTS === -->
+    <script>
+        // Remove no-js class and add loaded class
+        document.documentElement.classList.remove('no-js');
+        document.body.classList.add('loaded');
+        
+        // Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+        
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileToggle?.addEventListener('click', () => {
+            const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+            mobileToggle.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('active');
+        });
+        
+        // Exit intent detection
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                exitIntentShown = true;
+                document.getElementById('exit-intent-modal').classList.add('show');
+            }
+        });
+        
+        // Close modal
+        document.querySelectorAll('.modal-close, .modal').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (e.target === el || e.target.classList.contains('modal-close')) {
+                    document.getElementById('exit-intent-modal').classList.remove('show');
+                }
+            });
+        });
+    </script>
+    
+    <!-- === NON-CRITICAL CSS === -->
+    <link rel="stylesheet" href="/static/css/kaizen-design-system.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/static/css/kaizen-design-system.css"></noscript>
+    
+    <!-- === FONT AWESOME === -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- === ANALYTICS & CONVERSION TRACKING === -->
+    <script>
+        // Conversion tracking
+        window.trackConversion = function(eventName, value = 0) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    'event_category': 'conversion',
+                    'value': value,
+                    'currency': 'BRL'
+                });
+            }
+        };
+        
+        // Track form submissions
+        document.addEventListener('submit', (e) => {
+            if (e.target.classList.contains('contact-form')) {
+                trackConversion('form_submission');
+            }
+        });
+        
+        // Track button clicks
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-primary')) {
+                trackConversion('cta_click', e.target.textContent.trim());
+            }
+        });
+    </script>
+</body>
+</html>
